@@ -3,16 +3,17 @@ package com.landlordcommunication.web.services;
 import com.landlordcommunication.web.repositories.ResidenceRepository;
 import com.landlordcommunication.web.models.Residence;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ResidenceServiceImpl implements ResidenceService {
 
     private ResidenceRepository repository;
 
     @Autowired
-    public ResidenceServiceImpl(ResidenceRepository repository)
-    {
+    public ResidenceServiceImpl(ResidenceRepository repository) {
         this.repository = repository;
     }
 
@@ -47,7 +48,6 @@ public class ResidenceServiceImpl implements ResidenceService {
 
     @Override
     public List<Residence> getAllResidences() {
-        //TODO
-        return null;
+        return repository.getAllResidences();
     }
 }

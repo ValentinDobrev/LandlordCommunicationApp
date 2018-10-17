@@ -1,6 +1,9 @@
 package com.landlordcommunication.web.controller;
 
+import com.landlordcommunication.web.models.Residence;
 import com.landlordcommunication.web.models.User;
+import com.landlordcommunication.web.services.ResidenceService;
+import com.landlordcommunication.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +13,8 @@ import java.util.List;
 @RequestMapping("/api/ltr")
 public class LandlordCommunicationRestController {
 
+    private ResidenceService residenceService;
+    private UserService userService;
 //    private LandlordTenantService service;
 //
 //    @Autowired
@@ -41,4 +46,18 @@ public class LandlordCommunicationRestController {
 //    public void deleteUser(@PathVariable int id) {
 //        service.delete(id);
 //    }
+
+    // Residences queries
+    @GetMapping("/residences/all")
+    public List<Residence> getAllResidences()
+    {
+        return residenceService.getAllResidences();
+    }
+
+    // User queries
+    @PostMapping("/users/new")
+    public void createUser(User user)
+    {
+        userService.createUser(user);
+    }
 }
