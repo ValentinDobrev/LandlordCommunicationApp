@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class LandlordTenantServiceImpl implements LandlordTenantService {
 
-    private BaseRepository repository;
+    private final BaseRepository repository;
 
     @Autowired
     public LandlordTenantServiceImpl(BaseRepository repository) {
