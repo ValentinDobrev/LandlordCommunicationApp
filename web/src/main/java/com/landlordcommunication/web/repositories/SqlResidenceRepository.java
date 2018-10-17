@@ -2,14 +2,14 @@ package com.landlordcommunication.web.repositories;
 
 import com.landlordcommunication.web.models.Residence;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SqlResidenceRepository implements ResidenceRepository {
 
 
-
     @Override
-    public Residence getResidenceByLandlord() {
+    public Residence getResidenceByLandlord(int landlordId) {
         return null;
     }
 
@@ -35,6 +35,13 @@ public class SqlResidenceRepository implements ResidenceRepository {
 
     @Override
     public List<Residence> getAllResidences() {
-        return null;
+       List<Residence> result = new ArrayList<>();
+
+
+
+
+
+
+       return result;
     }
 }
