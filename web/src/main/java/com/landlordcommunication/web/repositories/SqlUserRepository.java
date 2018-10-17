@@ -61,20 +61,29 @@ public class SqlUserRepository implements UserRepository {
     }
 
     @Override
-    public List<User> getTenantsByResidence() {
+    public List<User> getTenantsByResidenceId(int residenceId) {
         //TODO
         return null;
     }
 
     @Override
-    public List<User> getLandlordsByResidence() {
+    public List<User> getLandlordsByResidenceId(int residenceId) {
         //TODO
         return null;
     }
 
     @Override
     public List<User> getAllLandlords() {
-        //TODO
-        return null;
+        List<User> result = new ArrayList<>();
+        try (
+                Session session = sessionFactory.openSession();
+        ) {
+            session.beginTransaction();
+            result = session.createQuery("from User where isTenant = 1")
+                    .list();
+            session.getTransaction().commit();
+        }
+        return result;
+
     }
 }
