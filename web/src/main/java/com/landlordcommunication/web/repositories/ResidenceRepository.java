@@ -1,4 +1,4 @@
-package com.landlordcommunication.web;
+package com.landlordcommunication.web.repositories;
 
 import com.landlordcommunication.web.models.Residence;
 
@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ResidenceRepository {
 
-    Residence getResidenceByLandlord();
+    Residence getResidenceByLandlord(int landlordId);
 
     Residence getResidenceByTenant();
 
