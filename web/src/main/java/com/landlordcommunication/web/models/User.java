@@ -30,7 +30,7 @@ public class User {
     private boolean isTenant;
 
     //to be defined via the LTR table
-    private List<Residence> residences;
+    //private List<Residence> residences;
 
     //to be populated with a query to the 'ratingRecords' table
     private double rating;
@@ -46,7 +46,7 @@ public class User {
         this.email = email;
         this.firstName = firstName;
         this.surname = surname;
-        this.residences = residences;
+       // this.residences = residences;
         this.isTenant = isTenant;
         this.budget = budget;
         this.rating = rating;
@@ -84,13 +84,13 @@ public class User {
         this.surname = surname;
     }
 
-    public List<Residence> getResidences() {
+    /*public List<Residence> getResidences() {
         return residences;
     }
 
     public void setResidences(List<Residence> residences) {
         this.residences = residences;
-    }
+    }*/
 
     public boolean getIsTenant() {
         return isTenant;

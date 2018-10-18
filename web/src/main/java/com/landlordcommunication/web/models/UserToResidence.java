@@ -2,12 +2,13 @@ package com.landlordcommunication.web.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "usertoresidence")
 public class UserToResidence {
-
+    @Id
     @Column(name = "IdTenant")
     private int tenantId;
 

@@ -4,10 +4,12 @@ import com.landlordcommunication.web.models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class SqlUserRepository implements UserRepository {
     @Autowired
     private SessionFactory sessionFactory;

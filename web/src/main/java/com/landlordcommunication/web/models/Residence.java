@@ -28,7 +28,7 @@ public class Residence {
     */
 
     //to be populated via a SELECT query that uses join to gather info from 'users', 'LTR'
-    private List<Integer> tenantIds;
+    //private List<Integer> tenantIds;
 
     public Residence() {
     }
@@ -39,7 +39,7 @@ public class Residence {
         setAddress(address);
         setLandlordId(landlordId);
         setRent(rent);
-        setTenantIds(tenantIds);
+       // setTenantIds(tenantIds);
     }
 
     public int getIdResidence() {
@@ -74,11 +74,11 @@ public class Residence {
         this.rent = rent;
     }
 
-    public List<Integer> getTenantIds() {
+    /*public List<Integer> getTenantIds() {
         return tenantIds;
     }
 
     private void setTenantIds(List<Integer> tenantIds) {
         this.tenantIds = tenantIds;
-    }
+    }*/
 }
