@@ -11,14 +11,9 @@ import java.util.List;
 @Repository
 public class SqlResidenceRepository implements ResidenceRepository {
 
-
-    private final SessionFactory sessionFactory;
-
     @Autowired
-    public SqlResidenceRepository(SessionFactory sessionFactory)
-    {
-        this.sessionFactory = sessionFactory;
-    }
+    private SessionFactory sessionFactory;
+
 
     @Override
     public List<Residence> getResidenceByLandlord(int landlordId) {
