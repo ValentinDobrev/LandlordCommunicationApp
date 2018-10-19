@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface ResidenceRepository {
 
-    List <Residence> getResidenceByLandlord(int landlordId);
+    List<Residence> getResidenceByLandlord(int landlordId);
 
-    Residence getResidenceByTenant();
+    List<Residence> getResidenceByTenant(int tenantId);
 
     void updateResidence();
 

@@ -31,11 +31,11 @@ public class SqlResidenceRepository implements ResidenceRepository {
         }
 
         return result;
-
-        }
+    }
 
     @Override
-    public Residence getResidenceByTenant() {
+    public List<Residence> getResidenceByTenant(int tenantdId) {
+        // TODO
         return null;
     }
 
@@ -56,18 +56,18 @@ public class SqlResidenceRepository implements ResidenceRepository {
 
     @Override
     public List<Residence> getAllResidences() {
-       List<Residence> result;
+        List<Residence> result;
 
-       try (
-               Session session = sessionFactory.openSession();
-       ) {
-           session.beginTransaction();
-           result = session.createQuery("from Residence").list();
-           session.getTransaction().commit();
-       } catch (Exception e) {
-           System.out.println(e.getMessage());
-           throw new RuntimeException(e);
-       }
+        try (
+                Session session = sessionFactory.openSession();
+        ) {
+            session.beginTransaction();
+            result = session.createQuery("from Residence").list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
 
         return result;
     }
