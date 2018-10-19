@@ -50,8 +50,7 @@ public class LandlordCommunicationRestController {
 
     // Residences queries
     @GetMapping("/residences/all")
-    public List<Residence> getAllResidences()
-    {
+    public List<Residence> getAllResidences() {
         return residenceService.getAllResidences();
     }
 
@@ -60,5 +59,10 @@ public class LandlordCommunicationRestController {
     public void createUser(User user)
     {
         userService.createUser(user);
+    }
+
+    @GetMapping("/users/landlords")
+    public List<User> getAllLandlords() {
+        return userService.getAllLandlords();
     }
 }
