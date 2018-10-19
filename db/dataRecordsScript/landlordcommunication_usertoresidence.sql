@@ -23,17 +23,15 @@ DROP TABLE IF EXISTS `usertoresidence`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usertoresidence` (
-  `IdTenant` int(11) NOT NULL,
-  `IdLandlord` int(11) NOT NULL,
-  `IdResidence` int(11) NOT NULL,
-  PRIMARY KEY (`IdTenant`,`IdLandlord`,`IdResidence`),
-  KEY `IdResidence_idx` (`IdResidence`),
-  KEY `IdLandlord_idx` (`IdLandlord`),
-  KEY `IdTenant_idx` (`IdTenant`),
-  CONSTRAINT `IdLandlord` FOREIGN KEY (`IdLandlord`) REFERENCES `users` (`IdUser`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `IdResidence` FOREIGN KEY (`IdResidence`) REFERENCES `residences` (`IdResidence`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `IdTenant` FOREIGN KEY (`IdTenant`) REFERENCES `users` (`IdUser`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `residence_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `residence_id_idx` (`residence_id`),
+  KEY `user_id_idx` (`user_id`),
+  CONSTRAINT `residence_id` FOREIGN KEY (`residence_id`) REFERENCES `residences` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +40,7 @@ CREATE TABLE `usertoresidence` (
 
 LOCK TABLES `usertoresidence` WRITE;
 /*!40000 ALTER TABLE `usertoresidence` DISABLE KEYS */;
-INSERT INTO `usertoresidence` VALUES (1,11,6),(2,7,5),(4,7,4),(5,7,4),(8,3,3),(9,6,2),(10,6,1);
+INSERT INTO `usertoresidence` VALUES (15,15,1),(16,14,2),(17,13,4),(18,13,5),(19,12,8),(20,11,9),(21,10,10),(22,15,11),(23,14,7),(24,13,7),(25,13,7),(26,12,3),(27,11,6),(28,10,6);
 /*!40000 ALTER TABLE `usertoresidence` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-17 12:29:05
+-- Dump completed on 2018-10-19 16:56:13

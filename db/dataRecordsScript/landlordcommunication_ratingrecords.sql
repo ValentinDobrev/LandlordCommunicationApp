@@ -23,16 +23,16 @@ DROP TABLE IF EXISTS `ratingrecords`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ratingrecords` (
-  `IdRatingRecord` int(11) NOT NULL AUTO_INCREMENT,
-  `IdGiver` int(11) NOT NULL,
-  `IdTaker` int(11) NOT NULL,
-  `Rating` int(11) NOT NULL,
-  PRIMARY KEY (`IdRatingRecord`,`IdGiver`,`IdTaker`),
-  KEY `IdGiver_idx` (`IdGiver`),
-  KEY `IdTaker_idx` (`IdTaker`),
-  CONSTRAINT `IdGiver` FOREIGN KEY (`IdGiver`) REFERENCES `users` (`IdUser`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `IdTaker` FOREIGN KEY (`IdTaker`) REFERENCES `users` (`IdUser`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `giver_id` int(11) NOT NULL,
+  `taker_id` int(11) NOT NULL,
+  `rating` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IdGiver_idx` (`giver_id`),
+  KEY `IdTaker_idx` (`taker_id`),
+  CONSTRAINT `IdGiver` FOREIGN KEY (`giver_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `IdTaker` FOREIGN KEY (`taker_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `ratingrecords` (
 
 LOCK TABLES `ratingrecords` WRITE;
 /*!40000 ALTER TABLE `ratingrecords` DISABLE KEYS */;
-INSERT INTO `ratingrecords` VALUES (1,2,3,5),(2,1,3,5),(3,9,6,4),(4,10,6,5),(5,1,6,4),(6,3,5,2),(7,7,5,2),(8,6,5,3),(9,6,2,5),(10,7,2,5),(11,6,4,5),(12,11,1,3),(13,7,1,4),(14,6,1,4),(15,3,1,5);
+INSERT INTO `ratingrecords` VALUES (16,2,3,5),(17,1,3,5),(18,9,6,4),(19,10,6,5),(20,1,6,4),(21,3,5,2),(22,7,5,2),(23,6,5,3),(24,6,2,5),(25,7,2,5),(26,6,4,5),(27,11,1,3),(28,7,1,4),(29,6,1,4),(30,3,1,5);
 /*!40000 ALTER TABLE `ratingrecords` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-17 12:29:05
+-- Dump completed on 2018-10-19 16:56:13
