@@ -1,47 +1,44 @@
 package com.landlordcommunication.web.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "usertoresidence")
 public class UserToResidence {
     @Id
-    @Column(name = "IdTenant")
-    private int tenantId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int relationId;
 
-    @Column(name = "IdLandlord")
-    private int landlordId;
-
-    @Column(name = "IdResidence")
+    @Column(name = "residence_id")
     private int residenceId;
 
+    @Column(name = "user_id")
+    private int userId;
+
     public UserToResidence() {
-
     }
 
-    public UserToResidence(int tenantId, int landlordId, int residenceId) {
-        setTenantId(tenantId);
-        setLandlordId(landlordId);
+    public UserToResidence(int relationId, int residenceId, int userId) {
+        setRelationId(relationId);
         setResidenceId(residenceId);
+        setUserId(userId);
     }
 
-    public int getTenantId() {
-        return tenantId;
+    public int getRelationId() {
+        return relationId;
     }
 
-    private void setTenantId(int tenantId) {
-        this.tenantId = tenantId;
+    public void setRelationId(int relationId) {
+        this.relationId = relationId;
     }
 
-    public int getLandlordId() {
-        return landlordId;
+    public int getUserId() {
+        return userId;
     }
 
-    private void setLandlordId(int landlordId) {
-        this.landlordId = landlordId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getResidenceId() {

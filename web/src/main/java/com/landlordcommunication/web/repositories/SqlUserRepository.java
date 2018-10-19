@@ -6,7 +6,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -36,7 +35,7 @@ public class SqlUserRepository implements UserRepository {
             session.beginTransaction();
 
             User userToBeDeleted = new User();
-                userToBeDeleted.setIdUser(userID);
+                userToBeDeleted.setUserId(userID);
 
             session.delete(userToBeDeleted);
             session.getTransaction().commit();

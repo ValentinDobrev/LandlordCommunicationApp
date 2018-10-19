@@ -6,18 +6,18 @@ import javax.persistence.*;
 @Table(name = "ratingrecords")
 public class Rating {
 
-    @Column(name = "Rating")
+    @Column(name = "rating")
     private int rating;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdRatingRecord")
+    @Column(name = "id")
     private int recordId;
 
-    @Column(name = "IdGiver")
+    @Column(name = "giver_id")
     private int giverId;
 
-    @Column(name = "IdTaker")
+    @Column(name = "taker_id")
     private int takerId;
 
     public Rating() {
