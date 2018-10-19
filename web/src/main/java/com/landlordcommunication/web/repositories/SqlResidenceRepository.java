@@ -17,20 +17,8 @@ public class SqlResidenceRepository implements ResidenceRepository {
 
     @Override
     public List<Residence> getResidenceByLandlord(int landlordId) {
-
-        List<Residence> result;
-
-        try (
-                Session session = sessionFactory.openSession();
-        ) {
-            session.beginTransaction();
-            result = session.createQuery("from Residence where landlordId = :LandlordId")
-                    .setParameter("LandlordId", landlordId)
-                    .list();
-            session.getTransaction().commit();
-        }
-
-        return result;
+        //TODO
+        return null;
     }
 
     @Override
