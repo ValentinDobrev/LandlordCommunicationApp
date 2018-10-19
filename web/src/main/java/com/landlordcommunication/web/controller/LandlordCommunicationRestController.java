@@ -15,7 +15,8 @@ public class LandlordCommunicationRestController {
 
     private ResidenceService residenceService;
     private UserService userService;
-//    private LandlordTenantService service;
+
+    //    private LandlordTenantService service;
 //
     @Autowired
     public LandlordCommunicationRestController(ResidenceService residenceService, UserService userService) {
@@ -54,6 +55,11 @@ public class LandlordCommunicationRestController {
         return residenceService.getAllResidences();
     }
 
+    @GetMapping("/residences/{id}")
+    public List<Residence> getResidencesByLandlord(@PathVariable int id) {
+        return residenceService.getResidenceByLandlord(id);
+    }
+
     // User queries
     @PostMapping("/users/new")
     public void createUser(@RequestBody User user) {
@@ -64,4 +70,6 @@ public class LandlordCommunicationRestController {
     public List<User> getAllLandlords() {
         return userService.getAllLandlords();
     }
+
+
 }
