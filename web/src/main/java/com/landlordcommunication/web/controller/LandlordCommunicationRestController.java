@@ -17,10 +17,11 @@ public class LandlordCommunicationRestController {
     private UserService userService;
 //    private LandlordTenantService service;
 //
-//    @Autowired
-//    public LandlordCommunicationRestController(LandlordTenantService service) {
-//        this.service = service;
-//    }
+    @Autowired
+    public LandlordCommunicationRestController(ResidenceService residenceService, UserService userService) {
+        this.residenceService = residenceService;
+        this.userService = userService;
+    }
 //
 //    @GetMapping("/all")
 //    public List<User> getAllUsers() {
