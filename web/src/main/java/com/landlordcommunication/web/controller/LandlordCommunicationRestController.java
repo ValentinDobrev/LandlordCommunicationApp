@@ -16,8 +16,7 @@ public class LandlordCommunicationRestController {
     private ResidenceService residenceService;
     private UserService userService;
 
-    //    private LandlordTenantService service;
-//
+
     @Autowired
     public LandlordCommunicationRestController(ResidenceService residenceService, UserService userService) {
         this.residenceService = residenceService;
@@ -34,20 +33,12 @@ public class LandlordCommunicationRestController {
 //        return service.getById(id);
 //    }
 //
-//    @PostMapping("/new")
-//    public void createUser(@RequestBody User user) {
-//        service.create(user);
-//    }
 //
 //    @PutMapping("/{id}")
 //    public void updateUser(@PathVariable int id, @RequestBody User user) {
 //        service.update(id, user);
 //    }
 //
-    @DeleteMapping("/users/delete/{id}")
-    public void deleteUser(@PathVariable int id) {
-        userService.deleteUser(id);
-    }
 
     // Residences queries
     @GetMapping("/residences/all")
@@ -55,15 +46,20 @@ public class LandlordCommunicationRestController {
         return residenceService.getAllResidences();
     }
 
-    @GetMapping("/residences/{id}")
-    public List<Residence> getResidencesByLandlord(@PathVariable int id) {
-        return residenceService.getResidenceByLandlord(id);
-    }
+//    @GetMapping("/residences/{id}")
+//    public List<Residence> getResidencesByLandlord(@PathVariable int id) {
+//        return residenceService.getResidenceByLandlord(id);
+//    }
 
     // User queries
     @PostMapping("/users/new")
     public void createUser(@RequestBody User user) {
         userService.createUser(user);
+    }
+
+    @DeleteMapping("/users/delete/{id}")
+    public void deleteUser(@PathVariable int id) {
+        userService.deleteUser(id);
     }
 
     @GetMapping("/users/landlords")
