@@ -43,10 +43,10 @@ public class LandlordCommunicationRestController {
 //        service.update(id, user);
 //    }
 //
-//    @DeleteMapping("/{id}")
-//    public void deleteUser(@PathVariable int id) {
-//        service.delete(id);
-//    }
+    @DeleteMapping("/users/delete/{id}")
+    public void deleteUser(@PathVariable int id) {
+        userService.deleteUser(id);
+    }
 
     // Residences queries
     @GetMapping("/residences/all")

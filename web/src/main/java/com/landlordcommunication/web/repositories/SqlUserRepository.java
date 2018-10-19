@@ -34,7 +34,11 @@ public class SqlUserRepository implements UserRepository {
                 Session session = sessionFactory.openSession();
         ) {
             session.beginTransaction();
-            session.delete(userID);
+
+            User userToBeDeleted = new User();
+                userToBeDeleted.setIdUser(userID);
+
+            session.delete(userToBeDeleted);
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
