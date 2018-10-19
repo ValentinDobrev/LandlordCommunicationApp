@@ -24,7 +24,7 @@ public class SqlResidenceRepository implements ResidenceRepository {
                 Session session = sessionFactory.openSession();
         ) {
             session.beginTransaction();
-            result = session.createQuery("from Employee where landlordId = :LandlordId")
+            result = session.createQuery("from Residence where landlordId = :LandlordId")
                     .setParameter("LandlordId", landlordId)
                     .list();
             session.getTransaction().commit();
@@ -62,7 +62,7 @@ public class SqlResidenceRepository implements ResidenceRepository {
                Session session = sessionFactory.openSession();
        ) {
            session.beginTransaction();
-           result = session.createQuery("from Employee").list();
+           result = session.createQuery("from Residence").list();
            session.getTransaction().commit();
        } catch (Exception e) {
            System.out.println(e.getMessage());

@@ -81,7 +81,7 @@ public class SqlUserRepository implements UserRepository {
                 Session session = sessionFactory.openSession()
         ) {
             session.beginTransaction();
-            result = session.createQuery("from User where isTenant = :true")
+            result = session.createQuery("from User where isTenant = false")
                     .list();
             session.getTransaction().commit();
         }
