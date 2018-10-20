@@ -18,8 +18,8 @@ public class ResidenceServiceImpl implements ResidenceService {
     }
 
     @Override
-    public List<Residence> getResidenceByLandlord(int landlordId) {
-        return repository.getResidenceByLandlord(landlordId);
+    public List<Residence> getResidenceByUser(int userId) {
+        return repository.getResidenceByUser(userId);
     }
 
     @Override

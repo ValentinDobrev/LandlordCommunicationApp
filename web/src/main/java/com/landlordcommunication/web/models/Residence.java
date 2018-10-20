@@ -1,6 +1,7 @@
 package com.landlordcommunication.web.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,6 +27,9 @@ public class Residence {
 
     //to be populated via a SELECT query that uses join to gather info from 'users', 'LTR'
     //private List<Integer> tenantIds;
+
+    @ManyToMany(mappedBy = "residences")
+    private List<User> user = new ArrayList<>();
 
     public Residence() {
     }

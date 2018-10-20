@@ -46,6 +46,11 @@ public class LandlordCommunicationRestController {
         return residenceService.getAllResidences();
     }
 
+    @GetMapping("/residences/{id}")
+    public List<Residence> getResidenceByUser(@PathVariable int id){
+        return residenceService.getResidenceByUser(id);
+    }
+
 //    @GetMapping("/residences/{id}")
 //    public List<Residence> getResidencesByLandlord(@PathVariable int id) {
 //        return residenceService.getResidenceByLandlord(id);

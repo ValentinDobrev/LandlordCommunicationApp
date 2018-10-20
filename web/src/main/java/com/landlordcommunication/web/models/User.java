@@ -1,6 +1,7 @@
 package com.landlordcommunication.web.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -30,7 +31,21 @@ public class User {
     private boolean isTenant;
 
     //to be defined via the LTR table
-    //private List<Residence> residences;
+
+    public List<Residence> getResidences() {
+        return residences;
+    }
+
+    public void setResidences(List<Residence> residences) {
+        this.residences = residences;
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "usertoresidence",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "residence_id")
+    )
+    private List<Residence> residences = new ArrayList<>();
 
     //to be populated with a query to the 'ratingRecords' table
     //private double rating;
