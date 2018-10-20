@@ -1,4 +1,4 @@
-package com.landlordcommunication.web.models;
+package com.landlordcommunication.web.DTOs;
 
 public class ResidenceDTO {
 
