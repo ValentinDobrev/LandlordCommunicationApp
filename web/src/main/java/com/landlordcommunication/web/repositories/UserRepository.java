@@ -1,5 +1,6 @@
 package com.landlordcommunication.web.repositories;
 
+import com.landlordcommunication.web.models.Rating;
 import com.landlordcommunication.web.models.User;
 
 import java.util.List;
@@ -11,4 +12,5 @@ public interface UserRepository {
     List<User> getTenantsByResidenceId(int residenceId);
     List<User> getLandlordsByResidenceId(int residenceId);
     List<User> getAllLandlords();
+    List<Rating> getUserRatings(int userId);
 }

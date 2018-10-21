@@ -1,5 +1,6 @@
 package com.landlordcommunication.web.services;
 
+import com.landlordcommunication.web.models.Rating;
 import com.landlordcommunication.web.models.User;
 import com.landlordcommunication.web.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,25 @@ public class UserServiceImpl implements UserService {
     @Autowired
     public UserServiceImpl(UserRepository repository) {
         this.repository = repository;
+    }
+
+    @Override
+    public double getUserRating(int userId) {
+        List<Rating> allRatings = repository.getUserRatings(userId);
+
+        double result = 0.0;
+
+        for (int i = 0; i < allRatings.size(); i++) {
+
+            result+= allRatings.get(i).getRating();
+
+
+        }
+
+        result = result / allRatings.size();
+
+        return result;
+
     }
 
     @Override

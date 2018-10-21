@@ -1,5 +1,6 @@
 package com.landlordcommunication.web.repositories;
 
+import com.landlordcommunication.web.models.Rating;
 import com.landlordcommunication.web.models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -95,5 +96,25 @@ public class SqlUserRepository implements UserRepository {
         }
         return result;
 
+    }
+
+    @Override
+    public List<Rating> getUserRatings(int userId) {
+        List<Rating> result;
+        try (
+                Session session = sessionFactory.openSession()
+        ) {
+            session.beginTransaction();
+            result = session.createQuery("from Rating where taker = :userId")
+                    .setParameter("userId", userId)
+                    .list();
+            session.getTransaction().commit();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            throw new RuntimeException();
+        }
+        return result;
     }
 }
