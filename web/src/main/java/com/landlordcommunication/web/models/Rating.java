@@ -14,6 +14,10 @@ public class Rating {
     @Column(name = "id")
     private int recordId;
 
+    /*@ManyToOne
+    @JoinColumn(name = "id")
+    private User giver;
+*/
     @ManyToOne
     @JoinColumn(name = "userId")
     private User taker;
@@ -22,9 +26,10 @@ public class Rating {
 
     }
 
-    public Rating(int rating, int recordId, User taker) {
+    public Rating(int rating, int recordId, User taker/*User giver*/) {
         setRating(rating);
         setRecordId(recordId);
+       // setGiver(giver);
         setTaker(taker);
     }
 

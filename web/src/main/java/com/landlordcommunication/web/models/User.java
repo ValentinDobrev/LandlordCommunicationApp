@@ -30,6 +30,15 @@ public class User {
     @Column(name = "is_tenant")
     private boolean isTenant;
 
+    //to be defined via the LTR table
+
+    public List<Residence> getResidences() {
+        return residences;
+    }
+
+    public void setResidences(List<Residence> residences) {
+        this.residences = residences;
+    }
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usertoresidence",
@@ -38,6 +47,10 @@ public class User {
     )
     private List<Residence> residences = new ArrayList<>();
 
+    //to be populated with a query to the 'ratingRecords' table
+/*
+    @OneToMany(mappedBy = "giver")
+    private List<Rating> ratingsGiven;*/
 
     @OneToMany(mappedBy = "taker")
     private List<Rating> ratingsTaken;
@@ -89,13 +102,13 @@ public class User {
         this.surname = surname;
     }
 
-    public List<Residence> getResidences() {
+    /*public List<Residence> getResidences() {
         return residences;
     }
 
     public void setResidences(List<Residence> residences) {
         this.residences = residences;
-    }
+    }*/
 
     public boolean getIsTenant() {
         return isTenant;

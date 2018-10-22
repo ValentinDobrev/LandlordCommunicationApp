@@ -28,6 +28,7 @@ public class UserServiceImpl implements UserService {
 
             result+= allRatings.get(i).getRating();
 
+
         }
 
         result = result / allRatings.size();
