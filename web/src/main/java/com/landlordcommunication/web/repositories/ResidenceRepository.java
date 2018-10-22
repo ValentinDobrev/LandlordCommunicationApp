@@ -18,4 +18,5 @@ public interface ResidenceRepository {
 
     List<Residence> getAllResidences();
 
+    List<Residence> getResidencesByUser(int userId);
 }

@@ -19,6 +19,9 @@ public class Residence {
     @Column(name = "rent")
     private double rent;
 
+    @ManyToMany(mappedBy = "residences")
+    private List<User> users = new ArrayList<>();
+
     /*private <Something> image/image gallery;
 
    TODO figure how to store images - with URLs or binary objects
@@ -73,4 +76,12 @@ public class Residence {
     private void setTenantIds(List<Integer> tenantIds) {
         this.tenantIds = tenantIds;
     }*/
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 }

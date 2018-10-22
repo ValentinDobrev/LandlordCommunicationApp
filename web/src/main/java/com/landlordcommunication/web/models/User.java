@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
 @Table(name = "users")
 public class User {
@@ -29,6 +28,13 @@ public class User {
     // if true, user is a tenant, if false, user is a landlord - subject to redesign :)
     @Column(name = "is_tenant")
     private boolean isTenant;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "usertoresidence",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "residence_id")
+    )
+    private List<Residence> residences = new ArrayList<>();
 
     //to be defined via the LTR table
 
@@ -97,13 +103,9 @@ public class User {
         this.surname = surname;
     }
 
-    /*public List<Residence> getResidences() {
+    public List<Residence> getResidences() {
         return residences;
     }
-
-    public void setResidences(List<Residence> residences) {
-        this.residences = residences;
-    }*/
 
     public boolean getIsTenant() {
         return isTenant;
