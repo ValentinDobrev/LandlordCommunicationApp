@@ -1,6 +1,8 @@
 package com.landlordcommunication.web.repositories;
 
 import com.landlordcommunication.web.models.Residence;
+import com.landlordcommunication.web.models.User;
+import com.landlordcommunication.web.models.UserToResidence;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +18,32 @@ public class SqlResidenceRepository implements ResidenceRepository {
 
 
     @Override
-    public List<Residence> getResidencesByUser(int userId) {
+    public List<Residence> getResidenceByUser(int userId) {
 
-        List<Residence> result;
+        User user = getUserById(userId);
 
+        return user.getResidences();
+    }
+
+    private User getUserById(int id) {
+        User result ;
         try (
                 Session session = sessionFactory.openSession();
         ) {
             session.beginTransaction();
-            result = session.createQuery("from Residence where user_id = :userId").list();
-            session.getTransaction().commit();
+            result = session.createQuery("from User where userId = :id",User.class)
+                    .setParameter("id", id).uniqueResult();
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
-
         return result;
+    }
+    @Override
+    public List<Residence> getResidenceByTenant(int tenantdId) {
+        // TODO
+        return null;
     }
 
     @Override
@@ -66,4 +78,5 @@ public class SqlResidenceRepository implements ResidenceRepository {
 
         return result;
     }
+
 }

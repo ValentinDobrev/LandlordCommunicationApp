@@ -17,10 +17,15 @@ public class ResidenceServiceImpl implements ResidenceService {
         this.repository = repository;
     }
 
+    @Override
+    public List<Residence> getResidenceByUser(int userId) {
+        return repository.getResidenceByUser(userId);
+    }
 
     @Override
-    public List<Residence> getResidencesByUser(int userId) {
-        return repository.getResidencesByUser(userId);
+    public Residence getResidenceByTenant() {
+        //TODO
+        return null;
     }
 
     @Override

@@ -14,23 +14,21 @@ public class Rating {
     @Column(name = "id")
     private int recordId;
 
-    /*@ManyToOne
-    @JoinColumn(name = "id")
-    private User giver;
-*/
-    @ManyToOne
-    @JoinColumn(name = "userId")
-    private User taker;
+    @Column(name = "giver_id")
+    private int giverId;
+
+    @Column(name = "taker_id")
+    private int takerId;
 
     public Rating() {
 
     }
 
-    public Rating(int rating, int recordId, User taker/*User giver*/) {
+    public Rating(int rating, int recordId, int giverId, int takerId) {
         setRating(rating);
         setRecordId(recordId);
-       // setGiver(giver);
-        setTaker(taker);
+        setGiverId(giverId);
+        setTakerId(takerId);
     }
 
     public int getRating() {
@@ -49,12 +47,19 @@ public class Rating {
         this.recordId = recordId;
     }
 
-
-    public User getTaker() {
-        return taker;
+    public int getGiverId() {
+        return giverId;
     }
 
-    public void setTaker(User taker) {
-        this.taker = taker;
+    private void setGiverId(int giverId) {
+        this.giverId = giverId;
+    }
+
+    public int getTakerId() {
+        return takerId;
+    }
+
+    private void setTakerId(int takerId) {
+        this.takerId = takerId;
     }
 }
