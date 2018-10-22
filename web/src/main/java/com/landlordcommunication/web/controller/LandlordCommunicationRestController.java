@@ -46,10 +46,10 @@ public class LandlordCommunicationRestController {
         return residenceService.getAllResidences();
     }
 
-    @GetMapping("/residences/{id}")
+    /*@GetMapping("/residences/{id}")
     public List<Residence> getResidenceByUser(@PathVariable int id){
-        return residenceService.getResidenceByUser(id);
-    }
+      //  return residenceService.getResidenceByUser(id);
+    }*/
 
 //    @GetMapping("/residences/{id}")
 //    public List<Residence> getResidencesByLandlord(@PathVariable int id) {
@@ -72,5 +72,9 @@ public class LandlordCommunicationRestController {
         return userService.getAllLandlords();
     }
 
+    @GetMapping("/users/rating/{id}")
+    public double getUserRating(@PathVariable int id){
+        return userService.getUserRating(id);
+    }
 
 }

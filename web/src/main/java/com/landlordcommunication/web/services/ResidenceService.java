@@ -5,9 +5,8 @@ import com.landlordcommunication.web.models.Residence;
 import java.util.List;
 
 public interface ResidenceService {
-    List<Residence> getResidenceByUser(int userId);
 
-    Residence getResidenceByTenant();
+    List<Residence> getResidencesByUser(int userId);
 
     void updateResidence();
 
