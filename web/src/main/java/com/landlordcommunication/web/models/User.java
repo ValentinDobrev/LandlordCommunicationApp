@@ -41,9 +41,11 @@ public class User {
     private List<Residence> residences = new ArrayList<>();
 
 
-    @OneToMany(mappedBy = "taker")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//    @OneToMany(orphanRemoval = true)
+//    @JoinColumn(name = "taker_id")
     @JsonIgnore
-    private List<Rating> ratingsTaken;
+    private List<Rating> ratingsTaken = new ArrayList<>();
 
     public User() {
     }

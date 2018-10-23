@@ -1,5 +1,6 @@
 package com.landlordcommunication.web.controller;
 
+import com.landlordcommunication.web.models.Rating;
 import com.landlordcommunication.web.models.Residence;
 import com.landlordcommunication.web.models.User;
 import com.landlordcommunication.web.services.ResidenceService;
@@ -50,7 +51,7 @@ public class LandlordCommunicationRestController {
     }
 
     @GetMapping("/users/rating/{id}")
-    public double getUserRating(@PathVariable int id){
+    public List<Rating> getUserRating(@PathVariable int id){
         return userService.getUserRating(id);
     }
 

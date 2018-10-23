@@ -99,12 +99,14 @@ public class SqlUserRepository implements UserRepository {
 
     @Override
     public List<Rating> getUserRatings(int userId) {
-        List<Rating> result;
+        //User user = getUserById(userId);
+        List<Rating> result = null;
+
         try (
                 Session session = sessionFactory.openSession()
         ) {
             session.beginTransaction();
-            result = session.createQuery("from Rating where taker = :userId")
+            result = session.createQuery("from Rating where takerId = :userId")
                     .setParameter("userId", userId)
                     .list();
             session.getTransaction().commit();
@@ -112,6 +114,25 @@ public class SqlUserRepository implements UserRepository {
             System.out.println(e.getMessage());
             throw new RuntimeException();
         }
+
+        return result;
+        //return user.getRatingsTaken();
+    }
+
+    private User getUserById(int id) {
+        User result;
+
+        try (
+                Session session = sessionFactory.openSession()
+        ) {
+            session.beginTransaction();
+            result = session.createQuery("from User where userId = :id", User.class)
+                    .setParameter("id", id).uniqueResult();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
+
         return result;
     }
 

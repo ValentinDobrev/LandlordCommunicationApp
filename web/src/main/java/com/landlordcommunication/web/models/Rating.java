@@ -1,5 +1,7 @@
 package com.landlordcommunication.web.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,18 +16,25 @@ public class Rating {
     @Column(name = "id")
     private int recordId;
 
-    @ManyToOne
-    @JoinColumn(name = "userId")
-    private User taker;
+    @Column(name = "taker_id")
+    private int takerId;
+
+    @Column(name = "giver_id")
+    private int giverId;
+
+//    @ManyToOne()
+//    @JoinColumn(name = "id", updatable = false, insertable = false)
+//    private User taker;
 
     public Rating() {
 
     }
 
-    public Rating(int rating, int recordId, User taker) {
-        setRating(rating);
+    public Rating(int recordId, int giverId, int takerId, int rating) {
         setRecordId(recordId);
-        setTaker(taker);
+        setGiverId(giverId);
+        setTakerId(takerId);
+        setRating(rating);
     }
 
     public int getRating() {
@@ -44,12 +53,27 @@ public class Rating {
         this.recordId = recordId;
     }
 
-
-    public User getTaker() {
-        return taker;
+    public int getTakerId() {
+        return takerId;
     }
 
-    public void setTaker(User taker) {
-        this.taker = taker;
+    public void setTakerId(int takerId) {
+        this.takerId = takerId;
     }
+
+    public int getGiverId() {
+        return giverId;
+    }
+
+    public void setGiverId(int giverId) {
+        this.giverId = giverId;
+    }
+
+    //    public User getTaker() {
+//        return taker;
+//    }
+//
+//    public void setTaker(User taker) {
+//        this.taker = taker;
+//    }
 }
