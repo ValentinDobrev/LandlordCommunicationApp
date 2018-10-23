@@ -1,5 +1,7 @@
 package com.landlordcommunication.web.repositories;
 
+import com.landlordcommunication.web.models.Rating;
+import com.landlordcommunication.web.models.Residence;
 import com.landlordcommunication.web.models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -29,13 +31,13 @@ public class SqlUserRepository implements UserRepository {
 
     @Override
     public void deleteUser(int userID) {
-            try (
+        try (
                 Session session = sessionFactory.openSession();
         ) {
             session.beginTransaction();
 
             User userToBeDeleted = new User();
-                userToBeDeleted.setUserId(userID);
+            userToBeDeleted.setUserId(userID);
 
             session.delete(userToBeDeleted);
             session.getTransaction().commit();
@@ -87,13 +89,53 @@ public class SqlUserRepository implements UserRepository {
             result = session.createQuery("from User where isTenant = false")
                     .list();
             session.getTransaction().commit();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new RuntimeException();
         }
         return result;
 
+    }
+
+    @Override
+    public List<Rating> getUserRatings(int userId) {
+        List<Rating> result;
+        try (
+                Session session = sessionFactory.openSession()
+        ) {
+            session.beginTransaction();
+            result = session.createQuery("from Rating where taker = :userId")
+                    .setParameter("userId", userId)
+                    .list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException();
+        }
+        return result;
+    }
+
+    @Override
+    public List<User> getUsersByResidence(int residenceId) {
+        Residence residence = getResidenceById(residenceId);
+
+        return residence.getUsers();
+    }
+
+    private Residence getResidenceById(int id) {
+        Residence result;
+
+        try (
+                Session session = sessionFactory.openSession();
+        ) {
+            session.beginTransaction();
+            result = session.createQuery("from Residence where residenceId = :id", Residence.class)
+                    .setParameter("id", id).uniqueResult();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
+
+        return result;
     }
 }

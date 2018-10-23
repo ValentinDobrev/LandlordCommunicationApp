@@ -1,5 +1,7 @@
 package com.landlordcommunication.web.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,15 +32,6 @@ public class User {
     @Column(name = "is_tenant")
     private boolean isTenant;
 
-    //to be defined via the LTR table
-
-    public List<Residence> getResidences() {
-        return residences;
-    }
-
-    public void setResidences(List<Residence> residences) {
-        this.residences = residences;
-    }
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usertoresidence",
@@ -47,9 +40,10 @@ public class User {
     )
     private List<Residence> residences = new ArrayList<>();
 
-    //to be populated with a query to the 'ratingRecords' table
-    //private double rating;
 
+    @OneToMany(mappedBy = "taker")
+    @JsonIgnore
+    private List<Rating> ratingsTaken;
 
     public User() {
     }
@@ -97,13 +91,13 @@ public class User {
         this.surname = surname;
     }
 
-    /*public List<Residence> getResidences() {
+    public List<Residence> getResidences() {
         return residences;
     }
 
     public void setResidences(List<Residence> residences) {
         this.residences = residences;
-    }*/
+    }
 
     public boolean getIsTenant() {
         return isTenant;
@@ -121,11 +115,12 @@ public class User {
         this.budget = budget;
     }
 
-    /*public double getRating() {
-        return rating;
+    public List<Rating> getRatingsTaken() {
+        return ratingsTaken;
     }
 
-    public void setRating(double rating) {
-        this.rating = rating;
-    }*/
+    public void setRatingsTaken(List<Rating> ratingsTaken) {
+        this.ratingsTaken = ratingsTaken;
+    }
+
 }

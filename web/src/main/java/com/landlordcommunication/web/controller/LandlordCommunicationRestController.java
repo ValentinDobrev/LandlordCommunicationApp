@@ -16,29 +16,11 @@ public class LandlordCommunicationRestController {
     private ResidenceService residenceService;
     private UserService userService;
 
-
     @Autowired
     public LandlordCommunicationRestController(ResidenceService residenceService, UserService userService) {
         this.residenceService = residenceService;
         this.userService = userService;
     }
-//
-//    @GetMapping("/all")
-//    public List<User> getAllUsers() {
-//        return service.getAll();
-//    }
-//
-//    @GetMapping("/{id}")
-//    public User getUserById(@PathVariable int id) {
-//        return service.getById(id);
-//    }
-//
-//
-//    @PutMapping("/{id}")
-//    public void updateUser(@PathVariable int id, @RequestBody User user) {
-//        service.update(id, user);
-//    }
-//
 
     // Residences queries
     @GetMapping("/residences/all")
@@ -46,15 +28,10 @@ public class LandlordCommunicationRestController {
         return residenceService.getAllResidences();
     }
 
-    @GetMapping("/residences/{id}")
-    public List<Residence> getResidenceByUser(@PathVariable int id){
-        return residenceService.getResidenceByUser(id);
+    @GetMapping("/residences-for-user/{id}")
+    public List<Residence> getResidencesByUser(@PathVariable int id) {
+        return residenceService.getResidencesByUser(id);
     }
-
-//    @GetMapping("/residences/{id}")
-//    public List<Residence> getResidencesByLandlord(@PathVariable int id) {
-//        return residenceService.getResidenceByLandlord(id);
-//    }
 
     // User queries
     @PostMapping("/users/new")
@@ -72,5 +49,14 @@ public class LandlordCommunicationRestController {
         return userService.getAllLandlords();
     }
 
+    @GetMapping("/users/rating/{id}")
+    public double getUserRating(@PathVariable int id){
+        return userService.getUserRating(id);
+    }
+
+    @GetMapping("/users-in-residence/{id}")
+    public List<User> getUsersByResidence(@PathVariable int id) {
+        return userService.getUsersByResidence(id);
+    }
 
 }
