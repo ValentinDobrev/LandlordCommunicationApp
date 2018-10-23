@@ -13,4 +13,5 @@ public interface UserRepository {
     List<User> getLandlordsByResidenceId(int residenceId);
     List<User> getAllLandlords();
     List<Rating> getUserRatings(int userId);
+    List<User> getUsersByResidence(int residenceId);
 }
