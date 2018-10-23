@@ -24,6 +24,11 @@ public class SqlResidenceRepository implements ResidenceRepository {
         return user.getResidences();
     }
 
+    @Override
+    public List<Residence> getResidenceByTenant(int tenantId) {
+        return null;
+    }
+
     // the upper method uses this one
     private User getUserById(int id) {
         User result;
