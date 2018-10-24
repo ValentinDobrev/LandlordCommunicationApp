@@ -58,6 +58,7 @@ public class SqlUserRepository implements UserRepository {
             userToBeModified.setFirstName(user.getFirstName());
             userToBeModified.setSurname(user.getSurname());
             userToBeModified.setEmail(user.getEmail());
+            userToBeModified.setPassword(user.getPassword());
             userToBeModified.setBudget(user.getBudget());
 
             session.getTransaction().commit();

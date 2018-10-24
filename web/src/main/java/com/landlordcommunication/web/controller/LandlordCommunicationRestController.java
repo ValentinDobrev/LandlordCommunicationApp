@@ -40,6 +40,11 @@ public class LandlordCommunicationRestController {
         userService.createUser(user);
     }
 
+    @PutMapping("/users/{id}")
+    public void modifyUser(@PathVariable int id, @RequestBody User user) {
+        userService.modifyUser(id, user);
+    }
+
     @DeleteMapping("/users/delete/{id}")
     public void deleteUser(@PathVariable int id) {
         userService.deleteUser(id);
