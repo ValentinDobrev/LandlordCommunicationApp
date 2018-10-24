@@ -1,8 +1,10 @@
 package com.landlordcommunication.web.controller;
 
+import com.landlordcommunication.web.models.Message;
 import com.landlordcommunication.web.models.Rating;
 import com.landlordcommunication.web.models.Residence;
 import com.landlordcommunication.web.models.User;
+import com.landlordcommunication.web.services.MessageService;
 import com.landlordcommunication.web.services.ResidenceService;
 import com.landlordcommunication.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ public class LandlordCommunicationRestController {
 
     private ResidenceService residenceService;
     private UserService userService;
+    private MessageService messageService;
 
     @Autowired
     public LandlordCommunicationRestController(ResidenceService residenceService, UserService userService) {
@@ -63,6 +66,11 @@ public class LandlordCommunicationRestController {
     @GetMapping("/users-in-residence/{id}")
     public List<User> getUsersByResidence(@PathVariable int id) {
         return userService.getUsersByResidence(id);
+    }
+
+    @GetMapping("/messages-for-receiver/{receiverId}/{residenceId}")
+    public List<Message> getMessagesByReceiverAndResidence(@PathVariable int receiverId, @PathVariable int residenceId){
+        return messageService.getAllMessagesByReceiverIdAndByResidenceId(receiverId, residenceId);
     }
 
 }
