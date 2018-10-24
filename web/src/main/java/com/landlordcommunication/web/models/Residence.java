@@ -43,6 +43,22 @@ public class Residence {
         setNotificationDate(notificationDate);
     }
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Message> messages = new ArrayList<>();
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
     public int getResidenceId() {
         return residenceId;
     }

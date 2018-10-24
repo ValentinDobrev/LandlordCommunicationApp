@@ -43,10 +43,14 @@ public class User {
     )
     private List<Residence> residences = new ArrayList<>();
 
-
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Rating> ratingsTaken = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Message> messages = new ArrayList<>();
+
 
     public User() {
     }
@@ -59,6 +63,14 @@ public class User {
         setIsTenant(isTenant);
         setBudget(budget);
         setPassword(password);
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 
     public int getUserId() {

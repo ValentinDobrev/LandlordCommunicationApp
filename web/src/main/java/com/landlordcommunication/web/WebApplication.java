@@ -1,10 +1,7 @@
 package com.landlordcommunication.web;
 
 
-import com.landlordcommunication.web.models.Rating;
-import com.landlordcommunication.web.models.Residence;
-import com.landlordcommunication.web.models.User;
-import com.landlordcommunication.web.models.UserToResidence;
+import com.landlordcommunication.web.models.*;
 import org.hibernate.SessionFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,6 +22,7 @@ public class WebApplication {
                 .addAnnotatedClass(Residence.class)
                 .addAnnotatedClass(Rating.class)
                 .addAnnotatedClass(UserToResidence.class)
+                .addAnnotatedClass(Message.class)
                 .buildSessionFactory();
     }
 }
