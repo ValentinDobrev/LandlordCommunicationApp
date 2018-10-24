@@ -22,10 +22,6 @@ public class Rating {
     @Column(name = "giver_id")
     private int giverId;
 
-//    @ManyToOne()
-//    @JoinColumn(name = "id", updatable = false, insertable = false)
-//    private User taker;
-
     public Rating() {
 
     }
@@ -68,12 +64,4 @@ public class Rating {
     public void setGiverId(int giverId) {
         this.giverId = giverId;
     }
-
-    //    public User getTaker() {
-//        return taker;
-//    }
-//
-//    public void setTaker(User taker) {
-//        this.taker = taker;
-//    }
 }
