@@ -47,59 +47,29 @@ public class Residence {
     @JsonIgnore
     private List<Message> messages = new ArrayList<>();
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
-    public List<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
-    }
-
-    public int getResidenceId() {
-        return residenceId;
-    }
-
+    // Setters
     private void setResidenceId(int residenceId) {
         this.residenceId = residenceId;
-    }
-
-    public String getAddress() {
-        return address;
     }
 
     private void setAddress(String address) {
         this.address = address;
     }
 
-    public double getRent() {
-        return rent;
-    }
-
     private void setRent(double rent) {
         this.rent = rent;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public Date getDueDate() {
-        return dueDate;
     }
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
 
-    public Date getNotificationDate() {
-        return notificationDate;
-    }
-
     public void setNotificationDate(Date notificationDate) {
         this.notificationDate = notificationDate;
+    }
+
+    // Getters
+    public List<User> getUsers() {
+        return users;
     }
 }

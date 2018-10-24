@@ -31,7 +31,6 @@ public class User {
     @Column(name = "budget")
     private double budget;
 
-    // if true, user is a tenant, if false, user is a landlord - subject to redesign :)
     @Column(name = "is_tenant")
     private boolean isTenant;
 
@@ -65,83 +64,58 @@ public class User {
         setPassword(password);
     }
 
-    public List<Message> getMessages() {
-        return messages;
-    }
 
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
+    // Setters
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public String getSurname() {
-        return surname;
     }
 
     public void setSurname(String surname) {
         this.surname = surname;
     }
 
-    public List<Residence> getResidences() {
-        return residences;
-    }
-
-    public void setResidences(List<Residence> residences) {
-        this.residences = residences;
-    }
-
-    public boolean getIsTenant() {
-        return isTenant;
-    }
-
     public void setIsTenant(boolean isTenant) {
         this.isTenant = isTenant;
-    }
-
-    public double getBudget() {
-        return budget;
     }
 
     public void setBudget(double budget) {
         this.budget = budget;
     }
 
-    public List<Rating> getRatingsTaken() {
-        return ratingsTaken;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public void setRatingsTaken(List<Rating> ratingsTaken) {
-        this.ratingsTaken = ratingsTaken;
+    // Getters
+    public String getEmail() {
+        return email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public List<Residence> getResidences() {
+        return residences;
+    }
+
+    public double getBudget() {
+        return budget;
     }
 
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }
