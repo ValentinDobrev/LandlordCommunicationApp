@@ -16,33 +16,38 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `ratingrecords`
+-- Table structure for table `messages`
 --
 
-DROP TABLE IF EXISTS `ratingrecords`;
+DROP TABLE IF EXISTS `messages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ratingrecords` (
+CREATE TABLE `messages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `giver_id` int(11) NOT NULL,
-  `taker_id` int(11) NOT NULL,
-  `rating` int(11) NOT NULL,
+  `text` varchar(200) DEFAULT NULL,
+  `picture` blob DEFAULT NULL,
+  `sent_date` datetime DEFAULT NULL,
+  `sender_id` int(11) NOT NULL,
+  `receiver_id` int(11) NOT NULL,
+  `residence_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `IdGiver_idx` (`giver_id`),
-  KEY `IdTaker_idx` (`taker_id`),
-  CONSTRAINT `giverId` FOREIGN KEY (`giver_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `takerId` FOREIGN KEY (`taker_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
+  KEY `receiver_id_idx` (`receiver_id`),
+  KEY `sender_id_idx` (`sender_id`),
+  KEY `residence_id_idx` (`residence_id`),
+  CONSTRAINT `receiverId` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `residenceId` FOREIGN KEY (`residence_id`) REFERENCES `residences` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `senderId` FOREIGN KEY (`sender_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ratingrecords`
+-- Dumping data for table `messages`
 --
 
-LOCK TABLES `ratingrecords` WRITE;
-/*!40000 ALTER TABLE `ratingrecords` DISABLE KEYS */;
-INSERT INTO `ratingrecords` VALUES (31,14,15,5),(32,13,15,5),(33,21,18,4),(34,22,18,5),(35,13,18,4),(36,15,17,2),(37,19,17,2),(38,18,17,3),(39,18,14,5),(40,19,14,5),(41,18,16,5),(42,23,13,3),(43,19,13,4),(44,18,13,4),(45,15,13,5);
-/*!40000 ALTER TABLE `ratingrecords` ENABLE KEYS */;
+LOCK TABLES `messages` WRITE;
+/*!40000 ALTER TABLE `messages` DISABLE KEYS */;
+INSERT INTO `messages` VALUES (1,'hi',NULL,'2018-11-01 13:27:30',13,23,25),(2,'how are you',NULL,'2018-11-01 13:27:47',13,23,25),(3,'hello',NULL,'2018-11-01 13:28:50',23,13,25),(4,'I am fine , thanks',NULL,'2018-11-01 13:29:15',23,13,25),(5,'and you?',NULL,'2018-11-01 13:29:32',23,13,25),(6,'I am good, I wanted to ask you if I could see you',NULL,'2018-11-01 13:30:55',13,23,25),(7,'I need to ask you something in person',NULL,'2018-11-01 13:31:45',13,23,25);
+/*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

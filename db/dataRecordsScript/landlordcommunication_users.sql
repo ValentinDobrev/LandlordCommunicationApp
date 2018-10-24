@@ -27,11 +27,12 @@ CREATE TABLE `users` (
   `first_name` varchar(45) NOT NULL,
   `surname` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
+  `password` varchar(200) NOT NULL,
   `budget` decimal(10,0) DEFAULT NULL,
   `is_tenant` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IdUser_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +41,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Angel','Tonev','Tonev856@gmail.com',5000,1),(2,'Angelarii','Kordev','ankordev@gmail.com',10000,1),(3,'Georgi','Toshev','getoshev@gmail.com',30000,0),(4,'Boris','Vinelov','bovinelov@gmail.com',7000,1),(5,'Toshko','Afrikanski','ToshekaWeeee@gmail.com',7000,1),(6,'Vladimir','Bonev','vlbonev@gmail.com',147000,0),(7,'Gergana','Rivova','gerivova@gmail.com',50000,0),(8,'Victoria','Grozeva','vigrozeva@abv.bg',50000,1),(9,'Hitar','Petar','PeshoHitriq@gmail.com',2000,1),(10,'Milena','Yordanova','miqordanova@outlook.com',6000,1),(11,'Kristina','Lazarova','krlazarova@outlook.com',18000,0);
+INSERT INTO `users` VALUES (13,'Angel','Tonev','Tonev856@gmail.com','06d80eb0c50b49a509b49f2424e8c805',5000,1),(14,'Angelarii','Kordev','ankordev@gmail.com','a384b6463fc216a5f8ecb6670f86456a',10000,1),(15,'Georgi','Toshev','getoshev@gmail.com','7815696ecbf1c96e6894b779456d330e',30000,0),(16,'Boris','Vinelov','bovinelov@gmail.com','29fcb8d63a61a530dd916e461c9de8e9',7000,1),(17,'Toshko','Afrikanski','ToshekaWeeee@gmail.com','5fa72358f0b4fb4f2c5d7de8c9a41846',7000,1),(18,'Vladimir','Bonev','vlbonev@gmail.com','6fa530835802876b9e1f040f0a3c484d',147000,0),(19,'Gergana','Rivova','gerivova@gmail.com','2c6e59589f4e40ffa0c72d2a2ff6cec8',50000,0),(20,'Victoria','Grozeva','vigrozeva@abv.bg','acc4cfc0773695795955f187d86342c3',50000,1),(21,'Hitar','Petar','PeshoHitriq@gmail.com','7e437f713c9ea3aff16a2ed96a11d0a0',2000,1),(22,'Milena','Yordanova','miqordanova@outlook.com','ef43112119e97a43507a17623075b999',6000,1),(23,'Kristina','Lazarova','krlazarova@outlook.com','f3609badce37435ec0fed38895890c58',18000,0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-19 16:56:13
+-- Dump completed on 2018-10-24 12:15:07

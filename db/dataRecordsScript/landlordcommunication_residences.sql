@@ -26,9 +26,11 @@ CREATE TABLE `residences` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `address` varchar(100) NOT NULL,
   `rent` decimal(10,0) NOT NULL,
+  `due_date` date NOT NULL,
+  `notification_date` date NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IdResidence_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +39,7 @@ CREATE TABLE `residences` (
 
 LOCK TABLES `residences` WRITE;
 /*!40000 ALTER TABLE `residences` DISABLE KEYS */;
-INSERT INTO `residences` VALUES (10,'62, Doctor GM Dimitrov blvd., 1172 bc Dianabad, Sofia',500),(11,'Block 34, 1700 Studentski Complex, Sofia',650),(12,'2, Dimcho Debelyanov Str., 1113 bc East, Sofia',400),(13,'18-24 Bacho Kiro Str., 1000 Center, Sofia',1200),(14,'15-13 \"Krichim\" str., 1407 bc Lozenets, Sofia',800),(15,'\"Ivan Sergiev\" St. 189-185, 1574 bc Hristo Smirnenski, Sofia',750),(16,'506th Street 9, 1517 Hristo Botev, Sofia',550),(17,'40, Krum Popov str., 1421 bc Lozenets, Sofia',600),(18,'bc. Buckston 23, 1618 Buxton, Sofia',700);
+INSERT INTO `residences` VALUES (20,'62, Doctor GM Dimitrov blvd., 1172 bc Dianabad, Sofia',500,'2018-11-15','2018-11-10'),(21,'Block 34, 1700 Studentski Complex, Sofia',650,'2018-11-16','2018-11-11'),(22,'2, Dimcho Debelyanov Str., 1113 bc East, Sofia',400,'2018-11-13','2018-11-08'),(23,'18-24 Bacho Kiro Str., 1000 Center, Sofia',1200,'2018-11-20','2018-11-15'),(24,'15-13 \"Krichim\" str., 1407 bc Lozenets, Sofia',800,'2018-12-10','2018-11-05'),(25,'\"Ivan Sergiev\" St. 189-185, 1574 bc Hristo Smirnenski, Sofia',750,'2018-12-06','2018-12-01'),(26,'506th Street 9, 1517 Hristo Botev, Sofia',550,'2018-11-16','2018-11-11'),(27,'40, Krum Popov str., 1421 bc Lozenets, Sofia',600,'2018-12-06','2018-12-01'),(28,'bc. Buckston 23, 1618 Buxton, Sofia',700,'2018-12-16','2018-12-11');
 /*!40000 ALTER TABLE `residences` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-19 16:56:13
+-- Dump completed on 2018-10-24 12:15:06
