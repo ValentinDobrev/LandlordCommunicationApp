@@ -25,27 +25,16 @@ public class UserToResidence {
         setUserId(userId);
     }
 
-    public int getRelationId() {
-        return relationId;
-    }
-
+    // Setters
     public void setRelationId(int relationId) {
         this.relationId = relationId;
     }
-
-    public int getUserId() {
-        return userId;
-    }
-
     public void setUserId(int userId) {
         this.userId = userId;
     }
-
-    public int getResidenceId() {
-        return residenceId;
-    }
-
     private void setResidenceId(int residenceId) {
         this.residenceId = residenceId;
     }
+
+    // Getters
 }
