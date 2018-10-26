@@ -17,6 +17,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
         ApplicationModule.class,
         ActivityBindingModule.class,
         AndroidSupportInjectionModule.class,
+        LoginScreenModule.class
 
 
 

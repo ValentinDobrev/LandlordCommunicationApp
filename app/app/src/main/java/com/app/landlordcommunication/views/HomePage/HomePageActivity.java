@@ -2,7 +2,7 @@ package com.app.landlordcommunication.views.HomePage;
 
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
+
 
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.views.DrawerFragment;
@@ -10,9 +10,9 @@ import com.app.landlordcommunication.views.base.BaseActivity;
 
 import javax.inject.Inject;
 
-import butterknife.ButterKnife;
-
 public class HomePageActivity extends BaseActivity {
+
+    public static final long IDENTIFIER = 1;
 
     @Inject
     DrawerFragment mDrawerFragment;
@@ -25,23 +25,17 @@ public class HomePageActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        ButterKnife.bind(this);
 
         setupDrawer(mDrawerFragment);
+        setupMainFragment();
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, mHomePageFragment);
-
-        transaction.commit();
 
     }
 
+
     @Override
     public void setupMainFragment() {
-
-        //TODO Fix this faking null pointer exception, FU DAGGER
-
-      //  getFragmentManager().beginTransaction().replace(R.id.main_fragment, mHomePageFragment).commit();
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, mHomePageFragment).commit();
     }
 
     @Override
