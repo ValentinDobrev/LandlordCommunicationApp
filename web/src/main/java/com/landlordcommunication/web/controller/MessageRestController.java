@@ -27,7 +27,7 @@ public class MessageRestController {
         messageService.deleteMessage(id);
     }
 
-    @GetMapping("/messages-for-receiver/{receiverId}/{residenceId}")
+    @GetMapping("/for-receiver/{receiverId}/{residenceId}")
     public List<Message> getMessagesByReceiverAndResidence(@PathVariable int receiverId, @PathVariable int residenceId){
         return messageService.getAllMessagesByReceiverIdAndByResidenceId(receiverId, residenceId);
     }
