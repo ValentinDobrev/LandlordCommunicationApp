@@ -58,4 +58,20 @@ public class SqlMessageRepository implements MessageRepository {
         }
         return result;
     }
+
+    @Override
+    public List<Message> getAllMessagesBetweenReceiverAndSender(int receiverId, int senderId) {
+        List<Message> result;
+        try (
+                Session session = sessionFactory.openSession();
+        ) {
+            session.beginTransaction();
+            result = session.createQuery("from Message where receiverId = :receiverId and senderId = :senderId ")
+                    .setParameter("receiverId", receiverId)
+                    .setParameter("senderId", senderId)
+                    .list();
+            session.getTransaction().commit();
+        }
+        return result;
+    }
 }

@@ -31,4 +31,9 @@ public class MessageRestController {
     public List<Message> getMessagesByReceiverAndResidence(@PathVariable int receiverId, @PathVariable int residenceId){
         return messageService.getAllMessagesByReceiverIdAndByResidenceId(receiverId, residenceId);
     }
+
+    @GetMapping("/for-receiver-by-sender/{receiverId}/{senderId}")
+    public List<Message> getAllMessagesBetweenReceiverAndSender(@PathVariable int receiverId, @PathVariable int senderId){
+        return messageService.getAllMessagesBetweenReceiverAndSender(receiverId, senderId);
+    }
 }

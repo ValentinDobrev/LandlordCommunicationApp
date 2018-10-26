@@ -5,6 +5,8 @@ import com.landlordcommunication.web.repositories.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -30,5 +32,14 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public List<Message> getAllMessagesByReceiverIdAndByResidenceId(int receiverId, int residenceId) {
         return repository.getAllMessagesByReceiverIdAndByResidenceId(receiverId, residenceId);
+    }
+
+    @Override
+    public List<Message> getAllMessagesBetweenReceiverAndSender(int receiverId, int senderId) {
+        List<Message>   result = repository.getAllMessagesBetweenReceiverAndSender(receiverId, senderId);
+        result.addAll(repository.getAllMessagesBetweenReceiverAndSender(senderId, receiverId));
+        result.sort(Comparator.comparing(Message::getMessageId));
+        return result;
+
     }
 }

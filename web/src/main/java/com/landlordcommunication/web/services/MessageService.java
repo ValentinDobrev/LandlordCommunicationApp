@@ -8,4 +8,5 @@ public interface MessageService {
     void createMessage(Message message);
     void deleteMessage(int messageId);
     List<Message> getAllMessagesByReceiverIdAndByResidenceId(int receiverId, int residenceId);
+    List<Message> getAllMessagesBetweenReceiverAndSender(int receiverId, int senderId);
 }
