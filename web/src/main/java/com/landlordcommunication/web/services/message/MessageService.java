@@ -1,4 +1,4 @@
-package com.landlordcommunication.web.services;
+package com.landlordcommunication.web.services.message;
 
 import com.landlordcommunication.web.models.Message;
 

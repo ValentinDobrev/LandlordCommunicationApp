@@ -2,7 +2,7 @@ package com.landlordcommunication.web.controller;
 
 
 import com.landlordcommunication.web.models.Message;
-import com.landlordcommunication.web.services.MessageService;
+import com.landlordcommunication.web.services.message.MessageService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

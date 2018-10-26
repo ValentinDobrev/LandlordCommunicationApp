@@ -1,4 +1,4 @@
-package com.landlordcommunication.web.services;
+package com.landlordcommunication.web.services.residence;
 
 import com.landlordcommunication.web.repositories.residence.ResidenceRepository;
 import com.landlordcommunication.web.models.Residence;

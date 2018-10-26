@@ -1,7 +1,7 @@
 package com.landlordcommunication.web.controller;
 
 import com.landlordcommunication.web.models.Residence;
-import com.landlordcommunication.web.services.ResidenceService;
+import com.landlordcommunication.web.services.residence.ResidenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

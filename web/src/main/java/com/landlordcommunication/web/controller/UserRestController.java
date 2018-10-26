@@ -2,7 +2,7 @@ package com.landlordcommunication.web.controller;
 
 import com.landlordcommunication.web.models.Rating;
 import com.landlordcommunication.web.models.User;
-import com.landlordcommunication.web.services.UserService;
+import com.landlordcommunication.web.services.user.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
