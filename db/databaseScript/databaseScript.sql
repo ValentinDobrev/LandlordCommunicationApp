@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `landlordcommunication`.`messages` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `text` VARCHAR(200) NULL DEFAULT NULL,
   `picture` BLOB NULL DEFAULT NULL,
-  `sent_date` DATETIME NULL DEFAULT NULL,
+  `sent_date` DATETIME NOT NULL,
   `sender_id` INT(11) NOT NULL,
   `receiver_id` INT(11) NOT NULL,
   `residence_id` INT(11) NOT NULL,

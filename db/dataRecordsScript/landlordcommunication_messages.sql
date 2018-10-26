@@ -26,7 +26,7 @@ CREATE TABLE `messages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `text` varchar(200) DEFAULT NULL,
   `picture` blob DEFAULT NULL,
-  `sent_date` datetime DEFAULT NULL,
+  `sent_date` datetime NOT NULL,
   `sender_id` int(11) NOT NULL,
   `receiver_id` int(11) NOT NULL,
   `residence_id` int(11) NOT NULL,
