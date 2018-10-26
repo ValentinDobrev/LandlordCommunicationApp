@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.landlordcommunication.R;
-import com.app.landlordcommunication.views.ResidenceOverview.ResidenceOverviewActivity;
+import com.app.landlordcommunication.views.HomePage.HomePageActivity;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
@@ -58,7 +58,7 @@ public class DrawerFragment extends android.support.v4.app.Fragment {
     public void setupDrawer() {
 
         //if you want to update the items at a later time it is recommended to keep it in a variable
-        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(ResidenceOverviewActivity.IDENTIFIER).withName("Add Movie");
+        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(HomePageActivity.IDENTIFIER).withName("Roflcopter");
 
 //create the drawer and remember the `Drawer` result object
         Drawer result = new DrawerBuilder()
@@ -75,15 +75,15 @@ public class DrawerFragment extends android.support.v4.app.Fragment {
                         long identifier = drawerItem.getIdentifier();
 
 
-                        if (identifier == ResidenceOverviewActivity.IDENTIFIER) {
+                        if (identifier == HomePageActivity.IDENTIFIER) {
                             //the below checks if the drawer fragment is in the activity that is being clicked on
                             //in a very clunky way, but the only one I could think of, might need optimisation or at least
                             //moving the if-else logic in a method.
-                            if (getActivity().getClass().equals(ResidenceOverviewActivity.class))
+                            if (getActivity().getClass().equals(HomePageActivity.class))
                                 return false;
 
                             else {
-                                Intent intent = new Intent(getContext(), ResidenceOverviewActivity.class);
+                                Intent intent = new Intent(getContext(), HomePageActivity.class);
 
                                 startActivity(intent);
                                 return true;

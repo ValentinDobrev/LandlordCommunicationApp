@@ -10,14 +10,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".views.HomePage.HomePageActivity">
+         <activity android:name=".views.LoginScreen.LoginScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.ResidenceOverview.ResidenceOverviewActivity"></activity>
+        <activity android:name=".views.HomePage.HomePageActivity">
+
+        </activity>
     </application>
 
 </manifest>
