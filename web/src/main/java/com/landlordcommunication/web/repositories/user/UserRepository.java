@@ -1,4 +1,4 @@
-package com.landlordcommunication.web.repositories;
+package com.landlordcommunication.web.repositories.user;
 
 import com.landlordcommunication.web.models.Rating;
 import com.landlordcommunication.web.models.User;

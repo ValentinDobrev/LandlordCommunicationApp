@@ -2,7 +2,7 @@ package com.landlordcommunication.web.services;
 
 import com.landlordcommunication.web.models.Rating;
 import com.landlordcommunication.web.models.User;
-import com.landlordcommunication.web.repositories.UserRepository;
+import com.landlordcommunication.web.repositories.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

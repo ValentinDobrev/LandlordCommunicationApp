@@ -1,7 +1,8 @@
-package com.landlordcommunication.web.repositories;
+package com.landlordcommunication.web.repositories.residence;
 
 import com.landlordcommunication.web.models.Residence;
 import com.landlordcommunication.web.models.User;
+import com.landlordcommunication.web.repositories.residence.ResidenceRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

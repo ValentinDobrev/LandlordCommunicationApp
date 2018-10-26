@@ -1,5 +1,6 @@
-package com.landlordcommunication.web.repositories;
+package com.landlordcommunication.web.repositories.message;
 import com.landlordcommunication.web.models.Message;
+import com.landlordcommunication.web.repositories.message.MessageRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,11 +1,10 @@
 package com.landlordcommunication.web.services;
 
 import com.landlordcommunication.web.models.Message;
-import com.landlordcommunication.web.repositories.MessageRepository;
+import com.landlordcommunication.web.repositories.message.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
