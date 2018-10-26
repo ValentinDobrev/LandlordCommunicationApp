@@ -27,13 +27,6 @@ public class LandlordCommunicationRestController {
         this.messageService = messageService;
     }
 
-    // Residences queries
-
-    @GetMapping("/residences-for-user/{id}")
-    public List<Residence> getResidencesByUser(@PathVariable int id) {
-        return residenceService.getResidencesByUser(id);
-    }
-
     // User queries
 
     @PostMapping("/users/new")
