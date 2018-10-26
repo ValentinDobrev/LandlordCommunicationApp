@@ -21,7 +21,6 @@ public class WebApplication {
                 .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Residence.class)
                 .addAnnotatedClass(Rating.class)
-                .addAnnotatedClass(UserToResidence.class)
                 .addAnnotatedClass(Message.class)
                 .buildSessionFactory();
     }
