@@ -53,16 +53,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getTenantsByResidence() {
-        return null;
-    }
-
-    @Override
-    public List<User> getLandlordsByResidence() {
-        return null;
-    }
-
-    @Override
     public List<User> getAllLandlords() {
         return repository.getAllLandlords();
     }

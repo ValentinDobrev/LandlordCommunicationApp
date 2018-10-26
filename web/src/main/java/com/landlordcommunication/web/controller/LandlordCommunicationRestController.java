@@ -1,8 +1,10 @@
 package com.landlordcommunication.web.controller;
 
+import com.landlordcommunication.web.models.Message;
 import com.landlordcommunication.web.models.Rating;
 import com.landlordcommunication.web.models.Residence;
 import com.landlordcommunication.web.models.User;
+import com.landlordcommunication.web.services.MessageService;
 import com.landlordcommunication.web.services.ResidenceService;
 import com.landlordcommunication.web.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,18 +18,16 @@ public class LandlordCommunicationRestController {
 
     private ResidenceService residenceService;
     private UserService userService;
+    private MessageService messageService;
 
     @Autowired
-    public LandlordCommunicationRestController(ResidenceService residenceService, UserService userService) {
+    public LandlordCommunicationRestController(ResidenceService residenceService, UserService userService, MessageService messageService) {
         this.residenceService = residenceService;
         this.userService = userService;
+        this.messageService = messageService;
     }
 
     // Residences queries
-    @GetMapping("/residences/all")
-    public List<Residence> getAllResidences() {
-        return residenceService.getAllResidences();
-    }
 
     @GetMapping("/residences-for-user/{id}")
     public List<Residence> getResidencesByUser(@PathVariable int id) {
@@ -35,6 +35,7 @@ public class LandlordCommunicationRestController {
     }
 
     // User queries
+
     @PostMapping("/users/new")
     public void createUser(@RequestBody User user) {
         userService.createUser(user);
@@ -65,4 +66,20 @@ public class LandlordCommunicationRestController {
         return userService.getUsersByResidence(id);
     }
 
+    // Message queries
+
+    @PostMapping("/messages/new")
+    public void createMessage(@RequestBody Message message) {
+        messageService.createMessage(message);
+    }
+
+    @DeleteMapping("/messages/delete/{id}")
+    public void deleteMessage(@PathVariable int id) {
+        messageService.deleteMessage(id);
+    }
+
+    @GetMapping("/messages-for-receiver/{receiverId}/{residenceId}")
+    public List<Message> getMessagesByReceiverAndResidence(@PathVariable int receiverId, @PathVariable int residenceId){
+        return messageService.getAllMessagesByReceiverIdAndByResidenceId(receiverId, residenceId);
+    }
 }

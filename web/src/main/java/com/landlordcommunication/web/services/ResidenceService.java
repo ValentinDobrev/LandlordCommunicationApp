@@ -6,14 +6,4 @@ import java.util.List;
 
 public interface ResidenceService {
     List<Residence> getResidencesByUser(int userId);
-
-    Residence getResidenceByTenant();
-
-    void updateResidence();
-
-    Residence delete();
-
-    Residence create();
-
-    List<Residence> getAllResidences();
 }
