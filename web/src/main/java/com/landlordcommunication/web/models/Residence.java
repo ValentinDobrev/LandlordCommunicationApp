@@ -48,15 +48,16 @@ public class Residence {
     private List<Message> messages = new ArrayList<>();
 
     // Setters
-    private void setResidenceId(int residenceId) {
+
+    public void setResidenceId(int residenceId) {
         this.residenceId = residenceId;
     }
 
-    private void setAddress(String address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    private void setRent(double rent) {
+    public void setRent(double rent) {
         this.rent = rent;
     }
 
@@ -68,8 +69,41 @@ public class Residence {
         this.notificationDate = notificationDate;
     }
 
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
     // Getters
+
+    public int getResidenceId() {
+        return residenceId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public double getRent() {
+        return rent;
+    }
+
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public Date getNotificationDate() {
+        return notificationDate;
+    }
+
     public List<User> getUsers() {
         return users;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
     }
 }

@@ -5,9 +5,7 @@ import com.landlordcommunication.web.models.Message;
 import java.util.List;
 
 public interface MessageService {
-
     void createMessage(Message message);
-    void deleteMessage(int userId);
+    void deleteMessage(int messageId);
     List<Message> getAllMessagesByReceiverIdAndByResidenceId(int receiverId, int residenceId);
-
 }

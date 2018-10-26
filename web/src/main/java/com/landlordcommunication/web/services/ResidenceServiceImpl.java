@@ -21,32 +21,4 @@ public class ResidenceServiceImpl implements ResidenceService {
     public List<Residence> getResidencesByUser(int userId) {
         return repository.getResidencesByUser(userId);
     }
-
-    @Override
-    public Residence getResidenceByTenant() {
-        //TODO
-        return null;
-    }
-
-    @Override
-    public void updateResidence() {
-        //TODO
-    }
-
-    @Override
-    public Residence delete() {
-        //TODO
-        return null;
-    }
-
-    @Override
-    public Residence create() {
-        //TODO
-        return null;
-    }
-
-    @Override
-    public List<Residence> getAllResidences() {
-        return repository.getAllResidences();
-    }
 }

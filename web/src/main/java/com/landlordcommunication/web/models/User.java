@@ -31,6 +31,7 @@ public class User {
     @Column(name = "budget")
     private double budget;
 
+    // if true, user is a tenant, if false, user is a landlord - subject to redesign :)
     @Column(name = "is_tenant")
     private boolean isTenant;
 
@@ -50,7 +51,6 @@ public class User {
     @JsonIgnore
     private List<Message> messages = new ArrayList<>();
 
-
     public User() {
     }
 
@@ -64,14 +64,10 @@ public class User {
         setPassword(password);
     }
 
-
     // Setters
+
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public void setFirstName(String firstName) {
@@ -82,21 +78,38 @@ public class User {
         this.surname = surname;
     }
 
-    public void setIsTenant(boolean isTenant) {
-        this.isTenant = isTenant;
-    }
-
-    public void setBudget(double budget) {
-        this.budget = budget;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
+    public void setBudget(double budget) {
+        this.budget = budget;
+    }
+
+    public void setIsTenant(boolean tenant) {
+        isTenant = tenant;
+    }
+
+    public void setResidences(List<Residence> residences) {
+        this.residences = residences;
+    }
+
+    public void setRatingsTaken(List<Rating> ratingsTaken) {
+        this.ratingsTaken = ratingsTaken;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
     // Getters
-    public String getEmail() {
-        return email;
+
+    public int getUserId() {
+        return userId;
     }
 
     public String getFirstName() {
@@ -107,15 +120,31 @@ public class User {
         return surname;
     }
 
-    public List<Residence> getResidences() {
-        return residences;
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public double getBudget() {
         return budget;
     }
 
-    public String getPassword() {
-        return password;
+    public boolean getIsTenant() {
+        return isTenant;
+    }
+
+    public List<Residence> getResidences() {
+        return residences;
+    }
+
+    public List<Rating> getRatingsTaken() {
+        return ratingsTaken;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
     }
 }

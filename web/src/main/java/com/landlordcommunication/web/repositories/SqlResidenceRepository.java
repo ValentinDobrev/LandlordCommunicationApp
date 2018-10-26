@@ -24,12 +24,6 @@ public class SqlResidenceRepository implements ResidenceRepository {
         return user.getResidences();
     }
 
-    @Override
-    public List<Residence> getResidenceByTenant(int tenantId) {
-        return null;
-    }
-
-    // the upper method uses this one
     private User getUserById(int id) {
         User result;
 
@@ -39,39 +33,6 @@ public class SqlResidenceRepository implements ResidenceRepository {
             session.beginTransaction();
             result = session.createQuery("from User where userId = :id", User.class)
                     .setParameter("id", id).uniqueResult();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw new RuntimeException(e);
-        }
-
-        return result;
-    }
-
-    @Override
-    public void updateResidence() {
-
-    }
-
-    @Override
-    public Residence delete() {
-        return null;
-    }
-
-    @Override
-    public Residence create() {
-        return null;
-    }
-
-    @Override
-    public List<Residence> getAllResidences() {
-        List<Residence> result;
-
-        try (
-                Session session = sessionFactory.openSession();
-        ) {
-            session.beginTransaction();
-            result = session.createQuery("from Residence").list();
-            session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new RuntimeException(e);

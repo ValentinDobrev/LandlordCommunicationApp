@@ -8,19 +8,19 @@ import javax.persistence.*;
 @Table(name = "ratingrecords")
 public class Rating {
 
+    @Column(name = "rating")
+    private int rating;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int recordId;
 
-    @Column(name = "giver_id")
-    private int giverId;
-
     @Column(name = "taker_id")
     private int takerId;
 
-    @Column(name = "rating")
-    private int rating;
+    @Column(name = "giver_id")
+    private int giverId;
 
     public Rating() {
 
@@ -34,11 +34,12 @@ public class Rating {
     }
 
     // Setters
-    private void setRating(int rating) {
+
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
-    private void setRecordId(int recordId) {
+    public void setRecordId(int recordId) {
         this.recordId = recordId;
     }
 
@@ -51,4 +52,20 @@ public class Rating {
     }
 
     // Getters
+
+    public int getRating() {
+        return rating;
+    }
+
+    public int getRecordId() {
+        return recordId;
+    }
+
+    public int getTakerId() {
+        return takerId;
+    }
+
+    public int getGiverId() {
+        return giverId;
+    }
 }

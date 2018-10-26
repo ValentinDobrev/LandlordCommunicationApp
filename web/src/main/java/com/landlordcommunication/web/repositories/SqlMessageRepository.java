@@ -1,16 +1,15 @@
 package com.landlordcommunication.web.repositories;
-
 import com.landlordcommunication.web.models.Message;
-import com.landlordcommunication.web.models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class SqlMessageRepository implements MessageRepository {
+
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -34,22 +33,19 @@ public class SqlMessageRepository implements MessageRepository {
                 Session session = sessionFactory.openSession();
         ) {
             session.beginTransaction();
-
             Message messageToBeDeleted = new Message();
             messageToBeDeleted.setMessageId(messageId);
-
             session.delete(messageToBeDeleted);
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
-
     }
 
     @Override
     public List<Message> getAllMessagesByReceiverIdAndByResidenceId(int receiverId, int residenceId) {
-        List<Message> result = new ArrayList<>();
+        List<Message> result;
         try (
                 Session session = sessionFactory.openSession();
         ) {
@@ -62,5 +58,4 @@ public class SqlMessageRepository implements MessageRepository {
         }
         return result;
     }
-
 }

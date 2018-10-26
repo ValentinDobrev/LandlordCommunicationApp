@@ -13,8 +13,6 @@ public interface UserService {
     void createUser(User user);
     void deleteUser(int userId);
     void modifyUser(int userId, User user);
-    List<User> getTenantsByResidence();
-    List<User> getLandlordsByResidence();
     List<User> getAllLandlords();
     List<User> getUsersByResidence(int residenceId);
 }

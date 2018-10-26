@@ -46,6 +46,7 @@ public class Message {
     }
 
     // Setters
+
     public void setMessageId(int messageId) {
         this.messageId = messageId;
     }
@@ -75,4 +76,32 @@ public class Message {
     }
 
     // Getters
+
+    public int getMessageId() {
+        return messageId;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public Date getSentDate() {
+        return sentDate;
+    }
+
+    public int getSenderId() {
+        return senderId;
+    }
+
+    public int getReceiverId() {
+        return receiverId;
+    }
+
+    public int getResidenceId() {
+        return residenceId;
+    }
 }

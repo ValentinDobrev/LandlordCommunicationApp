@@ -69,18 +69,6 @@ public class SqlUserRepository implements UserRepository {
     }
 
     @Override
-    public List<User> getTenantsByResidenceId(int residenceId) {
-        //TODO
-        return null;
-    }
-
-    @Override
-    public List<User> getLandlordsByResidenceId(int residenceId) {
-        //TODO
-        return null;
-    }
-
-    @Override
     public List<User> getAllLandlords() {
         List<User> result;
         try (
@@ -100,8 +88,7 @@ public class SqlUserRepository implements UserRepository {
 
     @Override
     public List<Rating> getUserRatings(int userId) {
-        //User user = getUserById(userId);
-        List<Rating> result = null;
+        List<Rating> result;
 
         try (
                 Session session = sessionFactory.openSession()
@@ -114,24 +101,6 @@ public class SqlUserRepository implements UserRepository {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new RuntimeException();
-        }
-
-        return result;
-        //return user.getRatingsTaken();
-    }
-
-    private User getUserById(int id) {
-        User result;
-
-        try (
-                Session session = sessionFactory.openSession()
-        ) {
-            session.beginTransaction();
-            result = session.createQuery("from User where userId = :id", User.class)
-                    .setParameter("id", id).uniqueResult();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw new RuntimeException(e);
         }
 
         return result;
