@@ -1,9 +1,8 @@
-package com.app.landlordcommunication.views.HomePage;
+package com.app.landlordcommunication.views.ResidenceOverview;
 
-
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.views.DrawerFragment;
@@ -13,27 +12,22 @@ import javax.inject.Inject;
 
 import dagger.android.support.DaggerAppCompatActivity;
 
-public class HomePageActivity extends BaseActivity {
-
-    public static final long IDENTIFIER = 1;
+public class ResidenceOverviewActivity extends BaseActivity {
 
     @Inject
-    HomePageFragment mHomePageFragment;
+    ResidenceOverviewFragment mResidenceOverviewFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_residence_overview);
 
 
         setupDrawer();
 
-        setupMainFragment(mHomePageFragment);
-
+        setupMainFragment(mResidenceOverviewFragment);
 
     }
-
-
 
     @Override
     public long getIdentifier() {

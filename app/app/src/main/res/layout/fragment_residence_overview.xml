@@ -3,19 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.LoginScreen.LoginScreenFragment">
+    tools:context=".views.ResidenceOverview.ResidenceOverviewFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Main Login Screen Fragment"
+        android:text="Residence Overview Activity"
         android:layout_alignParentTop="true"/>
 
     <Button
-        android:id="@+id/login_button"
+        android:id="@+id/test2_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="Test"
         android:layout_centerInParent="true"/>
 
 </RelativeLayout>
