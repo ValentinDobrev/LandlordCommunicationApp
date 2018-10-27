@@ -3,7 +3,6 @@ package com.landlordcommunication.web.repositories.user;
 import com.landlordcommunication.web.models.Rating;
 import com.landlordcommunication.web.models.Residence;
 import com.landlordcommunication.web.models.User;
-import com.landlordcommunication.web.repositories.user.UserRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -129,5 +128,30 @@ public class SqlUserRepository implements UserRepository {
         }
 
         return result;
+    }
+
+    @Override
+    public void payRentFromTenantToLandlord(int tenantId, int landlordId, int residenceId) {
+
+        try (
+                Session session = sessionFactory.openSession();
+        ) {
+            session.beginTransaction();
+            User tenant = session.get(User.class, tenantId);
+            User landlord = session.get(User.class, landlordId);
+            Residence residence = getResidenceById(residenceId);
+
+            double rent = residence.getRent();
+            double tenantBudget = tenant.getBudget();
+            double landlordBudget = landlord.getBudget();
+
+            tenant.setBudget(tenantBudget - rent);
+            landlord.setBudget(landlordBudget + rent);
+
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 }

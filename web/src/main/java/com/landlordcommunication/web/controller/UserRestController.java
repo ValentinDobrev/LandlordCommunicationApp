@@ -38,7 +38,7 @@ public class UserRestController {
     }
 
     @GetMapping("/rating/{id}")
-    public List<Rating> getUserRating(@PathVariable int id){
+    public List<Rating> getUserRating(@PathVariable int id) {
         return userService.getUserRating(id);
     }
 
@@ -47,4 +47,8 @@ public class UserRestController {
         return userService.getUsersByResidence(id);
     }
 
+    @PutMapping("pay-rent/{tenantId}/{landlordId}/{residenceId}")
+    public void payRentFromTenantToLandlord(@PathVariable int tenantId, @PathVariable int landlordId, @PathVariable int residenceId) {
+        userService.payRentFromTenantToLandlord(tenantId, landlordId, residenceId);
+    }
 }

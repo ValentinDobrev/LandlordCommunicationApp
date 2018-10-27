@@ -15,4 +15,5 @@ public interface UserService {
     void modifyUser(int userId, User user);
     List<User> getAllLandlords();
     List<User> getUsersByResidence(int residenceId);
+    void payRentFromTenantToLandlord(int tenantId, int landlordId, int residenceId);
 }

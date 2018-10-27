@@ -61,4 +61,9 @@ public class UserServiceImpl implements UserService {
     public List<User> getUsersByResidence(int residenceId) {
         return repository.getUsersByResidence(residenceId);
     }
+
+    @Override
+    public void payRentFromTenantToLandlord(int tenantId, int landlordId, int residenceId) {
+        repository.payRentFromTenantToLandlord(tenantId, landlordId, residenceId);
+    }
 }
