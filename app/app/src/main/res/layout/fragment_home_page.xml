@@ -5,17 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".views.HomePage.HomePageFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Home Page Fragment"
-        android:layout_alignParentTop="true"/>
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
 
-    <Button
-        android:id="@+id/test_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ResidenceActivity"
-        android:layout_centerInParent="true"/>
-
+        <ListView
+            android:id="@+id/listView_residences"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            />
 </RelativeLayout>

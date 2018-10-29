@@ -3,30 +3,41 @@ package com.app.landlordcommunication.views.HomePage;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.app.landlordcommunication.R;
+import com.app.landlordcommunication.models.Residence;
 import com.app.landlordcommunication.views.ResidenceOverview.ResidenceOverviewActivity;
 
+import java.util.List;
+
 import javax.inject.Inject;
-import javax.inject.Named;
 
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import dagger.android.support.DaggerFragment;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class HomePageFragment extends DaggerFragment {
 
-    /*@BindView(R.id.test_button)
-    Button mTestButton;*/
+public class HomePageFragment extends DaggerFragment implements HomePageContracts.View, AdapterView.OnItemClickListener {
+
+    @BindView(R.id.listView_residences)
+    ListView mResidencesView;
+
+    @BindView(R.id.loading)
+    ProgressBar mLoadingView;
+
+    @Inject
+    HomePageContracts.Presenter mPresenter;
+
+    ArrayAdapter<Residence> mResidencesAdapter;
 
 
     @Inject
@@ -43,16 +54,72 @@ public class HomePageFragment extends DaggerFragment {
 
         ButterKnife.bind(this, view);
 
+        mResidencesAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1);
 
         return view;
     }
 
- @OnClick({R.id.test_button})
- public void launchResidenceOverviewActivity(){
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.subscribe(this);
+        mPresenter.loadResidences();
+        showResidences();
+    }
 
-     Intent intent = new Intent(getContext(), ResidenceOverviewActivity.class);
+    @Override
+    public void setPresenter(HomePageContracts.Presenter presenter) {
+        mPresenter = presenter;
+    }
 
-     startActivity(intent);
- }
+    @Override
+    public void showResidences() {
+        mResidencesView.setAdapter(mResidencesAdapter);
 
+        mResidencesView.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void showEmptyList() {
+        Toast.makeText(getContext(),
+                "NO RESIDENCES TO SHOW",
+                Toast.LENGTH_LONG)
+                .show();
+
+    }
+
+    @Override
+    public void showError(Throwable e) {
+        Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG)
+                .show();
+    }
+
+    @Override
+    public void showLoading() {
+        mResidencesView.setVisibility(View.GONE);
+        mLoadingView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        mResidencesView.setVisibility(View.VISIBLE);
+        mLoadingView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showResidenceOverview(Residence residence) {
+        Intent intent = new Intent(getContext(), ResidenceOverviewActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void addResidences(List<Residence> Residences) {
+        mResidencesAdapter.clear();
+        mResidencesAdapter.addAll(Residences);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
 }

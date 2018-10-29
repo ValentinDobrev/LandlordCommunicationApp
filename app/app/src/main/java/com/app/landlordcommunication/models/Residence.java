@@ -1,5 +1,7 @@
 package com.app.landlordcommunication.models;
 
+import android.graphics.Bitmap;
+
 import java.util.Date;
 import java.util.List;
 
@@ -86,4 +88,5 @@ public class Residence {
     public void setMessages(List<Message> messages) {
         this.messages = messages;
     }
+
 }

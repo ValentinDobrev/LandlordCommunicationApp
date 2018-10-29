@@ -20,6 +20,9 @@ public class HomePageActivity extends BaseActivity {
     @Inject
     HomePageFragment mHomePageFragment;
 
+    @Inject
+    HomePageContracts.Presenter mHomePagePresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,8 @@ public class HomePageActivity extends BaseActivity {
 
 
         setupDrawer();
+
+        mHomePageFragment.setPresenter(mHomePagePresenter);
 
         setupMainFragment(mHomePageFragment);
 

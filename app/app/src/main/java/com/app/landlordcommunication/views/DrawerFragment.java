@@ -20,11 +20,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import dagger.android.support.DaggerFragment;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class DrawerFragment extends android.support.v4.app.Fragment {
 
     @BindView(R.id.drawer_toolbar)
@@ -57,7 +53,9 @@ public class DrawerFragment extends android.support.v4.app.Fragment {
     public void setupDrawer() {
 
         //if you want to update the items at a later time it is recommended to keep it in a variable
-        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(HomePageActivity.IDENTIFIER).withName("Home");
+        PrimaryDrawerItem item1 = new PrimaryDrawerItem()
+                .withIdentifier(HomePageActivity.IDENTIFIER)
+                .withName("Home");
 
 //create the drawer and remember the `Drawer` result object
         Drawer result = new DrawerBuilder()
