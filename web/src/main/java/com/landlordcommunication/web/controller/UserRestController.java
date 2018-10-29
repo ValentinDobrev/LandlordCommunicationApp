@@ -17,7 +17,7 @@ public class UserRestController {
         this.userService = userService;
     }
 
-    @PostMapping("/new")
+    @PostMapping
     public void createUser(@RequestBody User user) {
         userService.createUser(user);
     }
@@ -27,7 +27,7 @@ public class UserRestController {
         userService.modifyUser(id, user);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable int id) {
         userService.deleteUser(id);
     }

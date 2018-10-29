@@ -21,7 +21,7 @@ public class ResidenceRestController {
         this.residenceService = residenceService;
     }
 
-    @GetMapping("/for-user/{id}")
+    @GetMapping("/{id}")
     public List<Residence> getResidencesByUser(@PathVariable int id) {
         return residenceService.getResidencesByUser(id);
     }

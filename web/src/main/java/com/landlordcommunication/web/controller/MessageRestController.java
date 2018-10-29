@@ -17,12 +17,12 @@ public class MessageRestController {
         this.messageService = messageService;
     }
 
-    @PostMapping("/messages/new")
+    @PostMapping
     public void createMessage(@RequestBody Message message) {
         messageService.createMessage(message);
     }
 
-    @DeleteMapping("/messages/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deleteMessage(@PathVariable int id) {
         messageService.deleteMessage(id);
     }
