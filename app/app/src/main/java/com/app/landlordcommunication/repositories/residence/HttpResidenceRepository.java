@@ -3,11 +3,12 @@ package com.app.landlordcommunication.repositories.residence;
 import com.app.landlordcommunication.http.HttpRequester;
 import com.app.landlordcommunication.models.Residence;
 import com.app.landlordcommunication.parsers.base.JsonParser;
+import com.app.landlordcommunication.repositories.residence.base.ResidenceRepository;
 
 import java.io.IOException;
 import java.util.List;
 
-public class HttpResidenceRepository implements ResidenceRepository{
+public class HttpResidenceRepository implements ResidenceRepository {
 
     private final HttpRequester mHttpRequester;
     private final String mServerUrl;

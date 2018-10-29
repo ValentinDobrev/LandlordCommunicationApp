@@ -1,4 +1,4 @@
-package com.app.landlordcommunication.repositories.residence;
+package com.app.landlordcommunication.repositories.residence.base;
 
 import com.app.landlordcommunication.models.Residence;
 
