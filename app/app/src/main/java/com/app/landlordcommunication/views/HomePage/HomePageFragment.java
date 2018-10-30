@@ -121,5 +121,12 @@ public class HomePageFragment extends DaggerFragment implements HomePageContract
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+        Residence residence = mResidencesAdapter.getItem(position);
+
+        onClick(residence);
+    }
+
+    private void onClick(Residence residence) {
+        mPresenter.selectResidence(residence);
     }
 }
