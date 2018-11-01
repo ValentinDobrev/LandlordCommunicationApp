@@ -14,4 +14,6 @@ public interface UserRepository {
     List<Rating> getUserRatings(int userId);
     List<User> getUsersByResidence(int residenceId);
     void payRentFromTenantToLandlord(int tenantId, int landlordId, int residenceId);
+
+    User getUserByEmail(String email);
 }

@@ -71,4 +71,9 @@ public class UserServiceImpl implements UserService {
     public void payRentFromTenantToLandlord(int tenantId, int landlordId, int residenceId) {
         repository.payRentFromTenantToLandlord(tenantId, landlordId, residenceId);
     }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return repository.getUserByEmail(email);
+    }
 }
