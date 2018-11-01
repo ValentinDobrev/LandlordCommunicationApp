@@ -55,6 +55,6 @@ public class HomePagePresenter implements HomePageContracts.Presenter {
 
     @Override
     public void selectResidence(Residence residence) {
-     mView.showResidenceOverview(residence);
+        mView.showResidenceOverview(residence);
     }
 }
