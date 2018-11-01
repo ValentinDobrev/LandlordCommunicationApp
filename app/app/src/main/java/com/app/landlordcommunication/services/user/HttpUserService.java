@@ -6,6 +6,7 @@ import com.app.landlordcommunication.repositories.user.base.UserRepository;
 import com.app.landlordcommunication.services.user.base.UserService;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HttpUserService implements UserService {
@@ -27,6 +28,11 @@ public class HttpUserService implements UserService {
     }
 
     @Override
+    public List<User> getAllUsers() throws IOException {
+        return repository.getAllUsers();
+    }
+
+    @Override
     public List<User> getAllLandlords() throws IOException {
         return repository.getAllLandlords();
     }
@@ -39,6 +45,21 @@ public class HttpUserService implements UserService {
     @Override
     public List<User> getUsersByResidence(int residenceId) throws IOException {
         return repository.getUsersByResidence(residenceId);
+    }
+
+    @Override
+    public List<User> getFilteredUsers(String pattern) throws IOException {
+        String patternToLower = pattern.toLowerCase();
+
+        List<User> users = new ArrayList<>();
+
+        for (User u : getAllUsers()) {
+            if (u.getFirstName().contains(patternToLower) || u.getSurname().contains(patternToLower)) {
+                users.add(u);
+            }
+        }
+
+        return users;
     }
 
     @Override

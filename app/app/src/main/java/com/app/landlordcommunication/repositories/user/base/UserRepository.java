@@ -12,6 +12,8 @@ public interface UserRepository {
 
     void modifyUser(int userId, User user) throws IOException;
 
+    List<User> getAllUsers() throws IOException;
+
     List<User> getAllLandlords() throws IOException;
 
     List<Rating> getUserRatings(int userId) throws IOException;

@@ -69,6 +69,22 @@ public class SqlUserRepository implements UserRepository {
     }
 
     @Override
+    public List<User> getAllUsers() {
+        List<User> result;
+
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            result = session.createQuery("from User").list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException();
+        }
+
+        return result;
+    }
+
+    @Override
     public List<User> getAllLandlords() {
         List<User> result;
         try (

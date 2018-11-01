@@ -53,6 +53,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getAllUsers() {
+        return repository.getAllUsers();
+    }
+
+    @Override
     public List<User> getAllLandlords() {
         return repository.getAllLandlords();
     }

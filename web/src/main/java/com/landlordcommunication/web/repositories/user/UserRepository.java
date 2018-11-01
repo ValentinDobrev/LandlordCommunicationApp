@@ -9,6 +9,7 @@ public interface UserRepository {
     void createUser(User user);
     void deleteUser(int userId);
     void modifyUser(int userId, User user);
+    List<User> getAllUsers();
     List<User> getAllLandlords();
     List<Rating> getUserRatings(int userId);
     List<User> getUsersByResidence(int residenceId);

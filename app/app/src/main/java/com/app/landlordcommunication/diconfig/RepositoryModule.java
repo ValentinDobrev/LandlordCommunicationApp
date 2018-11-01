@@ -20,7 +20,7 @@ public class RepositoryModule {
     public ResidenceRepository residenceRepository(
             @Named("baseServerUrl") String baseServerUrl,
             HttpRequester httpRequester,
-            JsonParser<Residence> jsonParser
+            @Named("residenceParser") JsonParser<Residence> jsonParser
     ) {
         String url = baseServerUrl;
         return new HttpResidenceRepository(httpRequester, url, jsonParser);

@@ -18,4 +18,13 @@
         android:text="Login"
         android:layout_centerInParent="true"/>
 
+    <Button
+        android:id="@+id/btn_show_users"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="121dp"
+        android:text="Show users" />
+
 </RelativeLayout>

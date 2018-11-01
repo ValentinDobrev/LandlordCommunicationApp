@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.views.HomePage.HomePageActivity;
+import com.app.landlordcommunication.views.users_list.UsersListActivity;
 
 import javax.inject.Inject;
 
@@ -22,6 +23,9 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class LoginScreenFragment extends Fragment {
+
+    @BindView(R.id.btn_show_users)
+    Button mShowUsersButton;
 
 //The on-click method works without this bind...? :D
 /*    @BindView(R.id.login_button)
@@ -54,6 +58,12 @@ public class LoginScreenFragment extends Fragment {
 
         startActivity(intent);
 
+    }
+
+    @OnClick({R.id.btn_show_users})
+    public void showUsersButtonClick() {
+        Intent intent = new Intent(getContext(), UsersListActivity.class);
+        startActivity(intent);
     }
 
 }
