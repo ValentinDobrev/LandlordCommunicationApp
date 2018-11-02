@@ -1,7 +1,8 @@
 package com.app.landlordcommunication.views.LoginScreen;
 
 
-import com.app.landlordcommunication.models.User;
+import com.app.landlordcommunication.models.LoginInfo;
+
 
 public interface LoginScreenContracts {
 
@@ -11,17 +12,18 @@ public interface LoginScreenContracts {
 
         void showError(Throwable e);
 
-        void verifyUser(String email);
+        void verifyUser(LoginInfo loginInfo);
 
+        void startHomeScreen();
 
-        void startHomeScreen(User user);
+        void startTenantHomeScreen();
     }
 
     interface Presenter{
 
         void subscribe(LoginScreenContracts.View view);
 
-        void checkUserInDb(String email);
+        void checkUserInDb(LoginInfo loginInfo);
 
 
     }

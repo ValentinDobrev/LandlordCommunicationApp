@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.app.landlordcommunication.R;
+import com.app.landlordcommunication.models.LoginInfo;
 import com.app.landlordcommunication.models.User;
 import com.app.landlordcommunication.views.HomePage.HomePageActivity;
 
@@ -52,11 +53,9 @@ public class RealLoginScreenFragment extends Fragment implements LoginScreenCont
     @OnClick({R.id.real_login_button})
     public void realLoginButtonClick(){
 
-        String loginName = mUserName.getText().toString();
-        //TODO the password string will be added as a check after testing with the user name only is complete
-        String password = mPassword.getText().toString();
+        LoginInfo loginInfo = new LoginInfo(mUserName.getText().toString(), mPassword.getText().toString());
 
-        verifyUser(loginName);
+        verifyUser(loginInfo);
 
     }
 
@@ -66,20 +65,33 @@ public class RealLoginScreenFragment extends Fragment implements LoginScreenCont
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.subscribe(this);
+    }
+
+    @Override
     public void showError(Throwable e) {
-        Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG)
-                .show();
+      /*  Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG)
+                .show();*/
     }
 
     @Override
-    public void verifyUser(String email) {
-         mPresenter.checkUserInDb(email);
+    public void verifyUser(LoginInfo loginInfo) {
+         mPresenter.checkUserInDb(loginInfo);
     }
 
     @Override
-    public void startHomeScreen(User user) {
+    public void startHomeScreen() {
         Intent intent = new Intent(getContext(), HomePageActivity.class);
-        Toast.makeText(getContext(), user.toString(), Toast.LENGTH_LONG)
-                .show();
+
+        startActivity(intent);
+    }
+
+    @Override
+    public void startTenantHomeScreen() {
+        //TODO modify this intent when we have the two differing screens
+        Intent intent = new Intent(getContext(), HomePageActivity.class);
+        startActivity(intent);
     }
 }

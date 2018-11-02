@@ -10,8 +10,6 @@ import dagger.Provides;
 public class LoginScreenPresenterModule {
     @Provides
     LoginScreenContracts.Presenter loginScreenPresenter(RealLoginScreenPresenter presenter){
-
         return presenter;
-
     }
 }

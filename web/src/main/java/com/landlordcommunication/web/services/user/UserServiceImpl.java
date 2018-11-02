@@ -1,5 +1,6 @@
 package com.landlordcommunication.web.services.user;
 
+import com.landlordcommunication.web.models.LoginInfo;
 import com.landlordcommunication.web.models.Rating;
 import com.landlordcommunication.web.models.User;
 import com.landlordcommunication.web.repositories.user.UserRepository;
@@ -78,7 +79,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByEmail(String email) {
-        return repository.getUserByEmail(email);
+    public User getUserByEmail(LoginInfo loginInfo) {
+        return repository.getUserByEmail(loginInfo);
     }
 }
