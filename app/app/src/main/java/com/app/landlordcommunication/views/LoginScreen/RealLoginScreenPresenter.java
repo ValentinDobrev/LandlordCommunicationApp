@@ -1,5 +1,8 @@
 package com.app.landlordcommunication.views.LoginScreen;
 
+import android.content.Intent;
+
+import com.app.landlordcommunication.AndroidApplication;
 import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.async.base.SchedulerProvider;
 import com.app.landlordcommunication.models.Residence;
@@ -45,6 +48,9 @@ public class RealLoginScreenPresenter implements LoginScreenContracts.Presenter 
     }
 
     private void presentUserToView(User user) {
+        Constants.setCurrentUser(user);
+
+        mView.startHomeScreen(user);
 
     }
 }

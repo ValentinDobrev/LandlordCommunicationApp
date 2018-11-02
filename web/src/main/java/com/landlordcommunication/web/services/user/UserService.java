@@ -20,6 +20,4 @@ public interface UserService {
 
     User getUserByEmail(String email);
     User getUserById(int userId);
-
-    User getUserByEmail(String email);
 }

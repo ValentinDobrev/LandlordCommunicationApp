@@ -33,8 +33,17 @@ public class RepositoryModule {
         return new HttpResidenceRepository(httpRequester, url, jsonParser);
     }
 
+
+    /*@Provides
+    @Singleton
+    public UserRepository userRepository(@Named("baseServerUrl") String baseServerUrl,
+                                         HttpRequester httpRequester,
+                                         @Named("userParser") JsonParser<User> userJsonParser,
+                                         @Named("ratingParser") JsonParser<Rating> ratingJSonParser) {
+        return new HttpUserRepository(httpRequester, baseServerUrl, userJsonParser, ratingJSonParser);
+    }*/
+
     @Provides
-//    @Named("baseServerUrlUser")
     @Singleton
     public UserRepository userRepository(
             @Named("baseServerUrl") String baseServerUrl,
