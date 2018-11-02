@@ -21,4 +21,6 @@ public interface UserRepository {
     List<User> getUsersByResidence(int residenceId) throws IOException;
 
     void payRentFromTenantToLandlord(int tenantId, int landlordId, int residenceId) throws IOException;
+
+    User getUserByEmail(String email);
 }

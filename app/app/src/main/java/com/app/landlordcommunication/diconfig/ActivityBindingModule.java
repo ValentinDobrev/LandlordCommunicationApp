@@ -2,6 +2,7 @@ package com.app.landlordcommunication.diconfig;
 
 import com.app.landlordcommunication.views.HomePage.HomePageActivity;
 import com.app.landlordcommunication.views.LoginScreen.LoginScreenActivity;
+import com.app.landlordcommunication.views.LoginScreen.RealLoginScreenActivity;
 import com.app.landlordcommunication.views.ResidenceOverview.ResidenceOverviewActivity;
 import com.app.landlordcommunication.views.users_list.UsersListActivity;
 
@@ -16,6 +17,10 @@ import dagger.android.ContributesAndroidInjector;
         @ActivityScoped
         @ContributesAndroidInjector(modules = LoginScreenModule.class)
         abstract LoginScreenActivity loginScreenActivity();
+
+        @ActivityScoped
+        @ContributesAndroidInjector(modules = RealLoginScreenModule.class)
+        abstract RealLoginScreenActivity realLoginScreenActivity();
 
 
         //base

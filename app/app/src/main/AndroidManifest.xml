@@ -23,6 +23,7 @@
         <activity android:name=".views.ResidenceOverview.ResidenceOverviewActivity" />
         <activity android:name=".views.users_list.UsersListActivity" />
         <activity android:name=".views.user_details.UserDetailsActivity"></activity>
+        <activity android:name=".views.LoginScreen.RealLoginScreenActivity"></activity>
     </application>
 
 </manifest>

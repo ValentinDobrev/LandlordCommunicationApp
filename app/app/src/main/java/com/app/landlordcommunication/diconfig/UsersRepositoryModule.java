@@ -17,7 +17,10 @@ import dagger.Provides;
 public class UsersRepositoryModule {
     @Provides
     @Singleton
-    public UserRepository userRepository(@Named("baseServerUrl") String baseServerUrl, HttpRequester httpRequester, @Named("userParser") JsonParser<User> userJsonParser, @Named("ratingParser") JsonParser<Rating> ratingJSonParser) {
+    public UserRepository userRepository(@Named("baseServerUrl") String baseServerUrl,
+                                         HttpRequester httpRequester,
+                                         @Named("userParser") JsonParser<User> userJsonParser,
+                                         @Named("ratingParser") JsonParser<Rating> ratingJSonParser) {
         return new HttpUserRepository(httpRequester, baseServerUrl, userJsonParser, ratingJSonParser);
     }
 }

@@ -71,4 +71,24 @@ public class HttpUserRepository implements UserRepository {
         String url = mServerUrl + "/pay-rent/" + tenantId + "/" + landlordId + "/" + residenceId;
         mHttpRequester.put(url, null);
     }
+
+    @Override
+    public User getUserByEmail(String email) {
+        //TODO the URL below should be modified via the Constants class
+        String url = "http://192.168.0.102:8080/api/authentication";
+
+        String json;
+        User user = null;
+
+        try {
+            json = mHttpRequester.post(url, email);
+            user = mJsonParserUser.fromJson(json);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return user;
+
+    }
 }

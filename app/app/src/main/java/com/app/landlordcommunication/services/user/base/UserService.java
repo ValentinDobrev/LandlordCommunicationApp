@@ -23,4 +23,6 @@ public interface UserService {
     List<Rating> getUserRatings(int userId) throws IOException;
 
     void payRentFromTenantToLandlord(int tenantId, int landlordId, int residenceId) throws IOException;
+
+    User getUserByEmail(String email);
 }

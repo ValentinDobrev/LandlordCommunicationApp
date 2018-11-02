@@ -26,5 +26,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="121dp"
         android:text="Show users" />
+    <Button
+        android:id="@+id/real_login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RealLogin"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"/>
 
 </RelativeLayout>
