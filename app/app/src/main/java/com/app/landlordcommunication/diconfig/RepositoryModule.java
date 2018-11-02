@@ -3,6 +3,7 @@ package com.app.landlordcommunication.diconfig;
 import com.app.landlordcommunication.http.HttpRequester;
 import com.app.landlordcommunication.models.Message;
 import com.app.landlordcommunication.models.Rating;
+import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.Residence;
 import com.app.landlordcommunication.models.User;
 import com.app.landlordcommunication.parsers.base.JsonParser;
@@ -21,7 +22,6 @@ import dagger.Provides;
 public class RepositoryModule {
 
     @Provides
-//    @Named("baseServerUrlResidence")
     @Singleton
     public ResidenceRepository residenceRepository(
             @Named("baseServerUrl") String baseServerUrl,

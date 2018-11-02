@@ -58,6 +58,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getAllUsers() {
+        return repository.getAllUsers();
+    }
+
+    @Override
     public List<User> getAllLandlords() {
         return repository.getAllLandlords();
     }
@@ -70,5 +75,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void payRentFromTenantToLandlord(int tenantId, int landlordId, int residenceId) {
         repository.payRentFromTenantToLandlord(tenantId, landlordId, residenceId);
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return repository.getUserByEmail(email);
     }
 }

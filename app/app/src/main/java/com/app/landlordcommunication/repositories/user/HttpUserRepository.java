@@ -44,10 +44,17 @@ public class HttpUserRepository implements UserRepository {
     }
 
     @Override
+    public List<User> getAllUsers() throws IOException {
+        String url = mServerUrl;
+        String json = mHttpRequester.get(url);
+        return mJsonParserUser.fromJsonArray(json);
+    }
+
+    @Override
     public List<User> getAllLandlords() throws IOException {
-        String jsonArray;
-        jsonArray = mHttpRequester.get(mServerUrl);
-        return mJsonParserUser.fromJsonArray(jsonArray);
+        String url = mServerUrl + "/landlords";
+        String json = mHttpRequester.get(url);
+        return mJsonParserUser.fromJsonArray(json);
     }
 
     @Override
@@ -71,5 +78,25 @@ public class HttpUserRepository implements UserRepository {
     public void payRentFromTenantToLandlord(int tenantId, int landlordId, int residenceId) throws IOException {
         String url = mServerUrl + "/pay-rent/" + tenantId + "/" + landlordId + "/" + residenceId;
         mHttpRequester.put(url, null);
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        //TODO the URL below should be modified via the Constants class
+        String url = "http://192.168.0.102:8080/api/authentication";
+
+        String json;
+        User user = null;
+
+        try {
+            json = mHttpRequester.post(url, email);
+            user = mJsonParserUser.fromJson(json);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return user;
+
     }
 }

@@ -28,6 +28,12 @@ import dagger.android.support.AndroidSupportInjectionModule;
         ParserModule.class,
         HomePagePresenterModule.class,
         ResidenceOverviewPresenterModule.class,
+        UserServiceModule.class,
+        UsersListModule.class,
+        UsersRepositoryModule.class,
+        UsersViewsModule.class,
+        RealLoginScreenModule.class,
+        LoginScreenPresenterModule.class
 
 })
 public interface AppComponent extends AndroidInjector<AndroidApplication> {

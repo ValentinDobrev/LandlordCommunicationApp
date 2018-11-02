@@ -36,6 +36,11 @@ public class UserRestController {
         userService.deleteUser(id);
     }
 
+    @GetMapping
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
     @GetMapping("/landlords")
     public List<User> getAllLandlords() {
         return userService.getAllLandlords();

@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.landlordcommunication">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -20,8 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.HomePage.HomePageActivity"></activity>
-        <activity android:name=".views.ResidenceOverview.ResidenceOverviewActivity"></activity>
+        <activity android:name=".views.HomePage.HomePageActivity" />
+        <activity android:name=".views.ResidenceOverview.ResidenceOverviewActivity" />
+        <activity android:name=".views.users_list.UsersListActivity" />
+        <activity android:name=".views.user_details.UserDetailsActivity"></activity>
+        <activity android:name=".views.LoginScreen.RealLoginScreenActivity"></activity>
     </application>
 
 </manifest>
