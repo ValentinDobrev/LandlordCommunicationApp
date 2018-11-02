@@ -23,6 +23,10 @@ public class Constants {
 
     public static final String USERS_EXTRA_STRING = "userName";
 
+    public static final int USERS_LIST_IDENTIFIER = 7;
+
+    public static final String USERS_EXTRA_STRING = "userName";
+
     // TO BE CHANGED UPON APPLICATION LAUNCH
 
 }

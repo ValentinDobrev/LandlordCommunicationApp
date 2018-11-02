@@ -17,6 +17,8 @@ public interface UserService {
     List<User> getAllLandlords();
     List<User> getUsersByResidence(int residenceId);
     void payRentFromTenantToLandlord(int tenantId, int landlordId, int residenceId);
+
+    User getUserByEmail(String email);
     User getUserById(int userId);
 
     User getUserByEmail(String email);
