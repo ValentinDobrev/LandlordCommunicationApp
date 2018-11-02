@@ -5,6 +5,8 @@ import com.app.landlordcommunication.models.Residence;
 import java.io.IOException;
 import java.util.List;
 
+import dagger.Provides;
+
 public interface ResidenceRepository {
     List<Residence> getResidencesByUser(int userId) throws IOException;
 }

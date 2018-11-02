@@ -1,5 +1,6 @@
 package com.app.landlordcommunication.views.HomePage;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -33,7 +34,8 @@ public class ResidencesAdapter extends RecyclerView.Adapter<ResidencesAdapter.Re
         @NonNull
         @Override
         public ResidenceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.residence_item, parent, false);
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.residence_item, parent, false);
             return new ResidenceViewHolder(view);
         }
 
@@ -83,10 +85,12 @@ public class ResidencesAdapter extends RecyclerView.Adapter<ResidencesAdapter.Re
             }
 
             void bind(Residence residence){
-                mAddressTextView.setText(residence.getAddress());
+//                mAddressTextView.setText(residence.getAddress());
 
                //Picasso.get().load(residence.getImage()).into(mResidenceImageView);
                 mResidence = residence;
+                mAddressTextView.setText(mResidence.getAddress());
+
             }
 
             @OnClick

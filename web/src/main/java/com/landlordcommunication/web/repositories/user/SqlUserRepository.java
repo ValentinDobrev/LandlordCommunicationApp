@@ -16,6 +16,24 @@ public class SqlUserRepository implements UserRepository {
     private SessionFactory sessionFactory;
 
     @Override
+    public User getUserById(int id) {
+        User result;
+
+        try (
+                Session session = sessionFactory.openSession()
+        ) {
+            session.beginTransaction();
+            result = session.createQuery("from User where userId = :id", User.class)
+                    .setParameter("id", id).uniqueResult();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
+
+        return result;
+    }
+
+    @Override
     public void createUser(User user) {
         try (
                 Session session = sessionFactory.openSession();

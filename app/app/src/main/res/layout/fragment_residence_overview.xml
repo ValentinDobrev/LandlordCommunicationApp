@@ -1,21 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.ResidenceOverview.ResidenceOverviewFragment">
 
-    <TextView
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <ProgressBar
+        android:id="@+id/loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Residence Overview Activity"
-        android:layout_alignParentTop="true"/>
-
-    <Button
-        android:id="@+id/test2_button"
+        android:visibility="gone" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/testback" />
+    <ImageView
+        android:id="@+id/imageView_residenceOverview"
+        android:background="@drawable/fake"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+    <TextView
+        android:id="@+id/textView_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Test"
-        android:layout_centerInParent="true"/>
+        android:layout_centerHorizontal="true"
+        android:text="ADDRESS:"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_below="@+id/imageView_residenceOverview"/>
+    <TextView
+        android:id="@+id/textView_addressText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="alalalalalallalalalalaallaal"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:layout_below="@+id/textView_address"/>
+    <TextView
+        android:id="@+id/textView_rent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="RENT:"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_below="@+id/textView_addressText"/>
+    <TextView
+        android:id="@+id/textView_rentText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="$$$$$$$"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:layout_below="@+id/textView_rent"/>
+    <TextView
+        android:id="@+id/textView_dueDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="DUE DATE:"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_below="@+id/textView_rentText"/>
+    <TextView
+        android:id="@+id/textView_dueDateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="YYYY:MM:DD"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:layout_below="@+id/textView_dueDate"/>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/button_payRent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_below="@id/textView_dueDateText"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/circle_button"
+        android:text="@string/pay_rent"
+        android:textSize="20dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_below="@id/button_payRent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:divider="#b5b5b5"
+        android:dividerHeight="1dp"
+        android:listSelector="@drawable/list_selector" />
+    </RelativeLayout>
+
+</FrameLayout>

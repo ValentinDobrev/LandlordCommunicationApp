@@ -24,6 +24,14 @@ public class HttpUserRepository implements UserRepository {
     }
 
     @Override
+    public User getUserbyId(int userId) throws IOException {
+        String url = mServerUrl + "/" + userId;
+//        String requestBody = mJsonParserUser.toJson(user);
+        String json = mHttpRequester.get(url);
+        return mJsonParserUser.fromJson(json);
+    }
+
+    @Override
     public void createUser(User user) {
         //TODO
     }

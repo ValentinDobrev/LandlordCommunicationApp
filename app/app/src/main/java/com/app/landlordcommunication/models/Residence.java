@@ -89,4 +89,9 @@ public class Residence {
         this.messages = messages;
     }
 
+    //@androidx.annotation.NonNull
+    @Override
+    public String toString() {
+        return getAddress();
+    }
 }

@@ -17,6 +17,10 @@ public class UserRestController {
         this.userService = userService;
     }
 
+    @GetMapping("/{userId}")
+    public User getUserById(@PathVariable int userId) {
+        return userService.getUserById(userId);
+    }
     @PostMapping
     public void createUser(@RequestBody User user) {
         userService.createUser(user);

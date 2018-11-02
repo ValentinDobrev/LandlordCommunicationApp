@@ -12,13 +12,17 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.Residence;
+import com.app.landlordcommunication.models.User;
 import com.app.landlordcommunication.views.ResidenceOverview.ResidenceOverviewActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 
 import butterknife.BindView;
@@ -35,6 +39,7 @@ public class HomePageFragment extends DaggerFragment implements HomePageContract
     ProgressBar mLoadingView;
 
     @Inject
+//    @Named("baseServerUrlRepository")
     HomePageContracts.Presenter mPresenter;
 
     ArrayAdapter<Residence> mResidencesAdapter;
@@ -75,7 +80,6 @@ public class HomePageFragment extends DaggerFragment implements HomePageContract
     @Override
     public void showResidences() {
         mResidencesView.setAdapter(mResidencesAdapter);
-
         mResidencesView.setOnItemClickListener(this);
     }
 
@@ -108,7 +112,11 @@ public class HomePageFragment extends DaggerFragment implements HomePageContract
 
     @Override
     public void showResidenceOverview(Residence residence) {
+        Constants.TEST_RESIDENCE_ID = residence.getResidenceId();
         Intent intent = new Intent(getContext(), ResidenceOverviewActivity.class);
+        intent.putExtra("residenceAddress", residence.getAddress());
+        intent.putExtra("residenceRent", residence.getRent());
+        intent.putExtra("residenceDueDate", residence.getDueDate());
         startActivity(intent);
     }
 
@@ -121,7 +129,7 @@ public class HomePageFragment extends DaggerFragment implements HomePageContract
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        Residence residence = mResidencesAdapter.getItem(position);
+        Residence residence = (Residence)mResidencesAdapter.getItem(position);
 
         onClick(residence);
     }

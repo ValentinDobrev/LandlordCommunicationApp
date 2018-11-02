@@ -4,6 +4,7 @@ import com.app.landlordcommunication.views.HomePage.HomePageActivity;
 import com.app.landlordcommunication.views.LoginScreen.LoginScreenActivity;
 import com.app.landlordcommunication.views.ResidenceOverview.ResidenceOverviewActivity;
 
+import dagger.Component;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
