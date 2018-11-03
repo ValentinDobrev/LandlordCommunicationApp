@@ -6,12 +6,15 @@ public class AuthorisationInfo {
 
     private boolean isTenant;
 
+    private String error;
+
     public AuthorisationInfo() {
     }
 
-    public AuthorisationInfo(int id, boolean isTenant) {
+    public AuthorisationInfo(int id, boolean isTenant, String error) {
         this.id = id;
         this.isTenant = isTenant;
+        this.error = error;
     }
 
     public int getId() {
@@ -28,5 +31,21 @@ public class AuthorisationInfo {
 
     public void setIsTenant(boolean tenant) {
         isTenant = tenant;
+    }
+
+    public boolean isTenant() {
+        return isTenant;
+    }
+
+    public void setTenant(boolean tenant) {
+        isTenant = tenant;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 }

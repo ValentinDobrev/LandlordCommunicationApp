@@ -1,5 +1,6 @@
 package com.landlordcommunication.web.services.user;
 
+import com.landlordcommunication.web.models.AuthorisationInfo;
 import com.landlordcommunication.web.models.LoginInfo;
 import com.landlordcommunication.web.models.Rating;
 import com.landlordcommunication.web.models.User;
@@ -18,6 +19,6 @@ public interface UserService {
     List<User> getUsersByResidence(int residenceId);
     void payRentFromTenantToLandlord(int tenantId, int landlordId, int residenceId);
 
-    User getUserByEmail(LoginInfo email);
+    AuthorisationInfo getUserByEmail(LoginInfo email);
     User getUserById(int userId);
 }

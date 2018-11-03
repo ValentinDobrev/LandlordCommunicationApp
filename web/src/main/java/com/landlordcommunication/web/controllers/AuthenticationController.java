@@ -18,10 +18,8 @@ public class AuthenticationController {
 
     @PostMapping
     public AuthorisationInfo getUserByEmail(@RequestBody LoginInfo loginInfo){
-        User user = userService.getUserByEmail(loginInfo);
-
-        return new AuthorisationInfo(user.getUserId(), user.getIsTenant());
-
+        //the user object in this method will contain a surname with an error text if there is not such user in the DB
+        return userService.getUserByEmail(loginInfo);
     }
 
 }
