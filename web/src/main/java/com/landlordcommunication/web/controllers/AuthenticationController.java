@@ -1,5 +1,7 @@
 package com.landlordcommunication.web.controllers;
 
+import com.landlordcommunication.web.models.AuthorisationInfo;
+import com.landlordcommunication.web.models.LoginInfo;
 import com.landlordcommunication.web.models.User;
 import com.landlordcommunication.web.services.user.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +17,9 @@ public class AuthenticationController {
     }
 
     @PostMapping
-    public User getUserByEmail(@RequestBody String email){
-        return userService.getUserByEmail(email);
+    public AuthorisationInfo getUserByEmail(@RequestBody LoginInfo loginInfo){
+        //the user object in this method will contain a surname with an error text if there is not such user in the DB
+        return userService.getUserByEmail(loginInfo);
     }
 
 }

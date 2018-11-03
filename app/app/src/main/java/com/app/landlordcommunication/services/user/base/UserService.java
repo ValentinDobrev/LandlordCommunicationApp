@@ -1,5 +1,9 @@
 package com.app.landlordcommunication.services.user.base;
 
+import android.util.Log;
+
+import com.app.landlordcommunication.models.AuthorisationInfo;
+import com.app.landlordcommunication.models.LoginInfo;
 import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.User;
 
@@ -26,5 +30,5 @@ public interface UserService {
 
     void payRentFromTenantToLandlord(int tenantId, int landlordId, int residenceId) throws IOException;
 
-    User getUserByEmail(String email);
+    AuthorisationInfo getUserByEmail(LoginInfo loginInfo);
 }

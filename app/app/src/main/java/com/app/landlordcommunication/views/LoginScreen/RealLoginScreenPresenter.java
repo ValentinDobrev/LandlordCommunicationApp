@@ -1,16 +1,13 @@
 package com.app.landlordcommunication.views.LoginScreen;
 
-import android.content.Intent;
-
-import com.app.landlordcommunication.AndroidApplication;
 import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.async.base.SchedulerProvider;
-import com.app.landlordcommunication.models.Residence;
+import com.app.landlordcommunication.models.AuthorisationInfo;
+import com.app.landlordcommunication.models.LoginInfo;
 import com.app.landlordcommunication.models.User;
 import com.app.landlordcommunication.services.user.base.UserService;
-import com.app.landlordcommunication.views.HomePage.HomePageContracts;
 
-import java.util.List;
+import java.io.IOException;
 
 import javax.inject.Inject;
 
@@ -37,20 +34,40 @@ public class RealLoginScreenPresenter implements LoginScreenContracts.Presenter 
     }
 
     @Override
-    public void checkUserInDb(String email) {
-        Disposable observable = Observable.create((ObservableOnSubscribe<User>) emitter ->{
-            User user = mUserService.getUserByEmail(email);
-            emitter.onNext(user);
+    public void checkUserInDb(LoginInfo loginInfo) {
+
+        //TODO rethink error catching in case of network delays
+        Disposable observable = Observable.create((ObservableOnSubscribe<AuthorisationInfo>) emitter ->{
+            AuthorisationInfo authorisationInfo = mUserService.getUserByEmail(loginInfo);
+            emitter.onNext(authorisationInfo);
             emitter.onComplete();
         }).subscribeOn(mSchedulerProvider.background()).observeOn(mSchedulerProvider.ui())
                 .subscribe(this::presentUserToView, error -> mView.showError(error)
                 );
+
     }
 
-    private void presentUserToView(User user) {
-        Constants.setCurrentUser(user);
+    private void presentUserToView(AuthorisationInfo authorisationInfo) throws IOException {
 
-        mView.startHomeScreen(user);
+        if(authorisationInfo.getError().equals("No such username or password")){
+            mView.showError(new Throwable("No such username or password"));
+            return;
+        }
+
+        //Adding the confirmed user ID to simulate a saved state. The whole user can be retrieved via the getUserById(id) method
+        Constants.CURRENT_USER_ID = authorisationInfo.getId();
+
+        if(authorisationInfo.getIsTenant()){
+            mView.startTenantHomeScreen();
+        }
+
+        if(!authorisationInfo.getIsTenant()){
+
+            mView.startHomeScreen();
+
+        }
+
+
 
     }
 }
