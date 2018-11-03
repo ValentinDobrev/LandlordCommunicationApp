@@ -14,6 +14,13 @@ import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.LoginInfo;
 import com.app.landlordcommunication.models.User;
 import com.app.landlordcommunication.views.HomePage.HomePageActivity;
+import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.Email;
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.mobsandgeeks.saripaar.annotation.Password;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -22,16 +29,21 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class RealLoginScreenFragment extends Fragment implements LoginScreenContracts.View{
+public class RealLoginScreenFragment extends Fragment implements LoginScreenContracts.View, Validator.ValidationListener {
 
     @Inject
     LoginScreenContracts.Presenter mPresenter;
 
+    @NotEmpty
+    @Email
     @BindView(R.id.et_user_name)
     EditText mUserName;
 
+    @Password(min = 6, scheme = Password.Scheme.ANY)
     @BindView(R.id.et_password)
     EditText mPassword;
+
+    Validator mValidator;
 
     @Inject
     public RealLoginScreenFragment() {
@@ -47,16 +59,16 @@ public class RealLoginScreenFragment extends Fragment implements LoginScreenCont
 
         ButterKnife.bind(this,view);
 
+        mValidator = new Validator(this);
+        mValidator.setValidationListener(this);
+
+
         return view;
     }
 
     @OnClick({R.id.real_login_button})
     public void realLoginButtonClick(){
-
-        LoginInfo loginInfo = new LoginInfo(mUserName.getText().toString(), mPassword.getText().toString());
-
-        verifyUser(loginInfo);
-
+        mValidator.validate();
     }
 
     @Override
@@ -72,7 +84,7 @@ public class RealLoginScreenFragment extends Fragment implements LoginScreenCont
 
     @Override
     public void showError(Throwable e) {
-      /*  Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG)
+        /*Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG)
                 .show();*/
     }
 
@@ -91,7 +103,32 @@ public class RealLoginScreenFragment extends Fragment implements LoginScreenCont
     @Override
     public void startTenantHomeScreen() {
         //TODO modify this intent when we have the two differing screens
-        Intent intent = new Intent(getContext(), HomePageActivity.class);
-        startActivity(intent);
+        Toast.makeText(getContext(), "The tenant home screen should be started", Toast.LENGTH_LONG)
+                .show();
     }
+
+    @Override
+    public void onValidationSucceeded() {
+        LoginInfo loginInfo = new LoginInfo(mUserName.getText().toString(), mPassword.getText().toString());
+
+        verifyUser(loginInfo);
+    }
+
+    @Override
+    public void onValidationFailed(List<ValidationError> errors) {
+        for (ValidationError error : errors) {
+            View view = error.getView();
+            String message = error.getCollatedErrorMessage(getContext());
+
+            // Display error messages ;)
+            if (view instanceof EditText) {
+                ((EditText) view).setError(message);
+            } else {
+                Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+
 }
+

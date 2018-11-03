@@ -1,5 +1,6 @@
 package com.app.landlordcommunication.views.LoginScreen;
 
+import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.async.base.SchedulerProvider;
 import com.app.landlordcommunication.models.AuthorisationInfo;
 import com.app.landlordcommunication.models.LoginInfo;
@@ -47,7 +48,8 @@ public class RealLoginScreenPresenter implements LoginScreenContracts.Presenter 
 
     private void presentUserToView(AuthorisationInfo authorisationInfo) throws IOException {
 
-        //TODO add this user to state somehow
+        //Adding the confirmed user ID to simulate a saved state. The whole user can be retrieved via the getUserById(id) method
+        Constants.CURRENT_USER_ID = authorisationInfo.getId();
 
         if(authorisationInfo.getIsTenant()){
             mView.startTenantHomeScreen();

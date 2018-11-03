@@ -62,5 +62,8 @@ dependencies {
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    //Android Saripaar validation library
+    implementation group: 'com.mobsandgeeks', name: 'android-saripaar', version: '2.0.3'
+
 
 }
