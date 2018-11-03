@@ -36,6 +36,7 @@ public class RealLoginScreenPresenter implements LoginScreenContracts.Presenter 
     @Override
     public void checkUserInDb(LoginInfo loginInfo) {
 
+        //TODO rethink error catching in case of network delays
         Disposable observable = Observable.create((ObservableOnSubscribe<AuthorisationInfo>) emitter ->{
             AuthorisationInfo authorisationInfo = mUserService.getUserByEmail(loginInfo);
             emitter.onNext(authorisationInfo);
