@@ -48,6 +48,11 @@ public class RealLoginScreenPresenter implements LoginScreenContracts.Presenter 
 
     private void presentUserToView(AuthorisationInfo authorisationInfo) throws IOException {
 
+        if(authorisationInfo.getError().equals("No such username or password")){
+            mView.showError(new Throwable("No such username or password"));
+            return;
+        }
+
         //Adding the confirmed user ID to simulate a saved state. The whole user can be retrieved via the getUserById(id) method
         Constants.CURRENT_USER_ID = authorisationInfo.getId();
 

@@ -84,8 +84,8 @@ public class RealLoginScreenFragment extends Fragment implements LoginScreenCont
 
     @Override
     public void showError(Throwable e) {
-        /*Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG)
-                .show();*/
+        Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG)
+                .show();
     }
 
     @Override
