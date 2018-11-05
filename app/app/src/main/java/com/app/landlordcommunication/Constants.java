@@ -10,12 +10,11 @@ public class Constants {
 
     // Valio
     public static final int TEST_MESSAGE_RECEIVER_ID = 23;
-    public static final int TEST_USER_ID = 14;
     public static int TEST_RESIDENCE_ID = 21;
 
     //This is to keep track of which user is logged in:
 
-    public static int CURRENT_USER_ID = -1;
+    public static int CURRENT_USER_ID = 14;
 
     // ALL SERVER URL'S
 
