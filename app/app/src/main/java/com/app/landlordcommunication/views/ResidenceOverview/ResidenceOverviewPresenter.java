@@ -1,5 +1,7 @@
 package com.app.landlordcommunication.views.ResidenceOverview;
 
+import android.widget.Button;
+
 import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.async.base.SchedulerProvider;
 import com.app.landlordcommunication.models.User;
@@ -50,7 +52,17 @@ public class ResidenceOverviewPresenter implements ResidenceOverviewContracts.Pr
 
     @Override
     public void selectUser(User user) {
-        mView.showResidenceOverviewDetails(user);
+        mView.showResidenceOverviewDetails();
+    }
+
+    @Override
+    public void payRent() {
+
+    }
+
+    @Override
+    public void selectPayBtn() {
+        mView.showResidenceOverviewDetails();
     }
 
     private void presentUsersToView(List<User> users) {

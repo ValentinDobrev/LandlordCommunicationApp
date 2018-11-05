@@ -117,6 +117,8 @@ public class HomePageFragment extends DaggerFragment implements HomePageContract
         intent.putExtra("residenceAddress", residence.getAddress());
         intent.putExtra("residenceRent", residence.getRent());
         intent.putExtra("residenceDueDate", residence.getDueDate());
+//        intent.putExtra("residencePicture", residence.getResidencePicture());
+        intent.putExtra("residencePicture", residence.getResidencePicture());
         startActivity(intent);
     }
 

@@ -1,7 +1,10 @@
 package com.app.landlordcommunication.views.ResidenceOverview;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +16,8 @@ import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.User;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +34,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 
     @Inject
     public UsersAdapter(){
-                mUsers = new ArrayList<>();
-            }
+        mUsers = new ArrayList<>();
+    }
 
     @NonNull
     @Override
@@ -59,7 +64,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
     }
 
     public void addAll(List<User> users) {
-        //mUsers.addAll(users);
+//        mUsers.addAll(users);
 
         for (User user : users) {
             if(user.getUserId() == Constants.TEST_USER_ID){
@@ -102,16 +107,27 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 
         void bind(User user) {
             mUserNameTextView.setText(user.getFirstName() + " " + user.getSurname());
+            InputStream stream = new ByteArrayInputStream(Base64.decode(user.getUserPicture().getBytes(), Base64.DEFAULT));
+
+            Bitmap bitmap = BitmapFactory.decodeStream(stream);
+
+            mUserImg.setImageBitmap(bitmap);
 //            mUserEmailTextView.setText(user.getEmail());
 //            mOpenChatBtn.
             //Picasso.get().load(residence.getImage()).into(mResidenceImageView);
             mUser = user;
         }
 
-        @OnClick
+//        @OnClick
+//        public void OnClick(){
+//            mOnClickListener.onClick(mUser);
+//        }
+
+        @OnClick(R.id.button_openChat)
         public void OnClick(){
             mOnClickListener.onClick(mUser);
         }
+
 
         public void setOnClickListener(OnUserClickListener onClickListener){
             mOnClickListener = onClickListener;
