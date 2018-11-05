@@ -1,11 +1,14 @@
 package com.landlordcommunication.web.repositories.message;
 import com.landlordcommunication.web.models.Message;
+import com.landlordcommunication.web.models.User;
 import com.landlordcommunication.web.repositories.message.MessageRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.management.Query;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -74,5 +77,22 @@ public class SqlMessageRepository implements MessageRepository {
             session.getTransaction().commit();
         }
         return result;
+    }
+
+    @Override
+    public void deleteOldMessages(Date date) {
+        //attempt at resolving java date vs sql data inconsistency
+        Object param = new java.sql.Timestamp(date.getTime());
+
+        try (Session session = sessionFactory.openSession())
+
+        {
+            session.beginTransaction();
+            session.createQuery("delete from Message where sentDate < :date")
+                    .setParameter("date", param);
+            session.getTransaction().commit();
+        } catch (Throwable t) {
+            throw t;
+        }
     }
 }

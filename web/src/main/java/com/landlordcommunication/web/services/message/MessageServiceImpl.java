@@ -5,7 +5,9 @@ import com.landlordcommunication.web.repositories.message.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -40,5 +42,10 @@ public class MessageServiceImpl implements MessageService {
         result.sort(Comparator.comparing(Message::getMessageId));
         return result;
 
+    }
+
+    @Override
+    public void deleteOldMessages() {
+        repository.deleteOldMessages(Date.from(ZonedDateTime.now().minusMonths(3).toInstant()));
     }
 }
