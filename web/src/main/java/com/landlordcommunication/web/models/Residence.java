@@ -28,6 +28,9 @@ public class Residence {
     @Column(name = "notification_date")
     private Date notificationDate;
 
+    @Column(name = "residence_picture")
+    private String residencePicture;
+
     @ManyToMany(mappedBy = "residences", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<User> users = new ArrayList<>();
@@ -35,12 +38,13 @@ public class Residence {
     public Residence() {
     }
 
-    public Residence(int residenceId, String address, double rent, Date dueDate, Date notificationDate) {
+    public Residence(int residenceId, String address, double rent, Date dueDate, Date notificationDate, String residencePicture) {
         setResidenceId(residenceId);
         setAddress(address);
         setRent(rent);
         setDueDate(dueDate);
         setNotificationDate(notificationDate);
+        setResidencePicture(residencePicture);
     }
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -48,6 +52,15 @@ public class Residence {
     private List<Message> messages = new ArrayList<>();
 
     // Setters
+
+
+    public String getResidencePicture() {
+        return residencePicture;
+    }
+
+    public void setResidencePicture(String residencePicture) {
+        this.residencePicture = residencePicture;
+    }
 
     public void setResidenceId(int residenceId) {
         this.residenceId = residenceId;

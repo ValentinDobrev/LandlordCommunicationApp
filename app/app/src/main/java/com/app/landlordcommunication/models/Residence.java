@@ -18,6 +18,8 @@ public class Residence implements Serializable {
 
     private Date notificationDate;
 
+    private String residencePicture;
+
     private List<User> users;
 
     private List<Message> messages;
@@ -25,14 +27,22 @@ public class Residence implements Serializable {
     public Residence() {
     }
 
-    public Residence(int residenceId, String address, double rent, Date dueDate, Date notificationDate) {
+    public Residence(int residenceId, String address, double rent, Date dueDate, Date notificationDate, String residencePicture) {
         setResidenceId(residenceId);
         setAddress(address);
         setRent(rent);
         setDueDate(dueDate);
         setNotificationDate(notificationDate);
+        setResidencePicture(residencePicture);
     }
 
+    public String getResidencePicture() {
+        return residencePicture;
+    }
+
+    public void setResidencePicture(String residencePicture) {
+        this.residencePicture = residencePicture;
+    }
 
     public int getResidenceId() {
         return residenceId;

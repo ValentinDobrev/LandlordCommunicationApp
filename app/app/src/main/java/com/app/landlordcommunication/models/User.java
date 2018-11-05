@@ -17,6 +17,8 @@ public class User implements Serializable {
 
     private double budget;
 
+    private String userPicture;
+
     // if true, user is a tenant, if false, user is a landlord - subject to redesign :)
     private boolean isTenant;
 
@@ -29,7 +31,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(int id, String email, String firstName, String surname, boolean isTenant, double budget, String password) {
+    public User(int id, String email, String firstName, String surname, boolean isTenant, double budget, String password, String userPicture) {
         setUserId(id);
         setEmail(email);
         setFirstName(firstName);
@@ -37,6 +39,15 @@ public class User implements Serializable {
         setIsTenant(isTenant);
         setBudget(budget);
         setPassword(password);
+        setUserPicture(userPicture);
+    }
+
+    public String getUserPicture() {
+        return userPicture;
+    }
+
+    public void setUserPicture(String userPicture) {
+        this.userPicture = userPicture;
     }
 
     public int getUserId() {

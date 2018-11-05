@@ -1,5 +1,7 @@
 package com.app.landlordcommunication.views.ResidenceOverview;
 
+import android.widget.Button;
+
 import com.app.landlordcommunication.models.User;
 
 import java.util.List;
@@ -19,7 +21,7 @@ public interface ResidenceOverviewContracts {
 
         void hideLoading();
 
-        void showResidenceOverviewDetails(User user);
+        void showResidenceOverviewDetails();
 
         //void addUsers(List<User> users);
 
@@ -32,5 +34,9 @@ public interface ResidenceOverviewContracts {
         void loadUsers();
 
         void selectUser(User user);
+
+        void payRent();
+
+        void selectPayBtn();
     }
 }

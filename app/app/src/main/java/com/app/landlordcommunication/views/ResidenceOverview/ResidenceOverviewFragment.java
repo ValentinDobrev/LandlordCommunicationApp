@@ -2,16 +2,22 @@ package com.app.landlordcommunication.views.ResidenceOverview;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -21,7 +27,12 @@ import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.Residence;
 import com.app.landlordcommunication.models.User;
+import com.app.landlordcommunication.views.ChatScreen.ChatScreenActivity;
+import com.app.landlordcommunication.views.HomePage.HomePageActivity;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,13 +44,17 @@ import javax.inject.Named;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dagger.android.support.DaggerFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ResidenceOverviewFragment extends Fragment implements ResidenceOverviewContracts.View,
+public class ResidenceOverviewFragment extends Fragment     implements ResidenceOverviewContracts.View,
         UsersAdapter.OnUserClickListener {
+
+    @BindView(R.id.imageView_residenceOverview)
+    ImageView mResidencePicture;
 
     @BindView(R.id.textView_addressText)
     TextView mAdressText;
@@ -88,7 +103,6 @@ public class ResidenceOverviewFragment extends Fragment implements ResidenceOver
         //mUsersAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1);
 
 
-
         mUsersAdapter.setOnUserClickListener(this);
 
 
@@ -97,6 +111,19 @@ public class ResidenceOverviewFragment extends Fragment implements ResidenceOver
         mUsersView.setLayoutManager(mUsersViewLayoutManager);
 
         Intent intent = getActivity().getIntent();
+
+
+
+
+        String residencePicture = intent.getStringExtra("residencePicture");
+        InputStream stream = new ByteArrayInputStream(Base64.decode(residencePicture.getBytes(), Base64.DEFAULT));
+
+        Bitmap bitmap = BitmapFactory.decodeStream(stream);
+        mResidencePicture.setImageBitmap(bitmap);
+
+
+
+
 
         String residenceAddress = intent.getStringExtra("residenceAddress");
         //String residenceRent = intent.getStringExtra("residenceRent");
@@ -186,8 +213,9 @@ public class ResidenceOverviewFragment extends Fragment implements ResidenceOver
     }
 
     @Override
-    public void showResidenceOverviewDetails(User user) {
-        Intent intent = new Intent(getContext(), ResidenceOverviewActivity.class);
+    public void showResidenceOverviewDetails() {
+//        Intent intent = new Intent(getContext(), HomePageActivity.class);
+        Intent intent = new Intent(getContext(), ChatScreenActivity.class);
         startActivity(intent);
     }
 
@@ -207,5 +235,10 @@ public class ResidenceOverviewFragment extends Fragment implements ResidenceOver
 
     public void onClick(User user) {
         mPresenter.selectUser(user);
+    }
+
+    @OnClick(R.id.button_payRent)
+    public void OnBtnClick(){
+        mPresenter.selectPayBtn();
     }
 }

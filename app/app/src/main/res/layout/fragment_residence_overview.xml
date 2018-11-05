@@ -5,6 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".views.ResidenceOverview.ResidenceOverviewFragment">
 
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -20,7 +23,7 @@
     <ImageView
         android:id="@+id/imageView_residenceOverview"
         android:background="@drawable/fake"
-        android:layout_width="300dp"
+        android:layout_width="270dp"
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"/>
@@ -102,5 +105,5 @@
         android:dividerHeight="1dp"
         android:listSelector="@drawable/list_selector" />
     </RelativeLayout>
-
+    <!--</ScrollView>-->
 </FrameLayout>

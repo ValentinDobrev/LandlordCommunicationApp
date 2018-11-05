@@ -3,10 +3,13 @@ package com.app.landlordcommunication.diconfig;
 import com.app.landlordcommunication.http.HttpRequester;
 import com.app.landlordcommunication.models.AuthorisationInfo;
 import com.app.landlordcommunication.models.LoginInfo;
+import com.app.landlordcommunication.models.Message;
 import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.Residence;
 import com.app.landlordcommunication.models.User;
 import com.app.landlordcommunication.parsers.base.JsonParser;
+import com.app.landlordcommunication.repositories.message.HttpMessageRepository;
+import com.app.landlordcommunication.repositories.message.base.MessageRepository;
 import com.app.landlordcommunication.repositories.residence.HttpResidenceRepository;
 import com.app.landlordcommunication.repositories.residence.base.ResidenceRepository;
 import com.app.landlordcommunication.repositories.user.HttpUserRepository;
@@ -44,6 +47,17 @@ public class RepositoryModule {
     ) {
         String url = baseServerUrl + "/users";
         return new HttpUserRepository(httpRequester, url, jsonParserUser, jsonParserRating, authorisationInfoJsonParser, loginInfoJsonParser);
+    }
+
+    @Provides
+    @Singleton
+    public MessageRepository messageRepository(
+            @Named("baseServerUrl") String baseServerUrl,
+            HttpRequester httpRequester,
+            @Named("MessageParser") JsonParser<Message> jsonParserMessage
+    ) {
+        String url = baseServerUrl + "/messages/for-receiver-by-sender";
+        return new HttpMessageRepository(httpRequester, url, jsonParserMessage);
     }
 
 }
