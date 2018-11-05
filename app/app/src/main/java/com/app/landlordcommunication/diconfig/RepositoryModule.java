@@ -3,6 +3,7 @@ package com.app.landlordcommunication.diconfig;
 import com.app.landlordcommunication.http.HttpRequester;
 import com.app.landlordcommunication.models.AuthorisationInfo;
 import com.app.landlordcommunication.models.LoginInfo;
+import com.app.landlordcommunication.models.Message;
 import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.Residence;
 import com.app.landlordcommunication.models.User;
