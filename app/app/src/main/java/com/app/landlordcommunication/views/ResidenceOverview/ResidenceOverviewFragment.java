@@ -176,7 +176,7 @@ public class ResidenceOverviewFragment extends Fragment     implements Residence
     boolean showPayRentBtn(List<User> users){
 
         for (User user : users) {
-            if(user.getUserId() == Constants.TEST_USER_ID) {
+            if(user.getUserId() == Constants.CURRENT_USER_ID) {
                 if (user.getIsTenant() == false) {
                     return false;
                 }

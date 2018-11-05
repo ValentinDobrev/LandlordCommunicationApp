@@ -57,17 +57,7 @@ public class RealLoginScreenPresenter implements LoginScreenContracts.Presenter 
         //Adding the confirmed user ID to simulate a saved state. The whole user can be retrieved via the getUserById(id) method
         Constants.CURRENT_USER_ID = authorisationInfo.getId();
 
-        if(authorisationInfo.getIsTenant()){
-            mView.startTenantHomeScreen();
-        }
-
-        if(!authorisationInfo.getIsTenant()){
-
-            mView.startHomeScreen();
-
-        }
-
-
+        mView.startHomeScreen();
 
     }
 }

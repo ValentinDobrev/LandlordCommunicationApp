@@ -67,7 +67,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 //        mUsers.addAll(users);
 
         for (User user : users) {
-            if(user.getUserId() == Constants.TEST_USER_ID){
+            if(user.getUserId() == Constants.CURRENT_USER_ID){
                 continue;
             }else {
                 mUsers.add(user);

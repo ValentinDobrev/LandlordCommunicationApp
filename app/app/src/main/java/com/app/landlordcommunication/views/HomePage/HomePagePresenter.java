@@ -36,7 +36,7 @@ public class HomePagePresenter implements HomePageContracts.Presenter {
 
         mView.showLoading();
         Disposable observable = Observable.create((ObservableOnSubscribe<List<Residence>>) emitter ->{
-            List<Residence> residences = mResidenceService.getResidencesByUser(Constants.TEST_USER_ID);
+            List<Residence> residences = mResidenceService.getResidencesByUser(Constants.CURRENT_USER_ID);
             emitter.onNext(residences);
             emitter.onComplete();
         }).subscribeOn(mSchedulerProvider.background()).observeOn(mSchedulerProvider.ui()).doFinally(mView::hideLoading)
