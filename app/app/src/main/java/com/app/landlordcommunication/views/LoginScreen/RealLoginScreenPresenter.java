@@ -48,7 +48,7 @@ public class RealLoginScreenPresenter implements LoginScreenContracts.Presenter 
     }
 
     private void presentUserToView(User user) {
-        Constants.setCurrentUser(user);
+        //Constants.setCurrentUser(user);
 
         mView.startHomeScreen(user);
 

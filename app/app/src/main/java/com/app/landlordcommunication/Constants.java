@@ -7,8 +7,9 @@ public class Constants {
     public static final String USERS_EXTRA_STRING = "userName";
 
     // Valio
-    public static final int TEST_USER_ID = 14;
-    public static  int TEST_RESIDENCE_ID = 21;
+    public static final int TEST_USER_ID = 13;
+    public static final int TEST_MESSAGE_RECEIVER_ID = 23;
+    public static  int TEST_RESIDENCE_ID = 13;
 
     // ALL SERVER URL'S
 
