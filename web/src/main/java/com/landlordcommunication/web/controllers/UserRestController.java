@@ -47,7 +47,7 @@ public class UserRestController {
     }
 
     @GetMapping("/rating/{id}")
-    public double getUserRating(@PathVariable int id) {
+    public List<Rating> getUserRating(@PathVariable int id) {
         return userService.getUserRating(id);
     }
 

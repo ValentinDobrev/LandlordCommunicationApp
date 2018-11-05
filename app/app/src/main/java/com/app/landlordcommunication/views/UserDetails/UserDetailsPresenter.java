@@ -1,4 +1,4 @@
-package com.app.landlordcommunication.views.user_details;
+package com.app.landlordcommunication.views.UserDetails;
 
 import com.app.landlordcommunication.async.base.SchedulerProvider;
 import com.app.landlordcommunication.services.user.base.UserService;

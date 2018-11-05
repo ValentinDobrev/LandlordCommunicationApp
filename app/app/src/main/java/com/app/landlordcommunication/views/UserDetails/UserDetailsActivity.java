@@ -1,4 +1,4 @@
-package com.app.landlordcommunication.views.user_details;
+package com.app.landlordcommunication.views.UserDetails;
 
 import android.content.Intent;
 import android.os.Bundle;

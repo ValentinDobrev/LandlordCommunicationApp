@@ -66,9 +66,8 @@ public class HttpUserRepository implements UserRepository {
     @Override
     public List<Rating> getUserRatings(int userId) throws IOException {
         String url = mServerUrl + "/rating/" + userId;
-        String jsonArray;
-        jsonArray = mHttpRequester.get(url);
-        return mJsonParserRating.fromJsonArray(jsonArray);
+        String json = mHttpRequester.get(url);
+        return mJsonParserRating.fromJsonArray(json);
     }
 
     @Override

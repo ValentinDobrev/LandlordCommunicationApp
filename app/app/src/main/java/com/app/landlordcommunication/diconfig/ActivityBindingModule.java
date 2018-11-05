@@ -5,10 +5,9 @@ import com.app.landlordcommunication.views.HomePage.HomePageActivity;
 import com.app.landlordcommunication.views.LoginScreen.LoginScreenActivity;
 import com.app.landlordcommunication.views.LoginScreen.RealLoginScreenActivity;
 import com.app.landlordcommunication.views.ResidenceOverview.ResidenceOverviewActivity;
-import com.app.landlordcommunication.views.user_details.UserDetailsActivity;
-import com.app.landlordcommunication.views.users_list.UsersListActivity;
+import com.app.landlordcommunication.views.UserDetails.UserDetailsActivity;
+import com.app.landlordcommunication.views.UsersList.UsersListActivity;
 
-import dagger.Component;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 

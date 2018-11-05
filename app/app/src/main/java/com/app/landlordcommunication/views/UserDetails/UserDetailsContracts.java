@@ -1,4 +1,4 @@
-package com.app.landlordcommunication.views.user_details;
+package com.app.landlordcommunication.views.UserDetails;
 
 import com.app.landlordcommunication.models.User;
 

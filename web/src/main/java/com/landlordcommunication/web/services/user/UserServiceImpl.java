@@ -21,22 +21,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public double getUserRating(int userId) {
-
-        List<Rating> allRatings =  repository.getUserRatings(userId);
-
-        double result = 0.0;
-
-        for (int i = 0; i < allRatings.size(); i++) {
-
-            result+= allRatings.get(i).getRating();
-
-        }
-
-        result = result / allRatings.size();
-
-        return result;
-
+    public List<Rating> getUserRating(int userId) {
+        return repository.getUserRatings(userId);
     }
 
     @Override

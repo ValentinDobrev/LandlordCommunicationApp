@@ -5,7 +5,7 @@
     android:id="@+id/activity_users_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.users_list.UsersListActivity">
+    tools:context=".views.UsersList.UsersListActivity">
 
     <FrameLayout
         android:id="@+id/drawer_toolbar_fragment"

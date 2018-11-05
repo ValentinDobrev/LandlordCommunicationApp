@@ -1,8 +1,8 @@
 package com.app.landlordcommunication.diconfig;
 
-import com.app.landlordcommunication.views.user_details.UserDetailsContracts;
-import com.app.landlordcommunication.views.user_details.UserDetailsFragment;
-import com.app.landlordcommunication.views.user_details.UserDetailsPresenter;
+import com.app.landlordcommunication.views.UserDetails.UserDetailsContracts;
+import com.app.landlordcommunication.views.UserDetails.UserDetailsFragment;
+import com.app.landlordcommunication.views.UserDetails.UserDetailsPresenter;
 
 import dagger.Binds;
 import dagger.Module;

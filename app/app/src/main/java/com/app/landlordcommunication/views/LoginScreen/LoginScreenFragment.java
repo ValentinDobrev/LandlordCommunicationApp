@@ -11,7 +11,7 @@ import android.widget.Button;
 
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.views.HomePage.HomePageActivity;
-import com.app.landlordcommunication.views.users_list.UsersListActivity;
+import com.app.landlordcommunication.views.UsersList.UsersListActivity;
 
 import javax.inject.Inject;
 

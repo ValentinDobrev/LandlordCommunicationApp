@@ -1,4 +1,4 @@
-package com.app.landlordcommunication.views.users_list;
+package com.app.landlordcommunication.views.UsersList;
 
 import android.os.Bundle;
 

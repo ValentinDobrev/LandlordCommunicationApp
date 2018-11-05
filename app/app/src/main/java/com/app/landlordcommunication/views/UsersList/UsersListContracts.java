@@ -1,4 +1,4 @@
-package com.app.landlordcommunication.views.users_list;
+package com.app.landlordcommunication.views.UsersList;
 
 import com.app.landlordcommunication.models.User;
 
@@ -28,6 +28,8 @@ public interface UsersListContracts {
         void subscribe(View view);
 
         void loadUsers();
+
+        //void loadUserRatings():
 
         void selectUser(User user);
 

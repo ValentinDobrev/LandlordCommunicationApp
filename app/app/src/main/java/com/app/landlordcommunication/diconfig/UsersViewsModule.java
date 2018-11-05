@@ -3,7 +3,7 @@ package com.app.landlordcommunication.diconfig;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 
-import com.app.landlordcommunication.views.users_list.UsersAdapter;
+import com.app.landlordcommunication.views.UsersList.UsersAdapter;
 
 import dagger.Module;
 import dagger.Provides;

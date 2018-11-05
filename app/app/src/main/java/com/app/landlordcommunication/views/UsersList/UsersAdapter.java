@@ -1,7 +1,10 @@
-package com.app.landlordcommunication.views.users_list;
+package com.app.landlordcommunication.views.UsersList;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.landlordcommunication.R;
+import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.User;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,6 +83,9 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         @BindView(R.id.iv_rating)
         ImageView mRatingStarImage;
 
+        @BindView(R.id.tv_rating)
+        TextView mRatingValue;
+
         private OnUserClickListener mOnClickListener;
         private User mUser;
 
@@ -88,9 +97,41 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         void bind(User user) {
             mUserFirstNameTextView.setText(user.getFirstName());
             mUserSurnameTextView.setText(user.getSurname());
-            mUserImage.setImageResource(R.drawable.user_image);
+            mUserImage.setImageBitmap(convertUserImageToBitmap(user.getUserPicture()));
             mRatingStarImage.setImageResource(R.drawable.rating);
+            mRatingValue.setText(getUserRating(user));
+
             mUser = user;
+        }
+
+        // returns String value of the user rating
+        private String getUserRating(User user) {
+            double result = 0.0;
+            List<Rating> userRatingRecord = user.getRatingsTaken();
+            if (!userRatingRecord.isEmpty()) {
+
+                for (Rating r : userRatingRecord) {
+                    result += r.getRating();
+                }
+
+                result = result / userRatingRecord.size();
+                String ratingString = String.valueOf(result);
+
+                if (ratingString.length() > 4) {
+                    ratingString = ratingString.substring(0, 4);
+                }
+
+                return ratingString;
+            }
+            else {
+                return "0";
+            }
+        }
+
+        private Bitmap convertUserImageToBitmap(String userImage) {
+            InputStream stream = new ByteArrayInputStream(Base64.decode(userImage.getBytes(), Base64.DEFAULT));
+
+            return BitmapFactory.decodeStream(stream);
         }
 
         @OnClick

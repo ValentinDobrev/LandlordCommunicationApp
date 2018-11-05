@@ -1,4 +1,4 @@
-package com.app.landlordcommunication.views.users_list;
+package com.app.landlordcommunication.views.UsersList;
 
 
 import android.content.Intent;
@@ -9,15 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.User;
-import com.app.landlordcommunication.views.user_details.UserDetailsActivity;
+import com.app.landlordcommunication.views.UserDetails.UserDetailsActivity;
 
 import java.util.List;
 

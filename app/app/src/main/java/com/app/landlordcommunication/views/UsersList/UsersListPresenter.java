@@ -1,6 +1,7 @@
-package com.app.landlordcommunication.views.users_list;
+package com.app.landlordcommunication.views.UsersList;
 
 import com.app.landlordcommunication.async.base.SchedulerProvider;
+import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.User;
 import com.app.landlordcommunication.services.user.base.UserService;
 
@@ -34,6 +35,11 @@ public class UsersListPresenter implements UsersListContracts.Presenter {
         mView.showLoading();
         Disposable observable = Observable.create((ObservableOnSubscribe<List<User>>) emitter -> {
             List<User> users = mUserService.getAllUsers();
+            for (User user : users) {
+                List<Rating> userRatings = mUserService.getUserRatings(user.getUserId());
+
+                user.setRatingsTaken(userRatings);
+            }
             emitter.onNext(users);
             emitter.onComplete();
         }).subscribeOn(mSchedulerProvider.background())
@@ -42,6 +48,14 @@ public class UsersListPresenter implements UsersListContracts.Presenter {
                 .doFinally(mView::hideLoading)
                 .subscribe(this::presentUsersToView);
     }
+
+//    @Override
+//    public void loadUserRatings() {
+//        mView.showLoading();
+//        Disposable observable = Observable.create((ObservableOnSubscribe<List<Rating>>) emitter -> {
+//            List<Rating> ratings = mUserService.getUserRatings()
+//        })
+//    }
 
     @Override
     public void filterUsers(String pattern) {
@@ -59,9 +73,9 @@ public class UsersListPresenter implements UsersListContracts.Presenter {
     }
 
     private void presentUsersToView(List<User> users) {
-        if(users.isEmpty()){
+        if (users.isEmpty()) {
             mView.showEmptyList();
-        }else{
+        } else {
 
             mView.showUsers(users);
         }
