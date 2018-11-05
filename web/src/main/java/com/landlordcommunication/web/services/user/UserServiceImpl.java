@@ -1,5 +1,7 @@
 package com.landlordcommunication.web.services.user;
 
+import com.landlordcommunication.web.models.AuthorisationInfo;
+import com.landlordcommunication.web.models.LoginInfo;
 import com.landlordcommunication.web.models.Rating;
 import com.landlordcommunication.web.models.User;
 import com.landlordcommunication.web.repositories.user.UserRepository;
@@ -78,7 +80,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByEmail(String email) {
-        return repository.getUserByEmail(email);
+    public AuthorisationInfo getUserByEmail(LoginInfo loginInfo) {
+        User user = repository.getUserByEmail(loginInfo);
+        if(user==null){
+           return new AuthorisationInfo(-1, false,"No such username or password");
+        }
+        else if(!user.getPassword().equals(loginInfo.getPassword())){
+            return new AuthorisationInfo(-1, false,"No such username or password");
+        }
+        return new AuthorisationInfo(user.getUserId(), user.getIsTenant(), user.getSurname());
     }
 }

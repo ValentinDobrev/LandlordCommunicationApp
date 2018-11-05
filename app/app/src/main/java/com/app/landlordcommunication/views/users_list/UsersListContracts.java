@@ -34,9 +34,4 @@ public interface UsersListContracts {
         void filterUsers(String pattern);
 
     }
-
-    interface Navigator {
-        void navigateWith(User user);
-    }
-
 }

@@ -12,8 +12,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.User;
+import com.app.landlordcommunication.views.user_details.UserDetailsActivity;
 
 import java.util.List;
 
@@ -40,7 +42,6 @@ public class UsersListFragment extends DaggerFragment implements UsersListContra
 
     private UsersListContracts.Presenter mPresenter;
     private LinearLayoutManager mUsersViewLayoutManager;
-    private UsersListContracts.Navigator mNavigator;
 
     @Inject
     public UsersListFragment() {
@@ -111,7 +112,9 @@ public class UsersListFragment extends DaggerFragment implements UsersListContra
 
     @Override
     public void showUserDetails(User user) {
-        mNavigator.navigateWith(user);
+        Intent intent = new Intent(getContext(), UserDetailsActivity.class);
+        intent.putExtra(Constants.USERS_EXTRA_STRING, user);
+        startActivity(intent);
     }
 
     @Override
@@ -123,9 +126,5 @@ public class UsersListFragment extends DaggerFragment implements UsersListContra
     public void onTextChanged() {
         String pattern = mFilterEditText.getText().toString();
         mPresenter.filterUsers(pattern);
-    }
-
-    public void setNavigator(UsersListContracts.Navigator navigator) {
-        mNavigator = navigator;
     }
 }

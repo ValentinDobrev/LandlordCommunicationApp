@@ -1,6 +1,9 @@
 package com.app.landlordcommunication.repositories.user;
 
+import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.http.HttpRequester;
+import com.app.landlordcommunication.models.AuthorisationInfo;
+import com.app.landlordcommunication.models.LoginInfo;
 import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.User;
 import com.app.landlordcommunication.parsers.base.JsonParser;
@@ -15,18 +18,21 @@ public class HttpUserRepository implements UserRepository {
     private final String mServerUrl;
     private final JsonParser<User> mJsonParserUser;
     private final JsonParser<Rating> mJsonParserRating;
+    private final JsonParser<AuthorisationInfo> mAuthorisationInfoJsonParser;
+    private final JsonParser<LoginInfo> mLoginInfoJsonParser;
 
-    public HttpUserRepository(HttpRequester mHttpRequester, String mServerUrl, JsonParser<User> mJsonParserUser, JsonParser<Rating> mJsonParserRating) {
+    public HttpUserRepository(HttpRequester mHttpRequester, String mServerUrl, JsonParser<User> mJsonParserUser, JsonParser<Rating> mJsonParserRating, JsonParser<AuthorisationInfo> mAuthorisationInfoJsonParser, JsonParser<LoginInfo> mLoginInfoJsonParser) {
         this.mHttpRequester = mHttpRequester;
         this.mServerUrl = mServerUrl;
         this.mJsonParserUser = mJsonParserUser;
         this.mJsonParserRating = mJsonParserRating;
+        this.mAuthorisationInfoJsonParser = mAuthorisationInfoJsonParser;
+        this.mLoginInfoJsonParser = mLoginInfoJsonParser;
     }
 
     @Override
-    public User getUserbyId(int userId) throws IOException {
+    public User getUserById(int userId) throws IOException {
         String url = mServerUrl + "/" + userId;
-//        String requestBody = mJsonParserUser.toJson(user);
         String json = mHttpRequester.get(url);
         return mJsonParserUser.fromJson(json);
     }
@@ -80,23 +86,25 @@ public class HttpUserRepository implements UserRepository {
         mHttpRequester.put(url, null);
     }
 
-    @Override
-    public User getUserByEmail(String email) {
-        //TODO the URL below should be modified via the Constants class
-        String url = "http://192.168.0.102:8080/api/authentication";
+    public AuthorisationInfo getUserByEmail(LoginInfo loginInfo) {
+
+        String requestBody = mLoginInfoJsonParser.toJson(loginInfo);
+
+        String url = Constants.BASE_SERVER_URL + "/authentication";
 
         String json;
-        User user = null;
+
+        AuthorisationInfo authorisationInfo = null;
 
         try {
-            json = mHttpRequester.post(url, email);
-            user = mJsonParserUser.fromJson(json);
+            json = mHttpRequester.post(url, requestBody);
+            authorisationInfo = mAuthorisationInfoJsonParser.fromJson(json);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return user;
+        return authorisationInfo;
 
     }
 }

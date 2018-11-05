@@ -1,5 +1,7 @@
 package com.app.landlordcommunication.http;
 
+import com.app.landlordcommunication.models.User;
+
 import java.io.IOException;
 
 public interface HttpRequester {
@@ -10,4 +12,5 @@ public interface HttpRequester {
     String delete(String url) throws IOException;
 
     String put(String url, String body) throws IOException;
+
 }

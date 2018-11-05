@@ -29,6 +29,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
         HomePagePresenterModule.class,
         ResidenceOverviewPresenterModule.class,
         UsersListModule.class,
+        UserDetailsModule.class,
         UsersViewsModule.class,
         RealLoginScreenModule.class,
         LoginScreenPresenterModule.class,

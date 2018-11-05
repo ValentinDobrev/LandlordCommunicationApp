@@ -19,7 +19,7 @@ public class UsersListPresenter implements UsersListContracts.Presenter {
     private UsersListContracts.View mView;
 
     @Inject
-    public UsersListPresenter(UserService userService, SchedulerProvider schedulerProvider) {
+    UsersListPresenter(UserService userService, SchedulerProvider schedulerProvider) {
         mUserService = userService;
         mSchedulerProvider = schedulerProvider;
     }

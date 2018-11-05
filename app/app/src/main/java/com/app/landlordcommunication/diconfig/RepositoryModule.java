@@ -1,9 +1,8 @@
 package com.app.landlordcommunication.diconfig;
 
 import com.app.landlordcommunication.http.HttpRequester;
-import com.app.landlordcommunication.models.Rating;
-import com.app.landlordcommunication.models.Message;
-import com.app.landlordcommunication.models.Rating;
+import com.app.landlordcommunication.models.AuthorisationInfo;
+import com.app.landlordcommunication.models.LoginInfo;
 import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.Residence;
 import com.app.landlordcommunication.models.User;
@@ -35,26 +34,18 @@ public class RepositoryModule {
         return new HttpResidenceRepository(httpRequester, url, jsonParser);
     }
 
-
-    /*@Provides
-    @Singleton
-    public UserRepository userRepository(@Named("baseServerUrl") String baseServerUrl,
-                                         HttpRequester httpRequester,
-                                         @Named("userParser") JsonParser<User> userJsonParser,
-                                         @Named("ratingParser") JsonParser<Rating> ratingJSonParser) {
-        return new HttpUserRepository(httpRequester, baseServerUrl, userJsonParser, ratingJSonParser);
-    }*/
-
     @Provides
     @Singleton
     public UserRepository userRepository(
             @Named("baseServerUrl") String baseServerUrl,
             HttpRequester httpRequester,
-            @Named("UserParser") JsonParser<User> jsonParserUser,
-            @Named("RatingParser")JsonParser<Rating> jsonParserRating
+            @Named("UserParser")JsonParser<User> jsonParserUser,
+            @Named("RatingParser")JsonParser<Rating> jsonParserRating,
+            @Named("LoginInfoParser")JsonParser<LoginInfo> loginInfoJsonParser,
+            @Named("AuthorisationInfoJsonParser")JsonParser<AuthorisationInfo> authorisationInfoJsonParser
     ) {
         String url = baseServerUrl + "/users";
-        return new HttpUserRepository(httpRequester, url, jsonParserUser, jsonParserRating);
+        return new HttpUserRepository(httpRequester, url, jsonParserUser, jsonParserRating, authorisationInfoJsonParser, loginInfoJsonParser);
     }
 
     @Provides

@@ -1,5 +1,6 @@
 package com.landlordcommunication.web.repositories.user;
 
+import com.landlordcommunication.web.models.LoginInfo;
 import com.landlordcommunication.web.models.Rating;
 import com.landlordcommunication.web.models.Residence;
 import com.landlordcommunication.web.models.User;
@@ -190,7 +191,7 @@ public class SqlUserRepository implements UserRepository {
     }
 
     @Override
-    public User getUserByEmail(String email) {
+    public User getUserByEmail(LoginInfo loginInfo) {
 
         User result;
 
@@ -199,14 +200,11 @@ public class SqlUserRepository implements UserRepository {
         ) {
             session.beginTransaction();
             result = session.createQuery("from User where email = :email", User.class)
-                    .setParameter("email", email).uniqueResult();
+                    .setParameter("email", loginInfo.getLoginName()).uniqueResult();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
-
         return result;
-
-
     }
 }
