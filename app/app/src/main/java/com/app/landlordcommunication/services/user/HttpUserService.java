@@ -20,8 +20,8 @@ public class HttpUserService implements UserService {
     }
 
     @Override
-    public User getUserbyId(int userId) throws IOException {
-        return repository.getUserbyId(userId);
+    public User getUserById(int userId) throws IOException {
+        return repository.getUserById(userId);
     }
 
     @Override

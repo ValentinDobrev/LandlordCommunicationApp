@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.landlordcommunication.R;
@@ -64,8 +65,17 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 
     public static class UserViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_user_name)
-        TextView mUserNameTextView;
+        @BindView(R.id.ud_tv_user_first_name)
+        TextView mUserFirstNameTextView;
+
+        @BindView(R.id.ud_tv_user_surname)
+        TextView mUserSurnameTextView;
+
+        @BindView(R.id.iv_user)
+        ImageView mUserImage;
+
+        @BindView(R.id.iv_rating)
+        ImageView mRatingStarImage;
 
         private OnUserClickListener mOnClickListener;
         private User mUser;
@@ -76,8 +86,10 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         }
 
         void bind(User user) {
-            String fullName = user.getFirstName() + " " + user.getSurname();
-            mUserNameTextView.setText(fullName);
+            mUserFirstNameTextView.setText(user.getFirstName());
+            mUserSurnameTextView.setText(user.getSurname());
+            mUserImage.setImageResource(R.drawable.user_image);
+            mRatingStarImage.setImageResource(R.drawable.rating);
             mUser = user;
         }
 

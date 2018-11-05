@@ -5,7 +5,7 @@ public class Constants {
     // Slavi
     public static final int USERS_LIST_IDENTIFIER = 7;
     public static final int USER_DETAILS_IDENTIFIER = 77;
-    public static final String USERS_EXTRA_STRING = "userName";
+    public static final String USERS_EXTRA_STRING = "user";
     public static final String BASE_SERVER_URL = "http://192.168.43.15:8080/api";
 
     // Valio

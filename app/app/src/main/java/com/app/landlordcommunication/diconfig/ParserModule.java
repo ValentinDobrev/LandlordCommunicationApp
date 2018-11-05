@@ -14,22 +14,25 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-    public class ParserModule {
-        @Provides
-        @Named("ResidenceParser")
-        public JsonParser<Residence> residenceJsonParser() {
-            return new GsonJsonParser<>(Residence.class, Residence[].class);
-        }
-        @Provides
-        @Named("UserParser")
-        public JsonParser<User> userJsonParser() {
-            return new GsonJsonParser<>(User.class, User[].class);
-        }
-        @Provides
-        @Named("RatingParser")
-        public JsonParser<Rating> ratingJsonParser() {
-            return new GsonJsonParser<>(Rating.class, Rating[].class);
-        }
+public class ParserModule {
+    @Provides
+    @Named("ResidenceParser")
+    public JsonParser<Residence> residenceJsonParser() {
+        return new GsonJsonParser<>(Residence.class, Residence[].class);
+    }
+
+    @Provides
+    @Named("UserParser")
+    public JsonParser<User> userJsonParser() {
+        return new GsonJsonParser<>(User.class, User[].class);
+    }
+
+    @Provides
+    @Named("RatingParser")
+    public JsonParser<Rating> ratingJsonParser() {
+        return new GsonJsonParser<>(Rating.class, Rating[].class);
+    }
+
     @Provides
     @Named("LoginInfoParser")
     public JsonParser<LoginInfo> loginInfoJsonParser() {
@@ -41,4 +44,4 @@ import dagger.Provides;
     public JsonParser<AuthorisationInfo> authorisationInfoJsonParser() {
         return new GsonJsonParser<>(AuthorisationInfo.class, AuthorisationInfo[].class);
     }
-    }
+}

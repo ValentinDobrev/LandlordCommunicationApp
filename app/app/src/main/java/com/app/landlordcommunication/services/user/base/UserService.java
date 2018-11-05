@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface UserService {
 
-    User getUserbyId(int userId) throws IOException;
+    User getUserById(int userId) throws IOException;
 
     void createUser(User user) throws IOException;
 

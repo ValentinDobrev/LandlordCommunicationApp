@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface UserService {
 
-    List<Rating> getUserRating(int userId);
+    double getUserRating(int userId);
 
     void createUser(User user);
     void deleteUser(int userId);

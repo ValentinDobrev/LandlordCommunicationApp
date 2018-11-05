@@ -1,15 +1,14 @@
 package com.app.landlordcommunication.views.user_details;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.User;
 
@@ -21,11 +20,11 @@ import dagger.android.support.DaggerFragment;
 
 public class UserDetailsFragment extends DaggerFragment implements UserDetailsContracts.View {
 
-    @BindView(R.id.ud_tv_user_name)
-    TextView mUserNameTextView;
-
     @BindView(R.id.ud_loading)
     ProgressBar mProgressBar;
+
+    @BindView(R.id.ud_tv_user_name)
+    TextView mUserName;
 
     private UserDetailsContracts.Presenter mPresenter;
 
@@ -55,7 +54,8 @@ public class UserDetailsFragment extends DaggerFragment implements UserDetailsCo
     @Override
     public void showUser(User user) {
         String fullName = user.getFirstName() + " " + user.getSurname();
-        mUserNameTextView.setText(fullName);
+        mUserName.setText(fullName);
+        hideLoading();
     }
 
     @Override

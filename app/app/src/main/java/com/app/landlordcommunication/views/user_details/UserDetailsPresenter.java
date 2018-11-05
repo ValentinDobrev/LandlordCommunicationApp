@@ -33,7 +33,7 @@ public class UserDetailsPresenter implements UserDetailsContracts.Presenter {
     public void loadUser() {
         mView.showLoading();
         Disposable observable = Observable.create((ObservableOnSubscribe<User>) emitter -> {
-            User user = mUserService.getUserbyId(mUserId);
+            User user = mUserService.getUserById(mUserId);
             emitter.onNext(user);
             emitter.onComplete();
         })
