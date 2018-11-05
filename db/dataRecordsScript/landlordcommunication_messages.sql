@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `messages`;
 CREATE TABLE `messages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `text` varchar(200) DEFAULT NULL,
-  `picture` blob DEFAULT NULL,
+  `picture` longtext DEFAULT NULL,
   `sent_date` datetime NOT NULL,
   `sender_id` int(11) NOT NULL,
   `receiver_id` int(11) NOT NULL,
@@ -59,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-24 12:15:07
+-- Dump completed on 2018-11-05 11:52:49

@@ -5,6 +5,9 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
 -- Schema landlordcommunication
 -- -----------------------------------------------------
 
@@ -25,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `landlordcommunication`.`users` (
   `password` VARCHAR(200) NOT NULL,
   `budget` DECIMAL(10,0) NULL DEFAULT NULL,
   `is_tenant` TINYINT(1) NOT NULL,
+  `user_picture` LONGTEXT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `IdUser_UNIQUE` (`id` ASC))
 ENGINE = InnoDB
@@ -39,8 +43,9 @@ CREATE TABLE IF NOT EXISTS `landlordcommunication`.`residences` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `address` VARCHAR(100) NOT NULL,
   `rent` DECIMAL(10,0) NOT NULL,
-  `due_date` DATE NOT NULL,
   `notification_date` DATE NOT NULL,
+  `due_date` DATE NOT NULL,
+  `residence_picture` LONGTEXT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `IdResidence_UNIQUE` (`id` ASC))
 ENGINE = InnoDB
@@ -54,7 +59,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `landlordcommunication`.`messages` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `text` VARCHAR(200) NULL DEFAULT NULL,
-  `picture` BLOB NULL DEFAULT NULL,
+  `picture` LONGTEXT NULL DEFAULT NULL,
   `sent_date` DATETIME NOT NULL,
   `sender_id` INT(11) NOT NULL,
   `receiver_id` INT(11) NOT NULL,
@@ -79,6 +84,7 @@ CREATE TABLE IF NOT EXISTS `landlordcommunication`.`messages` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8;
 
 
