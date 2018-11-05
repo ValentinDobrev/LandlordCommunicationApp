@@ -1,5 +1,6 @@
 package com.app.landlordcommunication.diconfig;
 
+import com.app.landlordcommunication.views.ChatScreen.ChatScreenActivity;
 import com.app.landlordcommunication.views.HomePage.HomePageActivity;
 import com.app.landlordcommunication.views.LoginScreen.LoginScreenActivity;
 import com.app.landlordcommunication.views.LoginScreen.RealLoginScreenActivity;
@@ -36,5 +37,9 @@ import dagger.android.ContributesAndroidInjector;
         @ActivityScoped
         @ContributesAndroidInjector(modules = UsersListModule.class)
         abstract UsersListActivity usersListActivity();
+
+        @ActivityScoped
+        @ContributesAndroidInjector(modules = ChatScreenModule.class)
+        abstract ChatScreenActivity chatScreenActivity();
 
 }

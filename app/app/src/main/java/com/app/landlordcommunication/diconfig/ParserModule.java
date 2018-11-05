@@ -1,5 +1,6 @@
 package com.app.landlordcommunication.diconfig;
 
+import com.app.landlordcommunication.models.Message;
 import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.Residence;
 import com.app.landlordcommunication.models.User;
@@ -27,5 +28,10 @@ import dagger.Provides;
         @Named("RatingParser")
         public JsonParser<Rating> ratingJsonParser() {
             return new GsonJsonParser<>(Rating.class, Rating[].class);
+        }
+        @Provides
+        @Named("MessageParser")
+        public JsonParser<Message> messageJsonParser() {
+            return new GsonJsonParser<>(Message.class, Message[].class);
         }
     }

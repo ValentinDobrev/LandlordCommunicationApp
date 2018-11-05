@@ -31,7 +31,9 @@ import dagger.android.support.AndroidSupportInjectionModule;
         UsersListModule.class,
         UsersViewsModule.class,
         RealLoginScreenModule.class,
-        LoginScreenPresenterModule.class
+        LoginScreenPresenterModule.class,
+        ChatScreenModule.class,
+        ChatScreenPresenterModule.class
 
 })
 public interface AppComponent extends AndroidInjector<AndroidApplication> {

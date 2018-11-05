@@ -42,7 +42,7 @@ public class HttpMessageRepository implements MessageRepository {
 
     @Override
     public List<Message> getAllMessagesBetweenReceiverAndSender(int receiverId, int senderId) throws IOException {
-        String url = mServerUrl + "/for-receiver-by-sender/" + receiverId + "/" + senderId;
+        String url = mServerUrl + "/" + receiverId + "/" + senderId;
         String json = mHttpRequester.get(url);
         return mJsonParser.fromJsonArray(json);
     }
