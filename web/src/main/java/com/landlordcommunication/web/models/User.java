@@ -35,6 +35,8 @@ public class User {
     @Column(name = "is_tenant")
     private boolean isTenant;
 
+    @Column(name = "user_picture")
+    private String userPicture;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usertoresidence",
@@ -54,7 +56,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String email, String firstName, String surname, boolean isTenant, double budget, String password) {
+    public User(int id, String email, String firstName, String surname, boolean isTenant, double budget, String password,String userPicture) {
         setUserId(id);
         setEmail(email);
         setFirstName(firstName);
@@ -62,6 +64,7 @@ public class User {
         setIsTenant(isTenant);
         setBudget(budget);
         setPassword(password);
+        setUserPicture(userPicture);
     }
 
     // Setters
@@ -146,5 +149,13 @@ public class User {
 
     public List<Message> getMessages() {
         return messages;
+    }
+
+    public String getUserPicture() {
+        return userPicture;
+    }
+
+    public void setUserPicture(String userPicture) {
+        this.userPicture = userPicture;
     }
 }
