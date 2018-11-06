@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.User;
+import com.app.landlordcommunication.models.UserRating;
 import com.app.landlordcommunication.views.UserDetails.UserDetailsActivity;
 
 import java.util.List;

@@ -3,8 +3,11 @@ package com.app.landlordcommunication.views.UsersList;
 import com.app.landlordcommunication.async.base.SchedulerProvider;
 import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.User;
+import com.app.landlordcommunication.models.UserRating;
+import com.app.landlordcommunication.services.rating.base.RatingService;
 import com.app.landlordcommunication.services.user.base.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -48,14 +51,6 @@ public class UsersListPresenter implements UsersListContracts.Presenter {
                 .doFinally(mView::hideLoading)
                 .subscribe(this::presentUsersToView);
     }
-
-//    @Override
-//    public void loadUserRatings() {
-//        mView.showLoading();
-//        Disposable observable = Observable.create((ObservableOnSubscribe<List<Rating>>) emitter -> {
-//            List<Rating> ratings = mUserService.getUserRatings()
-//        })
-//    }
 
     @Override
     public void filterUsers(String pattern) {

@@ -6,6 +6,7 @@ import com.app.landlordcommunication.models.LoginInfo;
 import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.Residence;
 import com.app.landlordcommunication.models.User;
+import com.app.landlordcommunication.models.UserRating;
 import com.app.landlordcommunication.parsers.GsonJsonParser;
 import com.app.landlordcommunication.parsers.base.JsonParser;
 
@@ -46,5 +47,11 @@ import dagger.Provides;
         @Named("AuthorisationInfoJsonParser")
         public JsonParser<AuthorisationInfo> authorisationInfoJsonParser() {
             return new GsonJsonParser<>(AuthorisationInfo.class, AuthorisationInfo[].class);
+        }
+
+        @Provides
+        @Named("ratingParser")
+        public JsonParser<UserRating> userRatingJsonParser() {
+            return new GsonJsonParser<>(UserRating.class, UserRating[].class);
         }
     }

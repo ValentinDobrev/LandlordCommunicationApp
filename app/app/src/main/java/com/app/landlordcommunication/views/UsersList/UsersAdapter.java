@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.User;
+import com.app.landlordcommunication.models.UserRating;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -105,7 +106,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         }
 
         // returns String value of the user rating
-        private String getUserRating(User user) {
+        String getUserRating(User user) {
             double result = 0.0;
             List<Rating> userRatingRecord = user.getRatingsTaken();
             if (!userRatingRecord.isEmpty()) {
@@ -124,7 +125,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
                 return ratingString;
             }
             else {
-                return "0";
+                return "";
             }
         }
 

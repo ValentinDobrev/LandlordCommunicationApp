@@ -1,6 +1,8 @@
 package com.app.landlordcommunication.views.UserDetails;
 
 import com.app.landlordcommunication.async.base.SchedulerProvider;
+import com.app.landlordcommunication.models.UserRating;
+import com.app.landlordcommunication.services.rating.base.RatingService;
 import com.app.landlordcommunication.services.user.base.UserService;
 import com.app.landlordcommunication.models.User;
 
@@ -13,14 +15,16 @@ import io.reactivex.disposables.Disposable;
 public class UserDetailsPresenter implements UserDetailsContracts.Presenter {
 
     private final UserService mUserService;
+    private final RatingService mRatingService;
     private final SchedulerProvider mSchedulerProvider;
 
     private UserDetailsContracts.View mView;
     private int mUserId;
 
     @Inject
-    public UserDetailsPresenter (UserService service, SchedulerProvider schedulerProvider) {
+    public UserDetailsPresenter (UserService service, RatingService ratingService, SchedulerProvider schedulerProvider) {
         mUserService = service;
+        mRatingService = ratingService;
         mSchedulerProvider = schedulerProvider;
     }
 
@@ -40,7 +44,23 @@ public class UserDetailsPresenter implements UserDetailsContracts.Presenter {
         .subscribeOn(mSchedulerProvider.background())
         .observeOn(mSchedulerProvider.ui())
         .doOnError(mView::showError)
+        .doFinally(mView::hideLoading)
         .subscribe(mView::showUser);
+    }
+
+    @Override
+    public void loadUserRating() {
+        mView.showLoading();
+        Disposable observable = Observable.create((ObservableOnSubscribe<UserRating>) emitter -> {
+            UserRating rating = mRatingService.getRatingByUserId(mUserId);
+            emitter.onNext(rating);
+            emitter.onComplete();
+        })
+                .subscribeOn(mSchedulerProvider.background())
+                .observeOn(mSchedulerProvider.ui())
+                .doOnError(mView::showError)
+                .doFinally(mView::hideLoading)
+                .subscribe(mView::showRating);
     }
 
     @Override

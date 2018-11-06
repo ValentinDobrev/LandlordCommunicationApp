@@ -9,6 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/ud_user_image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="31dp" />
+
         <ProgressBar
             android:id="@+id/ud_loading"
             android:layout_width="100dp"
@@ -20,11 +28,34 @@
             android:id="@+id/ud_tv_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="60dp"
+            android:layout_centerInParent="true"
             android:hint="Name"
+            android:textColor="@color/md_black_1000"
             android:textSize="30sp" />
+
+        <RatingBar
+            android:id="@+id/user_rating"
+            android:focusable="false"
+            android:clickable="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="162dp" />
+
+        <Button
+            android:id="@+id/rating_button"
+            android:layout_width="209dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="53dp"
+            android:background="#4CAF50"
+            android:drawableRight="@drawable/smileyr"
+            android:text="Rate me"
+            android:textColor="@color/md_black_1000"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
 
     </RelativeLayout>
 

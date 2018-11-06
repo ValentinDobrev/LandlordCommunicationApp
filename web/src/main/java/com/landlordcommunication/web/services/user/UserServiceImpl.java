@@ -1,9 +1,6 @@
 package com.landlordcommunication.web.services.user;
 
-import com.landlordcommunication.web.models.AuthorisationInfo;
-import com.landlordcommunication.web.models.LoginInfo;
-import com.landlordcommunication.web.models.Rating;
-import com.landlordcommunication.web.models.User;
+import com.landlordcommunication.web.models.*;
 import com.landlordcommunication.web.repositories.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +20,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Rating> getUserRating(int userId) {
         return repository.getUserRatings(userId);
+    }
+
+    @Override
+    public UserRating getRatingById(int userId) {
+        return repository.getRatingById(userId);
     }
 
     @Override

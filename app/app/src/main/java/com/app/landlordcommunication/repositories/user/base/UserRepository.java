@@ -4,6 +4,7 @@ import com.app.landlordcommunication.models.AuthorisationInfo;
 import com.app.landlordcommunication.models.LoginInfo;
 import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.User;
+import com.app.landlordcommunication.models.UserRating;
 
 import java.io.IOException;
 import java.util.List;

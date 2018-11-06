@@ -7,9 +7,12 @@ import com.app.landlordcommunication.models.Message;
 import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.Residence;
 import com.app.landlordcommunication.models.User;
+import com.app.landlordcommunication.models.UserRating;
 import com.app.landlordcommunication.parsers.base.JsonParser;
 import com.app.landlordcommunication.repositories.message.HttpMessageRepository;
 import com.app.landlordcommunication.repositories.message.base.MessageRepository;
+import com.app.landlordcommunication.repositories.rating.HttpRatingRepository;
+import com.app.landlordcommunication.repositories.rating.base.RatingRepository;
 import com.app.landlordcommunication.repositories.residence.HttpResidenceRepository;
 import com.app.landlordcommunication.repositories.residence.base.ResidenceRepository;
 import com.app.landlordcommunication.repositories.user.HttpUserRepository;
@@ -60,4 +63,14 @@ public class RepositoryModule {
         return new HttpMessageRepository(httpRequester, url, jsonParserMessage);
     }
 
+    @Provides
+    @Singleton
+    public RatingRepository ratingRepository(
+            @Named("baseServerUrl") String baseServerUrl,
+            HttpRequester httpRequester,
+            @Named("ratingParser") JsonParser<UserRating> ratingJsonParser
+    ) {
+        String url = baseServerUrl + "/rating";
+        return new HttpRatingRepository(httpRequester, url, ratingJsonParser);
+    }
 }

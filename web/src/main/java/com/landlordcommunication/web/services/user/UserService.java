@@ -1,15 +1,14 @@
 package com.landlordcommunication.web.services.user;
 
-import com.landlordcommunication.web.models.AuthorisationInfo;
-import com.landlordcommunication.web.models.LoginInfo;
-import com.landlordcommunication.web.models.Rating;
-import com.landlordcommunication.web.models.User;
+import com.landlordcommunication.web.models.*;
 
 import java.util.List;
 
 public interface UserService {
 
     List<Rating> getUserRating(int userId);
+
+    UserRating getRatingById(int userId);
 
     void createUser(User user);
     void deleteUser(int userId);

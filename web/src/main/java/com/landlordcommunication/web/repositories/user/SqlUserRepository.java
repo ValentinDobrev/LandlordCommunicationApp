@@ -1,9 +1,6 @@
 package com.landlordcommunication.web.repositories.user;
 
-import com.landlordcommunication.web.models.LoginInfo;
-import com.landlordcommunication.web.models.Rating;
-import com.landlordcommunication.web.models.Residence;
-import com.landlordcommunication.web.models.User;
+import com.landlordcommunication.web.models.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -139,6 +136,32 @@ public class SqlUserRepository implements UserRepository {
         }
 
         return result;
+    }
+
+    @Override
+    public UserRating getRatingById(int userId) {
+        Double result;
+
+        try (
+                Session session = sessionFactory.openSession()
+        ) {
+            session.beginTransaction();
+            result = (Double) session.createQuery("select avg(rating) from Rating where takerId = :userId")
+                    .setParameter("userId", userId)
+                    .uniqueResult();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException();
+        }
+
+        String value = String.valueOf(result);
+        if (value.length() > 4) {
+            value = value.substring(0, 4);
+            result = Double.valueOf(value);
+        }
+
+        return new UserRating(userId, result);
     }
 
     @Override

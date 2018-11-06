@@ -6,6 +6,7 @@ import com.app.landlordcommunication.models.AuthorisationInfo;
 import com.app.landlordcommunication.models.LoginInfo;
 import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.User;
+import com.app.landlordcommunication.models.UserRating;
 import com.app.landlordcommunication.parsers.base.JsonParser;
 import com.app.landlordcommunication.repositories.user.base.UserRepository;
 
