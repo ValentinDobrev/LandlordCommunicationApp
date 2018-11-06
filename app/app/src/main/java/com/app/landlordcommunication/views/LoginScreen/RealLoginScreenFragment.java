@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.LoginInfo;
-import com.app.landlordcommunication.models.User;
 import com.app.landlordcommunication.views.HomePage.HomePageActivity;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
@@ -119,7 +118,6 @@ public class RealLoginScreenFragment extends Fragment implements LoginScreenCont
         for (ValidationError error : errors) {
             View view = error.getView();
             String message = error.getCollatedErrorMessage(getContext());
-
             // Display error messages ;)
             if (view instanceof EditText) {
                 ((EditText) view).setError(message);

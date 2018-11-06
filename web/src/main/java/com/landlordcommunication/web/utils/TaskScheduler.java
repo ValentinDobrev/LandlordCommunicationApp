@@ -8,27 +8,23 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @Component
-public class ScheduledTasks {
-    private static final Logger logger = LoggerFactory.getLogger(ScheduledTasks.class);
+public class TaskScheduler {
+    private static final Logger logger = LoggerFactory.getLogger(TaskScheduler.class);
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     @Autowired
     MessageService messageService;
 
-    @Scheduled(cron = "0 * * * * ?")
+    //cron expression below should be "0 * * * * ?" for every minute
+    // and "0 1 1 ? * *" for every day 1:01:am
+    @Scheduled(cron = "0 1 1 ? * *")
     public void scheduleTaskWithCronExpression() {
         logger.info("Cron Task :: Execution Time - {}", dateTimeFormatter.format(LocalDateTime.now()));
 
-        System.out.println(Date.from(ZonedDateTime.now().minusMonths(3).toInstant()));
-
         messageService.deleteOldMessages();
     }
-
-
 
 }

@@ -8,8 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.management.Query;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 @Repository
 public class SqlMessageRepository implements MessageRepository {
@@ -81,15 +87,13 @@ public class SqlMessageRepository implements MessageRepository {
 
     @Override
     public void deleteOldMessages(Date date) {
-        //attempt at resolving java date vs sql data inconsistency
-        Object param = new java.sql.Timestamp(date.getTime());
 
         try (Session session = sessionFactory.openSession())
 
         {
             session.beginTransaction();
             session.createQuery("delete from Message where sentDate < :date")
-                    .setParameter("date", param);
+                    .setParameter("date", date).executeUpdate();
             session.getTransaction().commit();
         } catch (Throwable t) {
             throw t;

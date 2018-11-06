@@ -5,7 +5,11 @@ import com.landlordcommunication.web.repositories.message.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -46,6 +50,7 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public void deleteOldMessages() {
+        //to delete messages older than three months per project specifications
         repository.deleteOldMessages(Date.from(ZonedDateTime.now().minusMonths(3).toInstant()));
     }
 }
