@@ -31,6 +31,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 
     private List<User> mUsers;
     private OnUserClickListener mOnUserClickListener;
+    private User loggedUser;
 
     @Inject
     public UsersAdapter(){
@@ -67,13 +68,26 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 //        mUsers.addAll(users);
 
         for (User user : users) {
+<<<<<<< Updated upstream
             if(user.getUserId() == Constants.CURRENT_USER_ID){
+=======
+            if(user.getUserId() == Constants.TEST_USER_ID){
+//                loggedUser = user;
+>>>>>>> Stashed changes
                 continue;
             }else {
                 mUsers.add(user);
             }
         }
 
+    }
+
+    public User getLoggedUser() {
+        return loggedUser;
+    }
+
+    public void setLoggedUser(User loggedUser) {
+        this.loggedUser = loggedUser;
     }
 
     public void setOnUserClickListener(OnUserClickListener onUserClickListener){

@@ -1,10 +1,18 @@
 package com.app.landlordcommunication.views.ChatScreen;
 
-import com.app.landlordcommunication.Constants;
-import com.app.landlordcommunication.async.base.SchedulerProvider;
-import com.app.landlordcommunication.models.Message;
-import com.app.landlordcommunication.services.message.base.MessageService;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 
+import com.app.landlordcommunication.async.base.SchedulerProvider;
+import com.app.landlordcommunication.models.AuthorisationInfo;
+import com.app.landlordcommunication.models.Message;
+import com.app.landlordcommunication.models.User;
+import com.app.landlordcommunication.services.message.base.MessageService;
+import com.app.landlordcommunication.services.user.base.UserService;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -45,7 +53,7 @@ public class ChatScreenPresenter implements ChatScreenContracts.Presenter{
                         //error -> mView.showError(error)
                 );
 
-        }
+    }
 
     private void presentMessagesToView(List<Message> messages) {
         if(messages.isEmpty()){

@@ -1,7 +1,10 @@
 package com.app.landlordcommunication.views.ChatScreen;
 
+import android.graphics.Bitmap;
+
 import com.app.landlordcommunication.models.Message;
 import com.app.landlordcommunication.models.Residence;
+import com.app.landlordcommunication.models.User;
 
 import java.util.List;
 

@@ -1,11 +1,15 @@
 package com.app.landlordcommunication.views.ChatScreen;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +19,8 @@ import android.widget.Toast;
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.Message;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -50,6 +56,29 @@ public class ChatScreenFragment extends Fragment implements ChatScreenContracts.
         View view = inflater.inflate(R.layout.fragment_chat_screen, container, false);
 
         ButterKnife.bind(this, view);
+
+
+
+        Intent intent = getActivity().getIntent();
+//        Intent intentt = getActivity().getIntent();
+
+
+
+
+        String residencePicture = intent.getStringExtra("userPicture");
+        InputStream stream = new ByteArrayInputStream(Base64.decode(residencePicture.getBytes(), Base64.DEFAULT));
+
+        Bitmap bitmap = BitmapFactory.decodeStream(stream);
+        mMessagesAdapter.setBitmap(bitmap);
+
+//        String loggedPicture = intentt.getStringExtra("loggedPicture");
+//        InputStream streamm = new ByteArrayInputStream(Base64.decode(residencePicture.getBytes(), Base64.DEFAULT));
+//
+//        Bitmap bitmapp = BitmapFactory.decodeStream(stream);
+//        mMessagesAdapter.setBitmapForLoggedUser(bitmapp);
+
+
+
 
         mMessagesView.setAdapter(mMessagesAdapter);
         mMessagesViewLayoutManager = new GridLayoutManager(getContext(), 1);

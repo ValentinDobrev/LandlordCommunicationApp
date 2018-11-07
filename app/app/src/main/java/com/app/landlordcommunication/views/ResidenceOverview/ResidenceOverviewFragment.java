@@ -29,6 +29,7 @@ import com.app.landlordcommunication.models.Residence;
 import com.app.landlordcommunication.models.User;
 import com.app.landlordcommunication.views.ChatScreen.ChatScreenActivity;
 import com.app.landlordcommunication.views.HomePage.HomePageActivity;
+import com.app.landlordcommunication.views.HomePage.ResidencesAdapter;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -114,7 +115,6 @@ public class ResidenceOverviewFragment extends Fragment     implements Residence
 
 
 
-
         String residencePicture = intent.getStringExtra("residencePicture");
         InputStream stream = new ByteArrayInputStream(Base64.decode(residencePicture.getBytes(), Base64.DEFAULT));
 
@@ -122,6 +122,11 @@ public class ResidenceOverviewFragment extends Fragment     implements Residence
         mResidencePicture.setImageBitmap(bitmap);
 
 
+
+//        User logged = mUsersAdapter.getLoggedUser();
+//        String pictureForLogged = logged.getUserPicture();
+//        Intent intentt = new Intent(getContext(), ChatScreenActivity.class);
+//        intentt.putExtra("loggedPicture", pictureForLogged);
 
 
 
@@ -213,9 +218,10 @@ public class ResidenceOverviewFragment extends Fragment     implements Residence
     }
 
     @Override
-    public void showResidenceOverviewDetails() {
+    public void showChatScreen(User user) {
 //        Intent intent = new Intent(getContext(), HomePageActivity.class);
         Intent intent = new Intent(getContext(), ChatScreenActivity.class);
+        intent.putExtra("userPicture", user.getUserPicture());
         startActivity(intent);
     }
 

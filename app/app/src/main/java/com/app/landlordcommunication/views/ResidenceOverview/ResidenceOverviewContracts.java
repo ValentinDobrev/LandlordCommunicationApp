@@ -21,7 +21,7 @@ public interface ResidenceOverviewContracts {
 
         void hideLoading();
 
-        void showResidenceOverviewDetails();
+        void showChatScreen(User user);
 
         //void addUsers(List<User> users);
 
