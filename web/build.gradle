@@ -31,4 +31,7 @@ dependencies {
     //Hibernate
     implementation group: 'org.hibernate', name: 'hibernate-gradle-plugin', version: '5.3.2.Final'
     implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
+    
+    //JSON Simple
+    compile('com.googlecode.json-simple:json-simple:1.1.1')
 }

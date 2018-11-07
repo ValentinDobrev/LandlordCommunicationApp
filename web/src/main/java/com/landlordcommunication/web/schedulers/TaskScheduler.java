@@ -1,4 +1,4 @@
-package com.landlordcommunication.web.utils;
+package com.landlordcommunication.web.schedulers;
 
 import com.landlordcommunication.web.services.message.MessageService;
 import org.slf4j.Logger;

@@ -9,8 +9,6 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.app.landlordcommunication.R;
-import com.app.landlordcommunication.views.HomePage.HomePageActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -21,6 +19,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         @Override
         public void onMessageReceived(RemoteMessage remoteMessage) {
+
+            //TODO make sure we find a way to display received messages on the UI when app is turned on
 
             //this part of the code logs the message in logcat
             if (remoteMessage.getNotification() != null) {
