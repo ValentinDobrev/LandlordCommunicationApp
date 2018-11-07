@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".views.HomePage.HomePageFragment">
 
+
         <ProgressBar
             android:id="@+id/loading"
             android:layout_width="match_parent"

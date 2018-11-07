@@ -67,4 +67,7 @@ dependencies {
 
     // Cardview
     implementation 'com.android.support:cardview-v7:26.1.0'
+
+    // FAB speed dial
+    compile 'io.github.yavski:fab-speed-dial:1.0.6'
 }

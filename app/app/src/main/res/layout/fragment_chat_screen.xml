@@ -3,17 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.ChatScreen.ChatScreenFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ProgressBar
             android:id="@+id/loading"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/list"
             android:layout_width="fill_parent"
@@ -21,5 +23,26 @@
             android:divider="#b5b5b5"
             android:dividerHeight="1dp"
             android:listSelector="@drawable/list_selector" />
+
+        <EditText
+            android:id="@+id/typeMessage_EditText"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:hint="type your message" />
+
+        <io.github.yavski.fabspeeddial.FabSpeedDial
+            android:id="@+id/predefined_messages_Fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabGravity="bottom_end"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            app:fabMenu="@menu/fab_predefined_messages_menu"
+            app:miniFabBackgroundTint="@android:color/white"
+            app:miniFabDrawableTint="?attr/colorPrimaryDark"
+            app:miniFabTitleTextColor="?attr/colorPrimaryDark" />
+
+
     </RelativeLayout>
 </FrameLayout>
