@@ -29,7 +29,10 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
-            android:hint="type your message" />
+            android:background="#000000"
+            android:hint="type your message"
+            android:textColorHint="#c2c9d3"
+            android:textColor="#ffff"/>
 
         <io.github.yavski.fabspeeddial.FabSpeedDial
             android:id="@+id/predefined_messages_Fab"

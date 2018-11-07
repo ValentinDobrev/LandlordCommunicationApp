@@ -23,7 +23,9 @@ import com.app.landlordcommunication.services.user.base.UserService;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -102,7 +104,13 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
             }*/
             mMessageTextView.setText(message.getText());
-            mTimeSentTextView.setText(message.getSentDate().toString());
+
+            Date date = message.getSentDate();
+
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd-hh:ss");
+            String datee = format.format(Date.parse(date.toString()));
+
+            mTimeSentTextView.setText(datee);
             mMessage = message;
         }
     }
