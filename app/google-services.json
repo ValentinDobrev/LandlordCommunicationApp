@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "726529003778",
+    "firebase_url": "https://landlordcommunication-efe6a.firebaseio.com",
+    "project_id": "landlordcommunication-efe6a",
+    "storage_bucket": "landlordcommunication-efe6a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726529003778:android:c8ca0cce8d889c44",
+        "android_client_info": {
+          "package_name": "com.app.landlordcommunication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "726529003778-4brqenkepe5lino5f7g2nocb2i2d80qv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQG9vjaGGb5r2kssbMpfAZ_Z9TLY5IpRs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -70,4 +70,10 @@ dependencies {
 
     // FAB speed dial
     compile 'io.github.yavski:fab-speed-dial:1.0.6'
+
+    //Firebase
+    implementation 'com.google.firebase:firebase-core:11.0.2'
+    implementation 'com.google.firebase:firebase-messaging:11.0.2'
 }
+
+apply plugin: 'com.google.gms.google-services'

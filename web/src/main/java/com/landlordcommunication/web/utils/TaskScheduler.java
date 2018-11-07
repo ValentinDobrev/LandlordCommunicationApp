@@ -19,7 +19,7 @@ public class TaskScheduler {
     MessageService messageService;
 
     //cron expression below should be "0 * * * * ?" for every minute
-    // and "0 1 1 ? * *" for every day 1:01:am
+    // or "0 1 1 ? * *" for every day 1:01:am
     @Scheduled(cron = "0 1 1 ? * *")
     public void scheduleTaskWithCronExpression() {
         logger.info("Cron Task :: Execution Time - {}", dateTimeFormatter.format(LocalDateTime.now()));
