@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 
+import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.async.base.SchedulerProvider;
 import com.app.landlordcommunication.models.AuthorisationInfo;
 import com.app.landlordcommunication.models.Message;
@@ -42,7 +43,7 @@ public class ChatScreenPresenter implements ChatScreenContracts.Presenter{
     public void loadMessages() {
         mView.showLoading();
         Disposable observable = Observable.create((ObservableOnSubscribe<List<Message>>) emitter ->{
-            List<Message> messages = mMessageService.getAllMessagesBetweenReceiverAndSender(13,23);
+            List<Message> messages = mMessageService.getAllMessagesBetweenReceiverAndSender(Constants.CURRENT_USER_ID,13);
             emitter.onNext(messages);
             emitter.onComplete();
         }).subscribeOn(mSchedulerProvider.background())

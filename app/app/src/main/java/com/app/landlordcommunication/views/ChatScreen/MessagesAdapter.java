@@ -95,7 +95,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
         void bind(Message message) {
 
-            if(Constants.TEST_USER_ID == message.getReceiverId()) {
+            if(Constants.CURRENT_USER_ID == message.getReceiverId()) {
                 mUserImg.setImageBitmap(getBitmap());
             }/*else {
                 mUserImg.setImageBitmap(getBitmapForLoggedUser());
