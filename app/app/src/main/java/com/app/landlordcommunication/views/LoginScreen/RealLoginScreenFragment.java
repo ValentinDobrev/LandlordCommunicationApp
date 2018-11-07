@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.LoginInfo;
 import com.app.landlordcommunication.views.HomePage.HomePageActivity;
+import com.app.landlordcommunication.views.MainMenu.MainMenuActivity;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
@@ -94,7 +95,7 @@ public class RealLoginScreenFragment extends Fragment implements LoginScreenCont
 
     @Override
     public void startHomeScreen() {
-        Intent intent = new Intent(getContext(), HomePageActivity.class);
+        Intent intent = new Intent(getContext(), MainMenuActivity.class);
 
         startActivity(intent);
     }

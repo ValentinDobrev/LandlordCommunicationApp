@@ -31,7 +31,7 @@ public class WebController {
 
         JSONObject notification = new JSONObject();
         notification.put("title", "JSA Notification");
-        notification.put("body", "Happy Message!");
+        notification.put("body", "IMA6 NOTIFIKACIQ!!?!");
 
         JSONObject data = new JSONObject();
         data.put("Key-1", "JSA Data 1");

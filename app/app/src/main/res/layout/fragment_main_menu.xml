@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.MainMenu.MainMenuFragment" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background">
+
+        <TextView
+            android:id="@+id/menu_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="170dp"
+            android:text="Hello, user!"
+            android:textColor="#302E2F"
+            android:textSize="25sp"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:id="@+id/menu_home_btn"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="229dp"
+            android:background="@drawable/menu_button_design"
+            android:text="Home"
+            android:textColor="@color/md_white_1000"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/menu_users_btn"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="213dp"
+            android:background="@drawable/menu_button_design"
+            android:text="Users"
+            android:textColor="@color/md_white_1000"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/menu_logout_btn"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="140dp"
+            android:background="@drawable/menu_button_design"
+            android:text="Logout"
+            android:textColor="@color/md_white_1000"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+</FrameLayout>

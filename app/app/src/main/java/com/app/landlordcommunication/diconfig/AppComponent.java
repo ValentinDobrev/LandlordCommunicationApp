@@ -33,7 +33,8 @@ import dagger.android.support.AndroidSupportInjectionModule;
         RealLoginScreenModule.class,
         LoginScreenPresenterModule.class,
         ChatScreenModule.class,
-        ChatScreenPresenterModule.class
+        ChatScreenPresenterModule.class,
+        MainMenuModule.class
 
 })
 public interface AppComponent extends AndroidInjector<AndroidApplication> {

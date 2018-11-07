@@ -22,7 +22,7 @@ public class UserDetailsPresenter implements UserDetailsContracts.Presenter {
     private int mUserId;
 
     @Inject
-    public UserDetailsPresenter (UserService service, RatingService ratingService, SchedulerProvider schedulerProvider) {
+    UserDetailsPresenter (UserService service, RatingService ratingService, SchedulerProvider schedulerProvider) {
         mUserService = service;
         mRatingService = ratingService;
         mSchedulerProvider = schedulerProvider;
