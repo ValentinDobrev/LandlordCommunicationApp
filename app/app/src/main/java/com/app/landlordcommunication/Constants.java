@@ -9,9 +9,8 @@ public class Constants {
     //public static final String BASE_SERVER_URL = "http://192.168.43.15:8080/api";
 
     // Valio
-    public static final int TEST_USER_ID = 13;
-    public static final int TEST_MESSAGE_RECEIVER_ID = 23;
-    public static  int TEST_RESIDENCE_ID = 13;
+    public static  int TEST_CHATTEE_USER_ID = -1;
+    public static  int TEST_RESIDENCE_ID = -1;
     //public static final int TEST_USER_ID = 14;
     //public static int TEST_RESIDENCE_ID = 21;
 

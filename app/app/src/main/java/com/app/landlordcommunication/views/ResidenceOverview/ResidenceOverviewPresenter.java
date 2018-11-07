@@ -36,7 +36,6 @@ public class ResidenceOverviewPresenter implements ResidenceOverviewContracts.Pr
         mView.showLoading();
         Disposable observable = Observable.create((ObservableOnSubscribe<List<User>>) emitter ->{
             List<User> users = mUserService.getUsersByResidence(Constants.TEST_RESIDENCE_ID);
-            //User user = mUserService.getUserById(Constants.TEST_RESIDENCE_ID);
             emitter.onNext(users);
             emitter.onComplete();
         }).subscribeOn(mSchedulerProvider.background())

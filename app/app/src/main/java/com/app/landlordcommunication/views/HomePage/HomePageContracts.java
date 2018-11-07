@@ -1,6 +1,7 @@
 package com.app.landlordcommunication.views.HomePage;
 
 import com.app.landlordcommunication.models.Residence;
+import com.app.landlordcommunication.models.User;
 
 import java.util.List;
 
@@ -25,6 +26,8 @@ public interface HomePageContracts {
 
         void addResidences(List<Residence> movies);
 
+        void showUser(User user);
+
     }
 
     interface Presenter{
@@ -34,6 +37,8 @@ public interface HomePageContracts {
         void loadResidences();
 
         void selectResidence(Residence residence);
+
+        void loadUser();
 
     }
 

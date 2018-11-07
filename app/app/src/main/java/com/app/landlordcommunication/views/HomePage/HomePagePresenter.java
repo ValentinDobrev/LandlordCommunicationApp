@@ -3,7 +3,9 @@ package com.app.landlordcommunication.views.HomePage;
 import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.async.base.SchedulerProvider;
 import com.app.landlordcommunication.models.Residence;
+import com.app.landlordcommunication.models.User;
 import com.app.landlordcommunication.services.residence.base.ResidenceService;
+import com.app.landlordcommunication.services.user.base.UserService;
 
 import java.util.List;
 
@@ -18,11 +20,13 @@ public class HomePagePresenter implements HomePageContracts.Presenter {
     private final ResidenceService mResidenceService;
     private final SchedulerProvider mSchedulerProvider;
     private HomePageContracts.View mView;
+    private final  UserService mUserService;
 
     @Inject
-    public HomePagePresenter(ResidenceService mResidenceService, SchedulerProvider schedulerProvider) {
+    public HomePagePresenter(ResidenceService mResidenceService, SchedulerProvider schedulerProvider, UserService mUserService) {
         this.mResidenceService = mResidenceService;
         this.mSchedulerProvider = schedulerProvider;
+        this.mUserService = mUserService;
     }
 
 
@@ -43,6 +47,27 @@ public class HomePagePresenter implements HomePageContracts.Presenter {
                 .subscribe(this::presentResidencesToView, error -> mView.showError(error)
                 );
     }
+
+    @Override
+    public void loadUser() {
+        mView.showLoading();
+        Disposable observable = Observable.create((ObservableOnSubscribe<User>) emitter ->{
+            User user = mUserService.getUserById(Constants.CURRENT_USER_ID);
+            emitter.onNext(user);
+            emitter.onComplete();
+        }).subscribeOn(mSchedulerProvider.background())
+                .observeOn(mSchedulerProvider.ui())
+                .doFinally(mView::hideLoading)
+                .subscribe(
+                        this::presentUserToView,
+                        error -> mView.showError(error)
+                );
+    }
+
+    private void presentUserToView(User user) {
+        mView.showUser(user);
+    }
+
 
     private void presentResidencesToView(List<Residence> residences) {
         if(residences.isEmpty()){

@@ -18,11 +18,9 @@ import com.app.landlordcommunication.models.Residence;
 import com.app.landlordcommunication.models.User;
 import com.app.landlordcommunication.views.ResidenceOverview.ResidenceOverviewActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 
 import butterknife.BindView;
@@ -37,6 +35,8 @@ public class HomePageFragment extends DaggerFragment implements HomePageContract
 
     @BindView(R.id.loading)
     ProgressBar mLoadingView;
+
+    User loggedUser;
 
     @Inject
 //    @Named("baseServerUrlRepository")
@@ -69,7 +69,17 @@ public class HomePageFragment extends DaggerFragment implements HomePageContract
         super.onResume();
         mPresenter.subscribe(this);
         mPresenter.loadResidences();
+        mPresenter.loadUser();
         showResidences();
+    }
+
+    @Override
+    public void showUser(User user) {
+        setLoggedUser(user);
+    }
+
+    public void setLoggedUser(User loggedUser) {
+        this.loggedUser = loggedUser;
     }
 
     @Override
@@ -118,6 +128,7 @@ public class HomePageFragment extends DaggerFragment implements HomePageContract
         intent.putExtra("residenceRent", residence.getRent());
         intent.putExtra("residenceDueDate", residence.getDueDate());
         intent.putExtra("residencePicture", residence.getResidencePicture());
+        intent.putExtra("loggedUserPicture", loggedUser.getUserPicture());
         startActivity(intent);
     }
 

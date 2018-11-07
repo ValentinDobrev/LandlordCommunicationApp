@@ -58,26 +58,15 @@ public class ChatScreenFragment extends Fragment implements ChatScreenContracts.
         ButterKnife.bind(this, view);
 
 
-
         Intent intent = getActivity().getIntent();
-//        Intent intentt = getActivity().getIntent();
-
-
-
-
-        String residencePicture = intent.getStringExtra("userPicture");
-        InputStream stream = new ByteArrayInputStream(Base64.decode(residencePicture.getBytes(), Base64.DEFAULT));
-
-        Bitmap bitmap = BitmapFactory.decodeStream(stream);
-        mMessagesAdapter.setBitmap(bitmap);
-
-//        String loggedPicture = intentt.getStringExtra("loggedPicture");
-//        InputStream streamm = new ByteArrayInputStream(Base64.decode(residencePicture.getBytes(), Base64.DEFAULT));
-//
-//        Bitmap bitmapp = BitmapFactory.decodeStream(stream);
-//        mMessagesAdapter.setBitmapForLoggedUser(bitmapp);
-
-
+        String chatteePicture = intent.getStringExtra("chatteePicture");
+        InputStream chattePictureStream = new ByteArrayInputStream(Base64.decode(chatteePicture.getBytes(), Base64.DEFAULT));
+        Bitmap chattePictureBitmap = BitmapFactory.decodeStream(chattePictureStream);
+        mMessagesAdapter.setChatteePictureBitmap(chattePictureBitmap);
+        String loggedPicture = intent.getStringExtra("chatterPicture");
+        InputStream chatterPictureStream = new ByteArrayInputStream(Base64.decode(loggedPicture.getBytes(), Base64.DEFAULT));
+        Bitmap chatterPictureBitmap = BitmapFactory.decodeStream(chatterPictureStream);
+        mMessagesAdapter.setChatterPictureBitmap(chatterPictureBitmap);
 
 
         mMessagesView.setAdapter(mMessagesAdapter);

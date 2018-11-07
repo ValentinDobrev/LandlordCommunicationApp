@@ -40,8 +40,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
 
     private List<Message> mMessages;
-    public static Bitmap bitmap;
-    public static Bitmap bitmapForLoggedUser;
+    public static Bitmap chatteePictureBitmap;
+    public static Bitmap chatterPictureBitmap;
 
     @Inject
     public MessagesAdapter() {
@@ -98,36 +98,33 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         void bind(Message message) {
 
             if(Constants.CURRENT_USER_ID == message.getReceiverId()) {
-                mUserImg.setImageBitmap(getBitmap());
-            }/*else {
-                mUserImg.setImageBitmap(getBitmapForLoggedUser());
+                mUserImg.setImageBitmap(getChatteePictureBitmap());
+            }else {
+                mUserImg.setImageBitmap(getChatterPictureBitmap());
 
-            }*/
+            }
             mMessageTextView.setText(message.getText());
-
             Date date = message.getSentDate();
-
             SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd-hh:ss");
-            String datee = format.format(Date.parse(date.toString()));
-
-            mTimeSentTextView.setText(datee);
+            String dateSent = format.format(Date.parse(date.toString()));
+            mTimeSentTextView.setText(dateSent);
             mMessage = message;
         }
     }
 
-    void setBitmap(Bitmap bitmap){
-        this.bitmap = bitmap;
+    void setChatteePictureBitmap(Bitmap bitmap){
+        this.chatteePictureBitmap = bitmap;
     }
 
-    public static Bitmap getBitmap() {
-        return bitmap;
+    public static Bitmap getChatteePictureBitmap() {
+        return chatteePictureBitmap;
     }
 
-    public static Bitmap getBitmapForLoggedUser() {
-        return bitmapForLoggedUser;
+    public static Bitmap getChatterPictureBitmap() {
+        return chatterPictureBitmap;
     }
 
-    public void setBitmapForLoggedUser(Bitmap bitmapForLoggedUser) {
-        MessagesAdapter.bitmapForLoggedUser = bitmapForLoggedUser;
+    public void setChatterPictureBitmap(Bitmap bitmapForLoggedUser) {
+        MessagesAdapter.chatterPictureBitmap = bitmapForLoggedUser;
     }
 }

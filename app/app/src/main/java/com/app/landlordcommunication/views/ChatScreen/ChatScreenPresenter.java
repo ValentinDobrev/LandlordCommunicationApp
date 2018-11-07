@@ -43,7 +43,11 @@ public class ChatScreenPresenter implements ChatScreenContracts.Presenter{
     public void loadMessages() {
         mView.showLoading();
         Disposable observable = Observable.create((ObservableOnSubscribe<List<Message>>) emitter ->{
-            List<Message> messages = mMessageService.getAllMessagesBetweenReceiverAndSender(Constants.CURRENT_USER_ID,13);
+            List<Message> messages = mMessageService
+                    .getAllMessagesBetweenReceiverAndSender(
+                            Constants.CURRENT_USER_ID,
+                            Constants.TEST_CHATTEE_USER_ID
+                    );
             emitter.onNext(messages);
             emitter.onComplete();
         }).subscribeOn(mSchedulerProvider.background())
@@ -51,7 +55,6 @@ public class ChatScreenPresenter implements ChatScreenContracts.Presenter{
                 .doFinally(mView::hideLoading)
                 .subscribe(
                         this::presentMessagesToView
-                        //error -> mView.showError(error)
                 );
 
     }
