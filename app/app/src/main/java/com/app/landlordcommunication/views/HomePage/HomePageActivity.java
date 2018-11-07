@@ -11,6 +11,7 @@ import com.app.landlordcommunication.views.base.BaseActivity;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
 import dagger.android.support.DaggerAppCompatActivity;
 
 public class HomePageActivity extends BaseActivity {
@@ -28,6 +29,7 @@ public class HomePageActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        ButterKnife.bind(this);
 
         setupDrawer();
 

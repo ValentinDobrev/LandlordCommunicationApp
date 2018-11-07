@@ -26,7 +26,6 @@ import dagger.android.support.AndroidSupportInjectionModule;
         ServicesModule.class,
         RepositoryModule.class,
         ParserModule.class,
-        HomePagePresenterModule.class,
         ResidenceOverviewPresenterModule.class,
         UsersListModule.class,
         UserDetailsModule.class,

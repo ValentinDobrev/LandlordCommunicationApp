@@ -23,7 +23,7 @@ public class HomePagePresenter implements HomePageContracts.Presenter {
     private final  UserService mUserService;
 
     @Inject
-    public HomePagePresenter(ResidenceService mResidenceService, SchedulerProvider schedulerProvider, UserService mUserService) {
+    HomePagePresenter(ResidenceService mResidenceService, SchedulerProvider schedulerProvider, UserService mUserService) {
         this.mResidenceService = mResidenceService;
         this.mSchedulerProvider = schedulerProvider;
         this.mUserService = mUserService;
@@ -39,13 +39,16 @@ public class HomePagePresenter implements HomePageContracts.Presenter {
     public void loadResidences() {
 
         mView.showLoading();
-        Disposable observable = Observable.create((ObservableOnSubscribe<List<Residence>>) emitter ->{
+        Disposable observable = Observable.create((ObservableOnSubscribe<List<Residence>>) emitter -> {
+            mView.showLoading();
             List<Residence> residences = mResidenceService.getResidencesByUser(Constants.CURRENT_USER_ID);
             emitter.onNext(residences);
             emitter.onComplete();
-        }).subscribeOn(mSchedulerProvider.background()).observeOn(mSchedulerProvider.ui()).doFinally(mView::hideLoading)
-                .subscribe(this::presentResidencesToView, error -> mView.showError(error)
-                );
+        }).subscribeOn(mSchedulerProvider.background())
+                .observeOn(mSchedulerProvider.ui())
+                .doOnError(error -> mView.showError(error))
+                .doFinally(mView::hideLoading)
+                .subscribe(this::presentResidencesToView);
     }
 
     @Override
@@ -70,11 +73,11 @@ public class HomePagePresenter implements HomePageContracts.Presenter {
 
 
     private void presentResidencesToView(List<Residence> residences) {
-        if(residences.isEmpty()){
+        if (residences.isEmpty()) {
             mView.showEmptyList();
-        }else{
+        } else {
 
-            mView.addResidences(residences);
+            mView.showResidences(residences);
         }
     }
 

@@ -12,7 +12,7 @@ public interface HomePageContracts {
 
         void setPresenter(Presenter presenter);
 
-        void showResidences();
+        void showResidences(List<Residence> residences);
 
         void showEmptyList();
 
@@ -24,10 +24,7 @@ public interface HomePageContracts {
 
         void showResidenceOverview(Residence residence);
 
-        void addResidences(List<Residence> movies);
-
         void showUser(User user);
-
     }
 
     interface Presenter{

@@ -25,6 +25,15 @@
         <activity android:name=".views.UserDetails.UserDetailsActivity" />
         <activity android:name=".views.LoginScreen.RealLoginScreenActivity" />
         <activity android:name=".views.ChatScreen.ChatScreenActivity"></activity>
+
+
+        <!-- Firebase Service -->
+        <service android:name=".background.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

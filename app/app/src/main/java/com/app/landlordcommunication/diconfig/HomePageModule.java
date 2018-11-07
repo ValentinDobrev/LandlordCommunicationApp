@@ -16,8 +16,8 @@ public abstract class HomePageModule {
     @ContributesAndroidInjector
     abstract HomePageFragment homePageFragment();
 
-   /* @ActivityScoped
+    @ActivityScoped
     @Binds
-    abstract HomePageContracts.Presenter homePagePresenter(HomePagePresenter presenter);*/
+    abstract HomePageContracts.Presenter homePagePresenter(HomePagePresenter presenter);
 
 }
