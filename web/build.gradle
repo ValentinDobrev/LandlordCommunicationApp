@@ -33,5 +33,5 @@ dependencies {
     implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
     
     //JSON Simple
-    compile('com.googlecode.json-simple:json-simple:1.1.1')
+    implementation('com.googlecode.json-simple:json-simple:1.1.1')
 }

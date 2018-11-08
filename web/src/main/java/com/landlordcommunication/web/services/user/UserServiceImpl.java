@@ -5,6 +5,7 @@ import com.landlordcommunication.web.repositories.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,6 +34,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<RentNotificationInfo> getRentNotificationInfo() {
+
+        List<User> allUsers = getAllTenants();
+
+        List<RentNotificationInfo> result = new ArrayList<>();
+
+        for (User user : allUsers) {
+//TODO implement a move adequate string identifier for notifications
+            result.add(new RentNotificationInfo(user.getEmail().substring(0, 8), user.getResidences()));
+        }
+        return result;
+    }
+
+    @Override
     public void createUser(User user) {
         repository.createUser(user);
     }
@@ -56,6 +71,9 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllLandlords() {
         return repository.getAllLandlords();
     }
+
+    @Override
+    public List<User> getAllTenants() { return repository.getAllTenants();}
 
     @Override
     public List<User> getUsersByResidence(int residenceId) {

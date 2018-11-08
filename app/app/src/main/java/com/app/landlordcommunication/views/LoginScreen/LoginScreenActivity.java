@@ -24,8 +24,8 @@ public class LoginScreenActivity extends DaggerAppCompatActivity  {
         setContentView(R.layout.activity_login_screen);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.login_screen_fragment, loginScreenFragment).commit();
-
-        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC);
+//TODO move this notification subscription in the real login screen, in the SIGN IN button onClick listener
+        FirebaseMessaging.getInstance().subscribeToTopic("Tonev856");
 
     }
 
