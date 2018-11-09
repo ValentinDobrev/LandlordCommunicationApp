@@ -16,7 +16,6 @@ public interface LoginScreenContracts {
 
         void startHomeScreen();
 
-        void startTenantHomeScreen();
     }
 
     interface Presenter{

@@ -15,9 +15,10 @@ public interface UserService {
     void modifyUser(int userId, User user);
     List<User> getAllUsers();
     List<User> getAllLandlords();
+    List<User> getAllTenants();
     List<User> getUsersByResidence(int residenceId);
     void payRentFromTenantToLandlord(int tenantId, int landlordId, int residenceId);
-
     AuthorisationInfo getUserByEmail(LoginInfo email);
     User getUserById(int userId);
+    List<RentNotificationInfo> getRentNotificationInfo();
 }

@@ -13,11 +13,11 @@ public interface UserRepository {
     void modifyUser(int userId, User user);
     List<User> getAllUsers();
     List<User> getAllLandlords();
+    List<User> getAllTenants();
     List<Rating> getUserRatings(int userId);
     UserRating getRatingById(int userId);
     List<User> getUsersByResidence(int residenceId);
     void payRentFromTenantToLandlord(int tenantId, int landlordId, int residenceId);
-
     User getUserByEmail(LoginInfo loginInfo);
     User getUserById(int userId);
 }

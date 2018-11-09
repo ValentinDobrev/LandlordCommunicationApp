@@ -11,18 +11,25 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Component
-public class TaskScheduler {
-    private static final Logger logger = LoggerFactory.getLogger(TaskScheduler.class);
+public class MessageCleaningScheduler {
+    private static final Logger logger = LoggerFactory.getLogger(MessageCleaningScheduler.class);
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
+    private MessageService messageService;
+
     @Autowired
-    MessageService messageService;
+    public MessageCleaningScheduler(MessageService messageService) {
+        this.messageService = messageService;
+    }
+
+    public MessageCleaningScheduler() {
+    }
 
     //cron expression below should be "0 * * * * ?" for every minute
     // or "0 1 1 ? * *" for every day 1:01:am
     @Scheduled(cron = "0 1 1 ? * *")
     public void scheduleTaskWithCronExpression() {
-        logger.info("Cron Task :: Execution Time - {}", dateTimeFormatter.format(LocalDateTime.now()));
+        logger.info("Old messages deleted :: Execution Time - {}", dateTimeFormatter.format(LocalDateTime.now()));
 
         messageService.deleteOldMessages();
     }

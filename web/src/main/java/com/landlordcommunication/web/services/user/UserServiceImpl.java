@@ -5,6 +5,7 @@ import com.landlordcommunication.web.repositories.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,6 +34,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<RentNotificationInfo> getRentNotificationInfo() {
+
+        List<User> allUsers = getAllTenants();
+
+        List<RentNotificationInfo> result = new ArrayList<>();
+
+        for (User user : allUsers) {
+            result.add(new RentNotificationInfo(
+//removing the '@' and '.' symbols from users' emails to make them valid subscription topics for notifications
+                    user.getEmail().replace("@", "").replace(".", ""),
+                    user.getResidences()));
+        }
+        return result;
+    }
+
+    @Override
     public void createUser(User user) {
         repository.createUser(user);
     }
@@ -58,6 +75,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getAllTenants() { return repository.getAllTenants();}
+
+    @Override
     public List<User> getUsersByResidence(int residenceId) {
         return repository.getUsersByResidence(residenceId);
     }
@@ -76,6 +96,8 @@ public class UserServiceImpl implements UserService {
         else if(!user.getPassword().equals(loginInfo.getPassword())){
             return new AuthorisationInfo(-1, false,"No such username or password");
         }
-        return new AuthorisationInfo(user.getUserId(), user.getIsTenant(), user.getSurname());
+        //setting the email in the error field of the AuthorisationInfo object
+        // to be used for notification subscription topic in the front end
+        return new AuthorisationInfo(user.getUserId(), user.getIsTenant(), user.getEmail());
     }
 }

@@ -1,6 +1,7 @@
-package com.landlordcommunication.web.notification_tools;
+package com.landlordcommunication.web.controllers;
 
 
+import com.landlordcommunication.web.notification_tools.AndroidPushNotificationsService;
 import org.json.JSONException;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 @RestController
-public class WebController {
+public class TestNotificationController {
 
     private final String TOPIC = "JavaSampleApproach";
 
@@ -31,7 +32,7 @@ public class WebController {
 
         JSONObject notification = new JSONObject();
         notification.put("title", "JSA Notification");
-        notification.put("body", "IMA6 NOTIFIKACIQ!!?!");
+        notification.put("body", "Тест Нотификейшън");
 
         JSONObject data = new JSONObject();
         data.put("Key-1", "JSA Data 1");

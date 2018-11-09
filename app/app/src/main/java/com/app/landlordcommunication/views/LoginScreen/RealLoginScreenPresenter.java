@@ -6,6 +6,7 @@ import com.app.landlordcommunication.models.AuthorisationInfo;
 import com.app.landlordcommunication.models.LoginInfo;
 import com.app.landlordcommunication.models.User;
 import com.app.landlordcommunication.services.user.base.UserService;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.IOException;
 
@@ -35,8 +36,6 @@ public class RealLoginScreenPresenter implements LoginScreenContracts.Presenter 
 
     @Override
     public void checkUserInDb(LoginInfo loginInfo) {
-
-        //TODO rethink error catching in case of network delays
         Disposable observable = Observable.create((ObservableOnSubscribe<AuthorisationInfo>) emitter ->{
             AuthorisationInfo authorisationInfo = mUserService.getUserByEmail(loginInfo);
             emitter.onNext(authorisationInfo);
@@ -48,16 +47,19 @@ public class RealLoginScreenPresenter implements LoginScreenContracts.Presenter 
     }
 
     private void presentUserToView(AuthorisationInfo authorisationInfo) throws IOException {
-
         if(authorisationInfo.getError().equals("No such username or password")){
             mView.showError(new Throwable("No such username or password"));
             return;
         }
-
         //Adding the confirmed user ID to simulate a saved state. The whole user can be retrieved via the getUserById(id) method
         Constants.CURRENT_USER_ID = authorisationInfo.getId();
 
+        //if the user exists, their email address is sent from the back end in the error field of the Authorisation info object
+        //this is to help with the subscription logic
+        FirebaseMessaging.getInstance()
+                .subscribeToTopic
+                //removing the '@' and '.' symbols from users' emails to make them valid subscription topics for notifications
+                        (authorisationInfo.getError().replace("@","").replace(".", ""));
         mView.startHomeScreen();
-
     }
 }

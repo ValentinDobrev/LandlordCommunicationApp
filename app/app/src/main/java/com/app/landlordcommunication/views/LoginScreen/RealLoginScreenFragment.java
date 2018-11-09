@@ -84,7 +84,7 @@ public class RealLoginScreenFragment extends Fragment implements LoginScreenCont
 
     @Override
     public void showError(Throwable e) {
-        Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG)
+        Toast.makeText(getContext(), "Network delays encountered, please try again later.", Toast.LENGTH_LONG)
                 .show();
     }
 
@@ -98,13 +98,6 @@ public class RealLoginScreenFragment extends Fragment implements LoginScreenCont
         Intent intent = new Intent(getContext(), MainMenuActivity.class);
 
         startActivity(intent);
-    }
-
-    @Override
-    public void startTenantHomeScreen() {
-        //TODO modify this intent when we have the two differing screens
-        Toast.makeText(getContext(), "The tenant home screen should be started", Toast.LENGTH_LONG)
-                .show();
     }
 
     @Override
