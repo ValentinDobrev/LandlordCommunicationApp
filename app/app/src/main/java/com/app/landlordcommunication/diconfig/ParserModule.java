@@ -35,6 +35,7 @@ import dagger.Provides;
         @Provides
         @Named("MessageParser")
         public JsonParser<Message> messageJsonParser() {
+            
             return new GsonJsonParser<>(Message.class, Message[].class);
         }
         @Provides
