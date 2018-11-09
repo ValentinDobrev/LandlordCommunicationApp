@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface MessageService {
-    void createMessage(Message message);
+    Message createMessage(Message message);
     void deleteMessage(int messageId);
     List<Message> getAllMessagesByReceiverIdAndByResidenceId(int receiverId, int residenceId);
     List<Message> getAllMessagesBetweenReceiverAndSender(int receiverId, int senderId);

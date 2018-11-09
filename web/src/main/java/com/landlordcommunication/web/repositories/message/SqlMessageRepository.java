@@ -24,7 +24,7 @@ public class SqlMessageRepository implements MessageRepository {
     private SessionFactory sessionFactory;
 
     @Override
-    public void createMessage(Message message) {
+    public Message createMessage(Message message) {
         try (
                 Session session = sessionFactory.openSession();
         ) {
@@ -35,6 +35,8 @@ public class SqlMessageRepository implements MessageRepository {
             System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
+
+        return message;
     }
 
     @Override

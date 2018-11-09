@@ -13,14 +13,19 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.Message;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -43,6 +48,9 @@ public class ChatScreenFragment extends Fragment implements ChatScreenContracts.
 
     @Inject
     MessagesAdapter mMessagesAdapter;
+
+    @BindView(R.id.typeMessage_EditText)
+    TextView mEditText;
 
     @Inject
     public ChatScreenFragment() {
@@ -73,7 +81,37 @@ public class ChatScreenFragment extends Fragment implements ChatScreenContracts.
         mMessagesViewLayoutManager = new GridLayoutManager(getContext(), 1);
         mMessagesView.setLayoutManager(mMessagesViewLayoutManager);
 
+        mEditText.setOnEditorActionListener((v, actionId, event) -> {
+            boolean handled = false;
+            if (actionId == EditorInfo.IME_ACTION_SEND) {
+                createMessage(v.getText().toString());
+                handled = true;
+            }
+            return handled;
+        });
+
         return view;
+    }
+
+    @Override
+    public void createMessage(String messageText) {
+
+        Message message = new Message();
+        message.setReceiverId(Constants.TEST_CHATTEE_USER_ID);
+        message.setSenderId(Constants.CURRENT_USER_ID);
+        message.setResidenceId(Constants.TEST_RESIDENCE_ID);
+        message.setText(messageText);
+        Date sentDate = Calendar.getInstance().getTime();
+        message.setSentDate(sentDate);
+
+        //mMessagesAdapter.notifyDataSetChanged();
+
+        mPresenter.sendMessage(message);
+    }
+
+    @Override
+    public void showMessage(Message message) {
+        mPresenter.loadMessages();
     }
 
     @Override

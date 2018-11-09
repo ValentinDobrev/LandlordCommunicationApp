@@ -59,7 +59,7 @@ public class RepositoryModule {
             HttpRequester httpRequester,
             @Named("MessageParser") JsonParser<Message> jsonParserMessage
     ) {
-        String url = baseServerUrl + "/messages/for-receiver-by-sender";
+        String url = baseServerUrl + "/messages";
         return new HttpMessageRepository(httpRequester, url, jsonParserMessage);
     }
 

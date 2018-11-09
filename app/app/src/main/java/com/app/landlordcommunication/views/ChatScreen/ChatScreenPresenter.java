@@ -58,6 +58,23 @@ public class ChatScreenPresenter implements ChatScreenContracts.Presenter{
                 );
 
     }
+    @Override
+    public void sendMessage(Message message) {
+        Disposable observable = Observable.create((ObservableOnSubscribe<Message>) emitter ->{
+            Message testMessage = mMessageService.sendMessage(message);
+            emitter.onNext(testMessage);
+            emitter.onComplete();
+        }).subscribeOn(mSchedulerProvider.background())
+                .observeOn(mSchedulerProvider.ui())
+                .subscribe(
+                        this::presentMessageToView
+                );
+    }
+
+    private void presentMessageToView(Message message){
+        mView.showMessage(message);
+    }
+
 
     private void presentMessagesToView(List<Message> messages) {
         if(messages.isEmpty()){

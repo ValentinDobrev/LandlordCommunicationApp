@@ -25,8 +25,8 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public void createMessage(Message message) {
-        repository.createMessage(message);
+    public Message createMessage(Message message) {
+        return repository.createMessage(message);
     }
 
     @Override

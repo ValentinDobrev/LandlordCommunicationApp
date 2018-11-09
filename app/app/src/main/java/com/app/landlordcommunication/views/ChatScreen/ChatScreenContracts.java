@@ -24,6 +24,10 @@ public interface ChatScreenContracts {
 
         void hideLoading();
 
+        void createMessage(String messageText);
+
+        void showMessage(Message message);
+
         //void addMessage(List<Message> messages);
 
     }
@@ -34,6 +38,7 @@ public interface ChatScreenContracts {
 
         void loadMessages();
 
+        void sendMessage(Message message);
     }
 
 }
