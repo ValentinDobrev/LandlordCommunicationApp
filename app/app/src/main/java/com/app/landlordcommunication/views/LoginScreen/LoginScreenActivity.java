@@ -14,7 +14,7 @@ import dagger.android.support.DaggerAppCompatActivity;
 
 public class LoginScreenActivity extends DaggerAppCompatActivity  {
 
-    private static final String TOPIC = "JavaSampleApproach";
+   // private static final String TOPIC = "JavaSampleApproach";
     @Inject
     LoginScreenFragment loginScreenFragment;
 
@@ -24,8 +24,8 @@ public class LoginScreenActivity extends DaggerAppCompatActivity  {
         setContentView(R.layout.activity_login_screen);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.login_screen_fragment, loginScreenFragment).commit();
-//TODO move this notification subscription in the real login screen, in the SIGN IN button onClick listener
-        FirebaseMessaging.getInstance().subscribeToTopic("Tonev856");
+//test notification subscription
+        //FirebaseMessaging.getInstance().subscribeToTopic(TOPIC);
 
     }
 

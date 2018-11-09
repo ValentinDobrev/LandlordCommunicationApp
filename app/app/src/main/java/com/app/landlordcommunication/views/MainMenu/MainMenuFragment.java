@@ -108,6 +108,7 @@ public class MainMenuFragment extends Fragment implements MainMenuContracts.View
     @OnClick({R.id.menu_logout_btn})
     public void logoutButtonClick() {
         Constants.CURRENT_USER_ID = -1;
+        //TODO unsubscribe from user's notifications topic
         showLoginMenu();
     }
 }
