@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.Message;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -34,13 +36,25 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class ChatScreenFragment extends Fragment implements ChatScreenContracts.View{
+public class ChatScreenFragment extends Fragment implements ChatScreenContracts.View {
 
     @BindView(R.id.list)
     RecyclerView mMessagesView;
 
     @BindView(R.id.loading)
     ProgressBar mLoadingView;
+
+    @BindView(R.id.material_design_android_floating_action_menu)
+    FloatingActionMenu materialDesignFAM;
+
+    @BindView(R.id.material_design_floating_action_menu_item1)
+    FloatingActionButton mFabSorry;
+
+    @BindView(R.id.material_design_floating_action_menu_item2)
+    FloatingActionButton mFabSetUpMeeting;
+
+    @BindView(R.id.material_design_floating_action_menu_item3)
+    FloatingActionButton mFabHello;
 
     @Inject
     ChatScreenContracts.Presenter mPresenter;
@@ -90,6 +104,10 @@ public class ChatScreenFragment extends Fragment implements ChatScreenContracts.
             return handled;
         });
 
+        mFabSorry.setOnClickListener(v -> createMessage("Sorry for the late reply."));
+        mFabSetUpMeeting.setOnClickListener(v -> createMessage("Let's set up a meeting."));
+        mFabHello.setOnClickListener(v -> createMessage("Hello, How are you?"));
+
         return view;
     }
 
@@ -132,6 +150,7 @@ public class ChatScreenFragment extends Fragment implements ChatScreenContracts.
         mMessagesAdapter.clear();
         mMessagesAdapter.addAll(messages);
         mMessagesAdapter.notifyDataSetChanged();
+        mMessagesView.smoothScrollToPosition(mMessagesView.getAdapter().getItemCount() - 1);
     }
 
     @Override
