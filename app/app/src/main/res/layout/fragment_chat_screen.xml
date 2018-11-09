@@ -22,7 +22,8 @@
             android:layout_height="wrap_content"
             android:divider="#b5b5b5"
             android:dividerHeight="1dp"
-            android:listSelector="@drawable/list_selector" />
+            android:listSelector="@drawable/list_selector"
+            android:layout_above="@+id/typeMessage_EditText"/>
 
         <EditText
             android:id="@+id/typeMessage_EditText"
@@ -32,7 +33,9 @@
             android:background="#000000"
             android:hint="type your message"
             android:textColorHint="#c2c9d3"
-            android:textColor="#ffff"/>
+            android:textColor="#ffff"
+            android:inputType="text"
+            android:imeOptions="actionSend"/>
 
         <io.github.yavski.fabspeeddial.FabSpeedDial
             android:id="@+id/predefined_messages_Fab"
