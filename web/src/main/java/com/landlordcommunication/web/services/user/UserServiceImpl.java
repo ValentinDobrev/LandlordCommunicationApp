@@ -41,8 +41,10 @@ public class UserServiceImpl implements UserService {
         List<RentNotificationInfo> result = new ArrayList<>();
 
         for (User user : allUsers) {
-//TODO implement a move adequate string identifier for notifications
-            result.add(new RentNotificationInfo(user.getEmail().substring(0, 8), user.getResidences()));
+            result.add(new RentNotificationInfo(
+//removing the '@' and '.' symbols from users' emails to make them valid subscription topics for notifications
+                    user.getEmail().replace("@", "").replace(".", ""),
+                    user.getResidences()));
         }
         return result;
     }
@@ -94,6 +96,8 @@ public class UserServiceImpl implements UserService {
         else if(!user.getPassword().equals(loginInfo.getPassword())){
             return new AuthorisationInfo(-1, false,"No such username or password");
         }
-        return new AuthorisationInfo(user.getUserId(), user.getIsTenant(), user.getSurname());
+        //setting the email in the error field of the AuthorisationInfo object
+        // to be used for notification subscription topic in the front end
+        return new AuthorisationInfo(user.getUserId(), user.getIsTenant(), user.getEmail());
     }
 }

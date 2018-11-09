@@ -15,8 +15,15 @@ public class MessageCleaningScheduler {
     private static final Logger logger = LoggerFactory.getLogger(MessageCleaningScheduler.class);
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
+    private MessageService messageService;
+
     @Autowired
-    MessageService messageService;
+    public MessageCleaningScheduler(MessageService messageService) {
+        this.messageService = messageService;
+    }
+
+    public MessageCleaningScheduler() {
+    }
 
     //cron expression below should be "0 * * * * ?" for every minute
     // or "0 1 1 ? * *" for every day 1:01:am
