@@ -6,8 +6,12 @@ import com.landlordcommunication.web.repositories.residence.ResidenceRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 
+import javax.xml.crypto.Data;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -41,4 +45,38 @@ public class SqlResidenceRepository implements ResidenceRepository {
 
         return result;
     }
+
+    @Override
+    public Residence changeResidenceDates(int residenceId) {
+        Residence residence;
+
+        try (
+                Session session = sessionFactory.openSession();
+        ) {
+            session.beginTransaction();
+            residence = session.get(Residence.class, residenceId);
+
+            Date dueDate = residence.getDueDate();
+            Date notificationDate = residence.getNotificationDate();
+
+            residence.setDueDate(addOneMonth(dueDate));
+            residence.setNotificationDate(addOneMonth(notificationDate));
+
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
+
+        return  residence;
+    }
+
+    public static Date addOneMonth(Date date)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.MONTH, 1);
+        return cal.getTime();
+    }
+
 }

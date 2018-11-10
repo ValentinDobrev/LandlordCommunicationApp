@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ResidenceService {
     List<Residence> getResidencesByUser(int userId);
+
+    Residence changeResidenceDates(int residenceId);
 }
