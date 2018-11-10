@@ -105,6 +105,7 @@ public class ChatScreenFragment extends Fragment implements ChatScreenContracts.
             boolean handled = false;
             if (actionId == EditorInfo.IME_ACTION_SEND) {
                 createMessage(v.getText().toString());
+                mEditText.setText("");
                 handled = true;
             }
             return handled;
