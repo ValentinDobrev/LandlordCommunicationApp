@@ -25,7 +25,7 @@ public class MessageCleaningScheduler {
     public MessageCleaningScheduler() {
     }
 
-    //cron expression below should be "0 * * * * ?" for every minute
+    //cron expression below should be "0 * * * * ?" for every minute for testing
     // or "0 1 1 ? * *" for every day 1:01:am
     @Scheduled(cron = "0 1 1 ? * *")
     public void scheduleTaskWithCronExpression() {
