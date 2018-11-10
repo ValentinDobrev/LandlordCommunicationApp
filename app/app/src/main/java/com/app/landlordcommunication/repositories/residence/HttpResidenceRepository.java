@@ -26,4 +26,11 @@ public class HttpResidenceRepository implements ResidenceRepository {
         String json = mHttpRequester.get(url);
         return mJsonParser.fromJsonArray(json);
     }
+
+    @Override
+    public Residence changeResidenceDates(int residenceId) throws IOException {
+        String url = mServerUrl + "/update/" + residenceId;
+        String json = mHttpRequester.get(url);
+        return mJsonParser.fromJson(json);
+    }
 }

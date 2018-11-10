@@ -19,4 +19,9 @@ public class HttpResidenceService implements ResidenceService {
     public List<Residence> getResidencesByUser(int userId) throws IOException {
         return repository.getResidencesByUser(userId);
     }
+
+    @Override
+    public Residence changeResidenceDates(int residenceId) throws IOException {
+        return repository.changeResidenceDates(residenceId);
+    }
 }

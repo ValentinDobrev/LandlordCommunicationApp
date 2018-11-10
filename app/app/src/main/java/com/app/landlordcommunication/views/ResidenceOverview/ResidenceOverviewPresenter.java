@@ -2,7 +2,9 @@ package com.app.landlordcommunication.views.ResidenceOverview;
 
 import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.async.base.SchedulerProvider;
+import com.app.landlordcommunication.models.Residence;
 import com.app.landlordcommunication.models.User;
+import com.app.landlordcommunication.services.residence.base.ResidenceService;
 import com.app.landlordcommunication.services.user.base.UserService;
 
 import java.util.List;
@@ -17,12 +19,14 @@ import io.reactivex.disposables.Disposable;
 public class ResidenceOverviewPresenter implements ResidenceOverviewContracts.Presenter{
 
     private final UserService mUserService;
+    private final ResidenceService mResidenceService;
     private final SchedulerProvider mSchedulerProvider;
     private ResidenceOverviewContracts.View mView;
 
     @Inject
-    public ResidenceOverviewPresenter(UserService mUserService, SchedulerProvider mSchedulerProvider) {
+    public ResidenceOverviewPresenter(UserService mUserService, ResidenceService mResidenceService, SchedulerProvider mSchedulerProvider) {
         this.mUserService = mUserService;
+        this.mResidenceService = mResidenceService;
         this.mSchedulerProvider = mSchedulerProvider;
     }
 
@@ -48,6 +52,23 @@ public class ResidenceOverviewPresenter implements ResidenceOverviewContracts.Pr
     }
 
     @Override
+    public void loadCorrectDates() {
+        Disposable observable = Observable.create((ObservableOnSubscribe<Residence>) emitter ->{
+            Residence residence = mResidenceService.changeResidenceDates(Constants.TEST_RESIDENCE_ID);
+            emitter.onNext(residence);
+            emitter.onComplete();
+        }).subscribeOn(mSchedulerProvider.background())
+                .observeOn(mSchedulerProvider.ui())
+                .subscribe(
+                        this::presentResidenceToView
+                );
+    }
+
+    private void presentResidenceToView(Residence residence) {
+        mView.showResidence(residence);
+    }
+
+    @Override
     public void selectUser(User user) {
         mView.showChatScreen(user);
     }
@@ -59,7 +80,7 @@ public class ResidenceOverviewPresenter implements ResidenceOverviewContracts.Pr
 
     @Override
     public void selectPayBtn() {
-        //mView.showChatScreen();
+//        loadCorrectDates();
     }
 
     private void presentUsersToView(List<User> users) {

@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.R;
+import com.app.landlordcommunication.models.Residence;
 import com.app.landlordcommunication.models.User;
 import com.app.landlordcommunication.views.ChatScreen.ChatScreenActivity;
 
@@ -77,6 +78,7 @@ public class ResidenceOverviewFragment extends Fragment     implements Residence
         // Required empty public constructor
     }
 
+    Residence testResidence;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -136,6 +138,19 @@ public class ResidenceOverviewFragment extends Fragment     implements Residence
 
     }
 
+    @Override
+    public void showResidence(Residence residence) {
+        setTestResidence(residence);
+    }
+
+    public Residence getTestResidence() {
+        return testResidence;
+    }
+
+    public void setTestResidence(Residence testResidence) {
+        this.testResidence = testResidence;
+    }
+
     boolean showPayRentBtn(List<User> users){
 
         for (User user : users) {
@@ -190,6 +205,11 @@ public class ResidenceOverviewFragment extends Fragment     implements Residence
 
     @OnClick(R.id.button_payRent)
     public void OnBtnClick(){
-        mPresenter.selectPayBtn();
+//        mPresenter.selectPayBtn();
+        mPresenter.loadCorrectDates();
+//        mDueDateText.setText("");
+        Residence r = getTestResidence();
+        Date d = r.getDueDate();
+        mDueDateText.setText(d.toString());
     }
 }

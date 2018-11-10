@@ -23,7 +23,7 @@ public class ResidenceRestController {
         return residenceService.getResidencesByUser(id);
     }
 
-    @PutMapping("/{id}")
+    @GetMapping("/update/{id}")
     public Residence changeResidenceDates(@PathVariable int id){
         return residenceService.changeResidenceDates(id);
     }
