@@ -2,15 +2,14 @@ package com.landlordcommunication.web.services.message;
 
 import com.landlordcommunication.web.models.Message;
 import com.landlordcommunication.web.models.MessagesCounter;
+import com.landlordcommunication.web.models.User;
+import com.landlordcommunication.web.notification_tools.MessageNotifier;
 import com.landlordcommunication.web.repositories.message.MessageRepository;
+import com.landlordcommunication.web.repositories.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
-import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -20,13 +19,27 @@ public class MessageServiceImpl implements MessageService {
 
     private MessageRepository repository;
 
+    private UserRepository userRepository;
+
+    private MessageNotifier messageNotifier;
+
     @Autowired
-    public MessageServiceImpl(MessageRepository repository) {
+    public MessageServiceImpl(MessageRepository repository, UserRepository userRepository, MessageNotifier messageNotifier) {
         this.repository = repository;
+        this.userRepository = userRepository;
+        this.messageNotifier = messageNotifier;
     }
 
     @Override
     public Message createMessage(Message message) {
+
+        User receiver = userRepository.getUserById(message.getReceiverId());
+        User sender = userRepository.getUserById(message.getSenderId());
+
+        messageNotifier.notifyReceiverOnNewMessageSent(
+                receiver.getEmail().replace("@", "").replace(".", ""),
+                sender.getFirstName() + " " + sender.getSurname());
+
         return repository.createMessage(message);
     }
 

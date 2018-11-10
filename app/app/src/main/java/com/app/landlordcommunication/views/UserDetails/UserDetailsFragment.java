@@ -106,7 +106,7 @@ public class UserDetailsFragment extends DaggerFragment implements UserDetailsCo
 
         popDialog.create();
         popDialog.show();
-
+//TODO never used? the below might need to be inside a lambda
         int ratingValue = givenRating[0];
     }
 

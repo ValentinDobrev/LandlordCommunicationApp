@@ -23,7 +23,7 @@ import java.util.Date;
 import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
-public class HttpResidenceServiceTest {
+public class HttpResidenceServiceTests {
 
     @Mock
     ResidenceRepository mockResidenceRepository;

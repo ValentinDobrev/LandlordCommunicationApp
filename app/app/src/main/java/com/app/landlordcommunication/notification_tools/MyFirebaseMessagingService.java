@@ -25,7 +25,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
-        //TODO think of a better way to display notifications in an open app than a long toast
 
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(() -> Toast.makeText(getApplicationContext(),
