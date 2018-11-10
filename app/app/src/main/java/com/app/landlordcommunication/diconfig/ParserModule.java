@@ -3,6 +3,7 @@ package com.app.landlordcommunication.diconfig;
 import com.app.landlordcommunication.models.Message;
 import com.app.landlordcommunication.models.AuthorisationInfo;
 import com.app.landlordcommunication.models.LoginInfo;
+import com.app.landlordcommunication.models.MessagesCounter;
 import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.Residence;
 import com.app.landlordcommunication.models.User;
@@ -37,6 +38,12 @@ import dagger.Provides;
         public JsonParser<Message> messageJsonParser() {
             
             return new GsonJsonParser<>(Message.class, Message[].class);
+        }
+        @Provides
+        @Named("MessageCounterParser")
+        public JsonParser<MessagesCounter> messageCounterJsonParser() {
+
+            return new GsonJsonParser<>(MessagesCounter.class, MessagesCounter[].class);
         }
         @Provides
         @Named("LoginInfoParser")

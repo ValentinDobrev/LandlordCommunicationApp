@@ -1,11 +1,10 @@
 package com.app.landlordcommunication.views.ChatScreen;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +20,7 @@ import android.widget.Toast;
 import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.Message;
+import com.app.landlordcommunication.models.MessagesCounter;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
@@ -71,6 +71,10 @@ public class ChatScreenFragment extends Fragment implements ChatScreenContracts.
         // Required empty public constructor
     }
 
+    int messagesCounter;
+    int checkerForMessagesCounter;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -78,7 +82,6 @@ public class ChatScreenFragment extends Fragment implements ChatScreenContracts.
         View view = inflater.inflate(R.layout.fragment_chat_screen, container, false);
 
         ButterKnife.bind(this, view);
-
 
         Intent intent = getActivity().getIntent();
         String chatteePicture = intent.getStringExtra("chatteePicture");
@@ -90,10 +93,13 @@ public class ChatScreenFragment extends Fragment implements ChatScreenContracts.
         Bitmap chatterPictureBitmap = BitmapFactory.decodeStream(chatterPictureStream);
         mMessagesAdapter.setChatterPictureBitmap(chatterPictureBitmap);
 
-
         mMessagesView.setAdapter(mMessagesAdapter);
         mMessagesViewLayoutManager = new GridLayoutManager(getContext(), 1);
         mMessagesView.setLayoutManager(mMessagesViewLayoutManager);
+
+        mFabSorry.setOnClickListener(v -> createMessage("Sorry for the late reply."));
+        mFabSetUpMeeting.setOnClickListener(v -> createMessage("Let's set up a meeting."));
+        mFabHello.setOnClickListener(v -> createMessage("Hello, How are you?"));
 
         mEditText.setOnEditorActionListener((v, actionId, event) -> {
             boolean handled = false;
@@ -104,11 +110,45 @@ public class ChatScreenFragment extends Fragment implements ChatScreenContracts.
             return handled;
         });
 
-        mFabSorry.setOnClickListener(v -> createMessage("Sorry for the late reply."));
-        mFabSetUpMeeting.setOnClickListener(v -> createMessage("Let's set up a meeting."));
-        mFabHello.setOnClickListener(v -> createMessage("Hello, How are you?"));
+        setCheckerForMessagesCounter(getMessagesCounter());
+        final Handler refreshHandler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+
+                mPresenter.loadMessagesCount();
+
+                if(getMessagesCounter() != getCheckerForMessagesCounter()) {
+                    mPresenter.loadMessages();
+                    setCheckerForMessagesCounter(getMessagesCounter());
+                }
+                refreshHandler.postDelayed(this, 1000);
+            }
+        };
+        refreshHandler.postDelayed(runnable, 1000);
 
         return view;
+    }
+
+    public int getMessagesCounter() {
+        return messagesCounter;
+    }
+
+    public void setMessagesCounter(int messagesCounter) {
+        this.messagesCounter = messagesCounter;
+    }
+
+    public int getCheckerForMessagesCounter() {
+        return checkerForMessagesCounter;
+    }
+
+    public void setCheckerForMessagesCounter(int checkerForMessagesCounter) {
+        this.checkerForMessagesCounter = checkerForMessagesCounter;
+    }
+
+    @Override
+    public void showCount(MessagesCounter messagesCounter) {
+        setMessagesCounter(messagesCounter.getCounter());
     }
 
     @Override

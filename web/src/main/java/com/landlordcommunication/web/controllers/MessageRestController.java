@@ -2,6 +2,7 @@ package com.landlordcommunication.web.controllers;
 
 
 import com.landlordcommunication.web.models.Message;
+import com.landlordcommunication.web.models.MessagesCounter;
 import com.landlordcommunication.web.services.message.MessageService;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,5 +36,10 @@ public class MessageRestController {
     @GetMapping("/for-receiver-by-sender/{receiverId}/{senderId}")
     public List<Message> getAllMessagesBetweenReceiverAndSender(@PathVariable int receiverId, @PathVariable int senderId){
         return messageService.getAllMessagesBetweenReceiverAndSender(receiverId, senderId);
+    }
+
+    @GetMapping("/count/{receiverId}/{senderId}")
+    public MessagesCounter getMessagesCount(@PathVariable int receiverId, @PathVariable int senderId){
+        return messageService.getMessageCount(receiverId, senderId);
     }
 }

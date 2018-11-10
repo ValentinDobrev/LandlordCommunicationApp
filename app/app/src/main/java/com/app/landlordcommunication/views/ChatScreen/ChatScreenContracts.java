@@ -1,10 +1,7 @@
 package com.app.landlordcommunication.views.ChatScreen;
 
-import android.graphics.Bitmap;
-
 import com.app.landlordcommunication.models.Message;
-import com.app.landlordcommunication.models.Residence;
-import com.app.landlordcommunication.models.User;
+import com.app.landlordcommunication.models.MessagesCounter;
 
 import java.util.List;
 
@@ -28,6 +25,8 @@ public interface ChatScreenContracts {
 
         void showMessage(Message message);
 
+        void showCount(MessagesCounter messagesCounter);
+
         //void addMessage(List<Message> messages);
 
     }
@@ -39,6 +38,8 @@ public interface ChatScreenContracts {
         void loadMessages();
 
         void sendMessage(Message message);
+
+        void loadMessagesCount();
     }
 
 }

@@ -1,6 +1,7 @@
 package com.app.landlordcommunication.repositories.message.base;
 
 import com.app.landlordcommunication.models.Message;
+import com.app.landlordcommunication.models.MessagesCounter;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,5 +12,5 @@ public interface MessageRepository {
     List<Message> getAllMessagesByReceiverIdAndByResidenceId(int receiverId, int residenceId) throws IOException;
     List<Message> getAllMessagesBetweenReceiverAndSender(int receiverId, int senderId) throws IOException;
 
-
+    MessagesCounter getMessageCount(int receiverId, int senderId) throws IOException;
 }

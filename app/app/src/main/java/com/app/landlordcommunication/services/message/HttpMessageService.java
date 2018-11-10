@@ -1,6 +1,7 @@
 package com.app.landlordcommunication.services.message;
 
 import com.app.landlordcommunication.models.Message;
+import com.app.landlordcommunication.models.MessagesCounter;
 import com.app.landlordcommunication.repositories.message.base.MessageRepository;
 import com.app.landlordcommunication.services.message.base.MessageService;
 
@@ -18,6 +19,11 @@ public class HttpMessageService implements MessageService {
     @Override
     public Message sendMessage(Message message) throws IOException {
         return repository.sendMessage(message);
+    }
+
+    @Override
+    public MessagesCounter getMessageCount(int receiverId, int senderId) throws IOException {
+        return repository.getMessageCount(receiverId,senderId);
     }
 
     @Override

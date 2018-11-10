@@ -2,6 +2,7 @@ package com.app.landlordcommunication.repositories.message;
 
 import com.app.landlordcommunication.http.HttpRequester;
 import com.app.landlordcommunication.models.Message;
+import com.app.landlordcommunication.models.MessagesCounter;
 import com.app.landlordcommunication.parsers.base.JsonParser;
 import com.app.landlordcommunication.repositories.message.base.MessageRepository;
 
@@ -13,11 +14,20 @@ public class HttpMessageRepository implements MessageRepository {
     private final HttpRequester mHttpRequester;
     private final String mServerUrl;
     private final JsonParser<Message> mJsonParser;
+    private final JsonParser<MessagesCounter> mJsonCounterParser;
 
-    public HttpMessageRepository(HttpRequester httpRequester, String serverUrl, JsonParser jsonParser) {
+    public HttpMessageRepository(HttpRequester httpRequester, String serverUrl, JsonParser jsonParser, JsonParser<MessagesCounter> JsonCounterParser) {
         mHttpRequester = httpRequester;
         mServerUrl = serverUrl;
         mJsonParser = jsonParser;
+        mJsonCounterParser = JsonCounterParser;
+    }
+
+    @Override
+    public MessagesCounter getMessageCount(int receiverId, int senderId) throws IOException {
+        String url = mServerUrl + "/count/" + receiverId + "/" + senderId;
+        String json = mHttpRequester.get(url);
+        return mJsonCounterParser.fromJson(json);
     }
 
     @Override

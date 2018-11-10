@@ -1,19 +1,11 @@
 package com.app.landlordcommunication.views.ChatScreen;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
-
 import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.async.base.SchedulerProvider;
-import com.app.landlordcommunication.models.AuthorisationInfo;
 import com.app.landlordcommunication.models.Message;
-import com.app.landlordcommunication.models.User;
+import com.app.landlordcommunication.models.MessagesCounter;
 import com.app.landlordcommunication.services.message.base.MessageService;
-import com.app.landlordcommunication.services.user.base.UserService;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -71,9 +63,31 @@ public class ChatScreenPresenter implements ChatScreenContracts.Presenter{
                 );
     }
 
+    @Override
+    public void loadMessagesCount(){
+        Disposable observable = Observable.create((ObservableOnSubscribe<MessagesCounter>) emitter ->{
+
+            MessagesCounter counter = mMessageService.getMessageCount(
+                    Constants.CURRENT_USER_ID,
+                    Constants.TEST_CHATTEE_USER_ID
+            );
+            emitter.onNext(counter);
+            emitter.onComplete();
+        }).subscribeOn(mSchedulerProvider.background())
+                .observeOn(mSchedulerProvider.ui())
+                .subscribe(
+                        this::presentCount
+                );
+    }
+
+    public void presentCount(MessagesCounter messagesCounter) {
+        mView.showCount(messagesCounter);
+    }
+
     private void presentMessageToView(Message message){
         mView.showMessage(message);
     }
+
 
 
     private void presentMessagesToView(List<Message> messages) {

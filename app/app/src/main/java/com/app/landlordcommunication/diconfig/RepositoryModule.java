@@ -4,6 +4,7 @@ import com.app.landlordcommunication.http.HttpRequester;
 import com.app.landlordcommunication.models.AuthorisationInfo;
 import com.app.landlordcommunication.models.LoginInfo;
 import com.app.landlordcommunication.models.Message;
+import com.app.landlordcommunication.models.MessagesCounter;
 import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.Residence;
 import com.app.landlordcommunication.models.User;
@@ -57,10 +58,11 @@ public class RepositoryModule {
     public MessageRepository messageRepository(
             @Named("baseServerUrl") String baseServerUrl,
             HttpRequester httpRequester,
-            @Named("MessageParser") JsonParser<Message> jsonParserMessage
+            @Named("MessageParser") JsonParser<Message> jsonParserMessage,
+            @Named("MessageCounterParser") JsonParser<MessagesCounter> jsonParserMessageCounter
     ) {
         String url = baseServerUrl + "/messages";
-        return new HttpMessageRepository(httpRequester, url, jsonParserMessage);
+        return new HttpMessageRepository(httpRequester, url, jsonParserMessage, jsonParserMessageCounter);
     }
 
     @Provides

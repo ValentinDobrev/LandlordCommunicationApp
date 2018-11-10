@@ -1,6 +1,7 @@
 package com.landlordcommunication.web.services.message;
 
 import com.landlordcommunication.web.models.Message;
+import com.landlordcommunication.web.models.MessagesCounter;
 import com.landlordcommunication.web.repositories.message.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,14 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public Message createMessage(Message message) {
         return repository.createMessage(message);
+    }
+
+    @Override
+    public MessagesCounter getMessageCount(int receiverId, int senderId) {
+        List<Message> messages = repository.getAllMessagesBetweenReceiverAndSender(receiverId, senderId);
+        MessagesCounter counter = new MessagesCounter();
+        counter.setCounter(messages.size());
+        return counter;
     }
 
     @Override
