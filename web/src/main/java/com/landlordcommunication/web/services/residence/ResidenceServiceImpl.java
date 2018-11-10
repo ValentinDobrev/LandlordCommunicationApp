@@ -26,7 +26,5 @@ public class ResidenceServiceImpl implements ResidenceService {
     public Residence changeResidenceDates(int residenceId) {
         return repository.changeResidenceDates(residenceId);
     }
-
-    //TODO unit test for changeResidenceDates
     //TODO move getAllResidences() to this service
 }

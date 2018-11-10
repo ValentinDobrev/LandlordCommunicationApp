@@ -112,7 +112,6 @@ public class MessageServiceImplTests {
         List<Message> result = messageService.getAllMessagesBetweenReceiverAndSender(2, 1);
 
         //Assert
-
         Assert.assertEquals(result, sortedMessageList);
 
     }
