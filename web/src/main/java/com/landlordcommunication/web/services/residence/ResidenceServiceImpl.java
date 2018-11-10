@@ -21,4 +21,6 @@ public class ResidenceServiceImpl implements ResidenceService {
     public List<Residence> getResidencesByUser(int userId) {
         return repository.getResidencesByUser(userId);
     }
+
+    //TODO move getAllResidences() to this service
 }

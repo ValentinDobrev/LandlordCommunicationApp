@@ -12,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-import static org.hamcrest.CoreMatchers.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -23,11 +22,9 @@ public class UserServiceImplTests {
     UserRepository mockUserRepository;
 
     @InjectMocks
-    UserServiceImpl service;
+    UserServiceImpl userService;
 
     private List<User> mockUserList;
-
-    private Map<Integer, Integer> mockMapUsersToResidences;
 
     @Before
     public void setUp() {
@@ -70,7 +67,7 @@ public class UserServiceImplTests {
                 .thenReturn(mockUserList.get(0));
 
         //Act
-        User result = service.getUserById(1);
+        User result = userService.getUserById(1);
 
         //Assert
         Assert.assertEquals(result, mockUserList.get(0));
@@ -83,7 +80,7 @@ public class UserServiceImplTests {
                 .thenReturn(null);
 
         //Act
-        User result = service.getUserById(20);
+        User result = userService.getUserById(20);
 
         //Assert
         Assert.assertNull(result);
@@ -97,7 +94,7 @@ public class UserServiceImplTests {
         Mockito.when(mockUserRepository.getUserByEmail(loginInfo))
                 .thenReturn(mockUserList.get(0));
         //Act
-        AuthorisationInfo result = service.getUserByEmail(loginInfo);
+        AuthorisationInfo result = userService.getUserByEmail(loginInfo);
 
         //Assert
         Assert.assertEquals(result.getError(), new AuthorisationInfo(1, true, "email1").getError());
@@ -112,7 +109,7 @@ public class UserServiceImplTests {
                 .thenReturn(null);
 
         //Act
-        AuthorisationInfo result = service.getUserByEmail(loginInfo);
+        AuthorisationInfo result = userService.getUserByEmail(loginInfo);
 
         //Assert
         Assert.assertEquals(result.getError(), new AuthorisationInfo(-1, false, "No such username or password").getError());
@@ -126,7 +123,7 @@ public class UserServiceImplTests {
                 .thenReturn(mockUserList.get(0));
 
         //Act
-        AuthorisationInfo result = service.getUserByEmail(loginInfo);
+        AuthorisationInfo result = userService.getUserByEmail(loginInfo);
 
         //Assert
         Assert.assertEquals(result.getError(), new AuthorisationInfo(-1, false, "No such username or password").getError());
@@ -139,7 +136,7 @@ public class UserServiceImplTests {
         Mockito.when(mockUserRepository.getAllUsers()).thenReturn(mockUserList);
 
         //Act
-        List<User> result = service.getAllUsers();
+        List<User> result = userService.getAllUsers();
 
         //Assert
         Assert.assertEquals(result, mockUserList);
@@ -152,7 +149,7 @@ public class UserServiceImplTests {
         Mockito.when(mockUserRepository.getAllUsers()).thenReturn(null);
 
         //Act
-        List<User> result = service.getAllUsers();
+        List<User> result = userService.getAllUsers();
 
         //Assert
         Assert.assertNull(result);
@@ -169,7 +166,7 @@ public class UserServiceImplTests {
                         .collect(Collectors.toList()));
 
         //Act
-        List<User> result = service.getAllTenants();
+        List<User> result = userService.getAllTenants();
 
         //Assert
         Assert.assertEquals(4, result.size());
@@ -186,7 +183,7 @@ public class UserServiceImplTests {
                         .collect(Collectors.toList()));
 
         //Act
-        List<User> result = service.getAllLandlords();
+        List<User> result = userService.getAllLandlords();
 
         //Assert
         Assert.assertEquals(1, result.size());
@@ -204,7 +201,7 @@ public class UserServiceImplTests {
                 .thenReturn(usersFromResidenceIdOne);
 
         //Act
-        List<User> result = service.getUsersByResidence(1);
+        List<User> result = userService.getUsersByResidence(1);
 
         //Assert
         Assert.assertEquals(result,usersFromResidenceIdOne);
@@ -217,7 +214,7 @@ public class UserServiceImplTests {
                 .thenReturn(null);
 
         //Act
-        List<User> result = service.getUsersByResidence(10);
+        List<User> result = userService.getUsersByResidence(10);
 
         //Assert
         Assert.assertNull(result);
@@ -241,7 +238,7 @@ public class UserServiceImplTests {
 
 
         //Act
-        List<RentNotificationInfo> result = service.getRentNotificationInfo();
+        List<RentNotificationInfo> result = userService.getRentNotificationInfo();
 
 
         //Assert
