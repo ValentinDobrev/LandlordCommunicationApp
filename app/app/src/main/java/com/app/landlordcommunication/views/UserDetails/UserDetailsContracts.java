@@ -3,9 +3,11 @@ package com.app.landlordcommunication.views.UserDetails;
 import com.app.landlordcommunication.models.User;
 import com.app.landlordcommunication.models.UserRating;
 
+
 public interface UserDetailsContracts {
 
     interface View {
+
         void showUser(User user);
 
         void showRating(UserRating rating);
@@ -25,6 +27,10 @@ public interface UserDetailsContracts {
         void loadUser();
 
         void loadUserRating();
+
+        void updateUserRating(int ratingValue);
+
+        boolean checkIfUserIsTheSame();
 
         void setUserId(int id);
     }

@@ -1,5 +1,6 @@
 package com.app.landlordcommunication.services.rating;
 
+import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.User;
 import com.app.landlordcommunication.models.UserRating;
 import com.app.landlordcommunication.repositories.rating.base.RatingRepository;
@@ -24,5 +25,10 @@ public class HttpRatingService implements RatingService {
     @Override
     public List<UserRating> getAllRatings(List<User> users) throws IOException {
         return repository.getAllRatings(users);
+    }
+
+    @Override
+    public Rating addRatingRecord(Rating ratingRecord) throws IOException {
+        return repository.addRatingRecord(ratingRecord);
     }
 }

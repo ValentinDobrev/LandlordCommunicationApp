@@ -14,7 +14,7 @@ public class HttpResidenceRepository implements ResidenceRepository {
     private final String mServerUrl;
     private final JsonParser<Residence> mJsonParser;
 
-    public HttpResidenceRepository(HttpRequester httpRequester, String serverUrl, JsonParser jsonParser) {
+    public HttpResidenceRepository(HttpRequester httpRequester, String serverUrl, JsonParser<Residence> jsonParser) {
         mHttpRequester = httpRequester;
         mServerUrl = serverUrl;
         mJsonParser = jsonParser;

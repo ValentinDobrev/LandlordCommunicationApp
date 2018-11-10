@@ -70,9 +70,10 @@ public class RepositoryModule {
     public RatingRepository ratingRepository(
             @Named("baseServerUrl") String baseServerUrl,
             HttpRequester httpRequester,
-            @Named("ratingParser") JsonParser<UserRating> ratingJsonParser
+            @Named("ratingParser") JsonParser<UserRating> ratingJsonParser,
+            @Named("RatingParser") JsonParser<Rating> ratingRecordJsonParser
     ) {
         String url = baseServerUrl + "/rating";
-        return new HttpRatingRepository(httpRequester, url, ratingJsonParser);
+        return new HttpRatingRepository(httpRequester, url, ratingJsonParser, ratingRecordJsonParser);
     }
 }

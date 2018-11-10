@@ -1,6 +1,7 @@
 package com.app.landlordcommunication.repositories.rating;
 
 import com.app.landlordcommunication.http.HttpRequester;
+import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.User;
 import com.app.landlordcommunication.models.UserRating;
 import com.app.landlordcommunication.parsers.base.JsonParser;
@@ -15,11 +16,13 @@ public class HttpRatingRepository implements RatingRepository {
     private final HttpRequester mHttpRequester;
     private final String mServerUrl;
     private final JsonParser<UserRating> mJsonParser;
+    private final JsonParser<Rating> mRatingRecordJsonParser;
 
-    public HttpRatingRepository (HttpRequester httpRequester, String serverUrl, JsonParser<UserRating> jsonParser) {
+    public HttpRatingRepository (HttpRequester httpRequester, String serverUrl, JsonParser<UserRating> jsonParser, JsonParser<Rating> ratingRecordJsonParser) {
         mHttpRequester = httpRequester;
         mServerUrl = serverUrl;
         mJsonParser = jsonParser;
+        mRatingRecordJsonParser = ratingRecordJsonParser;
     }
 
     @Override
@@ -38,5 +41,12 @@ public class HttpRatingRepository implements RatingRepository {
         }
 
         return result;
+    }
+
+    @Override
+    public Rating addRatingRecord(Rating ratingRecord) throws IOException {
+        String requestBody = mRatingRecordJsonParser.toJson(ratingRecord);
+        String responseBody = mHttpRequester.post(mServerUrl, requestBody);
+        return mRatingRecordJsonParser.fromJson(responseBody);
     }
 }

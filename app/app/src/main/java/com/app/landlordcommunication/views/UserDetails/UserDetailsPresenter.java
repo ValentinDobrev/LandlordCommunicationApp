@@ -1,10 +1,14 @@
 package com.app.landlordcommunication.views.UserDetails;
 
+import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.async.base.SchedulerProvider;
+import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.UserRating;
 import com.app.landlordcommunication.services.rating.base.RatingService;
+import com.app.landlordcommunication.services.residence.base.ResidenceService;
 import com.app.landlordcommunication.services.user.base.UserService;
 import com.app.landlordcommunication.models.User;
+
 
 import javax.inject.Inject;
 
@@ -22,7 +26,7 @@ public class UserDetailsPresenter implements UserDetailsContracts.Presenter {
     private int mUserId;
 
     @Inject
-    UserDetailsPresenter (UserService service, RatingService ratingService, SchedulerProvider schedulerProvider) {
+    UserDetailsPresenter(UserService service, RatingService ratingService, SchedulerProvider schedulerProvider) {
         mUserService = service;
         mRatingService = ratingService;
         mSchedulerProvider = schedulerProvider;
@@ -38,14 +42,15 @@ public class UserDetailsPresenter implements UserDetailsContracts.Presenter {
         mView.showLoading();
         Disposable observable = Observable.create((ObservableOnSubscribe<User>) emitter -> {
             User user = mUserService.getUserById(mUserId);
+
             emitter.onNext(user);
             emitter.onComplete();
         })
-        .subscribeOn(mSchedulerProvider.background())
-        .observeOn(mSchedulerProvider.ui())
-        .doOnError(mView::showError)
-        .doFinally(mView::hideLoading)
-        .subscribe(mView::showUser);
+                .subscribeOn(mSchedulerProvider.background())
+                .observeOn(mSchedulerProvider.ui())
+                .doOnError(mView::showError)
+                .doFinally(mView::hideLoading)
+                .subscribe(mView::showUser);
     }
 
     @Override
@@ -61,6 +66,27 @@ public class UserDetailsPresenter implements UserDetailsContracts.Presenter {
                 .doOnError(mView::showError)
                 .doFinally(mView::hideLoading)
                 .subscribe(mView::showRating);
+    }
+
+    @Override
+    public void updateUserRating(int ratingValue) {
+        mView.showLoading();
+        Disposable observable = Observable.create((ObservableOnSubscribe<Rating>) emitter -> {
+            Rating ratingRecord = new Rating(0, Constants.CURRENT_USER_ID, mUserId, ratingValue);
+            mRatingService.addRatingRecord(ratingRecord);
+            emitter.onNext(ratingRecord);
+            emitter.onComplete();
+        })
+                .subscribeOn(mSchedulerProvider.background())
+                .observeOn(mSchedulerProvider.ui())
+                .doOnError(mView::showError)
+                .doFinally(mView::hideLoading)
+                .subscribe();
+    }
+
+    @Override
+    public boolean checkIfUserIsTheSame() {
+        return Constants.CURRENT_USER_ID == mUserId;
     }
 
     @Override

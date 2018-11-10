@@ -1,21 +1,27 @@
 package com.app.landlordcommunication.views.UserDetails;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.Rating;
+import com.app.landlordcommunication.models.Residence;
 import com.app.landlordcommunication.models.User;
 import com.app.landlordcommunication.models.UserRating;
 
@@ -27,6 +33,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dagger.android.support.DaggerFragment;
 
 public class UserDetailsFragment extends DaggerFragment implements UserDetailsContracts.View {
@@ -61,15 +68,46 @@ public class UserDetailsFragment extends DaggerFragment implements UserDetailsCo
 
         ButterKnife.bind(this, view);
 
-        mRatingButton.setOnClickListener((click) -> openRatingDialog());
         mUserRating.setIsIndicator(true);
 
         return view;
     }
 
+    @OnClick({R.id.rating_button})
+    public void onRatingButtonClick() {
+        boolean sameUser = mPresenter.checkIfUserIsTheSame();
+        if (sameUser) {
+            Toast.makeText(getContext(), "You can't rate yourself!", Toast.LENGTH_LONG)
+                    .show();
+        } else {
+           openRatingDialog();
+        }
+    }
+
+
     private void openRatingDialog() {
-        RatingDialog ratingDialog = new RatingDialog();
-        ratingDialog.show(getFragmentManager(), "rating dialog");
+        final int[] givenRating = new int[1];
+        final AlertDialog.Builder popDialog = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View view = inflater.inflate(R.layout.dialog_rating, null);
+
+        popDialog.setTitle("Vote!");
+        popDialog.setView(view);
+
+        RatingBar ratingBar = getActivity().findViewById(R.id.dialog_rating_bar);
+
+        popDialog.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+            givenRating[0] = ratingBar.getProgress();
+            dialog.dismiss();
+        })
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    dialog.cancel();
+                });
+
+        popDialog.create();
+        popDialog.show();
+
+        int ratingValue = givenRating[0];
     }
 
     @Override
@@ -89,7 +127,7 @@ public class UserDetailsFragment extends DaggerFragment implements UserDetailsCo
 
     @Override
     public void showRating(UserRating rating) {
-        mUserRating.setRating((float)rating.getRating());
+        mUserRating.setRating((float) rating.getRating());
     }
 
     private Bitmap convertUserImageToBitmap(String userImage) {

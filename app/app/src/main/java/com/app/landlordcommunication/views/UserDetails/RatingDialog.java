@@ -1,7 +1,6 @@
 package com.app.landlordcommunication.views.UserDetails;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
@@ -19,6 +18,8 @@ public class RatingDialog extends AppCompatDialogFragment {
     @BindView(R.id.dialog_rating_bar)
     RatingBar mRatingBar;
 
+    private int mRating;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -30,10 +31,20 @@ public class RatingDialog extends AppCompatDialogFragment {
                 .setTitle("Rate user")
                 .setPositiveButton("Ok", (dialog, which) -> {
                     float rating = mRatingBar.getRating();
+                    int intRating = (int) rating;
+                    setRating(intRating);
                 });
 
         ButterKnife.bind(this, view);
 
         return builder.create();
+    }
+
+    public int getRating() {
+        return mRating;
+    }
+
+    private void setRating(int rating) {
+        mRating = rating;
     }
 }
