@@ -14,10 +14,14 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.time.ZonedDateTime;
+import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import static com.landlordcommunication.web.repositories.residence.SqlResidenceRepository.addOneMonth;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ResidenceServiceImplTests {
@@ -71,4 +75,21 @@ public class ResidenceServiceImplTests {
         Assert.assertEquals(result,residencesForUserIdOne);
     }
 
+    @Test
+    public void changeResidenceDates_UpdateRentDueDateOnPaymentByTenant(){
+        //Arrange
+        Residence residenceToUpdate = mockResidenceList.get(0);
+        residenceToUpdate.setDueDate(addOneMonth(residenceToUpdate.getDueDate()));
+        Mockito.when(mockResidenceRepository.changeResidenceDates(0))
+                .thenReturn(residenceToUpdate);
+
+        //Act
+        Residence result = residenceService.changeResidenceDates(0);
+
+        //Assert
+        Assert.assertEquals(result.getDueDate(), residenceToUpdate.getDueDate());
     }
+
+    }
+
+

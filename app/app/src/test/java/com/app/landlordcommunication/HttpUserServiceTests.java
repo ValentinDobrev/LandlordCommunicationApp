@@ -1,10 +1,15 @@
-package com.landlordcommunication.web;
+package com.app.landlordcommunication;
 
-import com.landlordcommunication.web.models.*;
-import com.landlordcommunication.web.repositories.user.UserRepository;
-import com.landlordcommunication.web.services.user.UserServiceImpl;
+import com.app.landlordcommunication.models.AuthorisationInfo;
+import com.app.landlordcommunication.models.LoginInfo;
+import com.app.landlordcommunication.models.Residence;
+import com.app.landlordcommunication.models.User;
+import com.app.landlordcommunication.repositories.user.base.UserRepository;
+import com.app.landlordcommunication.services.user.HttpUserService;
+
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -12,22 +17,29 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-import java.util.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
+
 @RunWith(MockitoJUnitRunner.class)
-public class UserServiceImplTests {
+public class HttpUserServiceTests {
 
     @Mock
     UserRepository mockUserRepository;
 
     @InjectMocks
-    UserServiceImpl mockUserService;
+    HttpUserService mockUserService;
 
-    private List<User> mockUserList;
+    private static List<User> mockUserList;
 
-    @Before
-    public void setUp() {
+
+    @BeforeClass
+    public static void setUp() {
 
         mockUserList = Arrays.asList(
                 new User(1, "email1", "firstName1", "surname1", true, 1000, "password1", "picture1"),
@@ -48,20 +60,17 @@ public class UserServiceImplTests {
         mockUserList.get(4).setResidences(mockResidences);
 
 
-        //Key: User ID, Value: Residence ID
-        /*mockMapUsersToResidences = new TreeMap<>();
+        /*//Key: User ID, Value: Residence ID
+        mockMapUsersToResidences = new TreeMap<>();
         mockMapUsersToResidences.put(1, 1);
         mockMapUsersToResidences.put(2, 1);
         mockMapUsersToResidences.put(3, 2);
         mockMapUsersToResidences.put(4, 2);
         mockMapUsersToResidences.put(5, 3);*/
 
-        MockitoAnnotations.initMocks(this);
-
     }
-
     @Test
-    public void getUserById_GetUserWithProvidedId_UserExistsInDb() {
+    public void getUserById_GetUserWithProvidedId_UserExistsInDb() throws IOException {
         //Arrange
         Mockito.when(mockUserRepository.getUserById(1))
                 .thenReturn(mockUserList.get(0));
@@ -74,7 +83,7 @@ public class UserServiceImplTests {
     }
 
     @Test
-    public void getUserById_GetNullObject_NoSuchUserInDb() {
+    public void getUserById_GetNullObject_NoSuchUserInDb() throws IOException {
         //Arrange
         Mockito.when(mockUserRepository.getUserById(20))
                 .thenReturn(null);
@@ -88,50 +97,7 @@ public class UserServiceImplTests {
     }
 
     @Test
-    public void getUserByEmail_GetAuthorisationInfoForUser_UserExistsInDb() {
-        //Arrange
-        LoginInfo loginInfo = new LoginInfo("email1", "password1");
-        Mockito.when(mockUserRepository.getUserByEmail(loginInfo))
-                .thenReturn(mockUserList.get(0));
-        //Act
-        AuthorisationInfo result = mockUserService.getUserByEmail(loginInfo);
-
-        //Assert
-        Assert.assertEquals(result.getError(), new AuthorisationInfo(1, true, "email1").getError());
-
-    }
-
-    @Test
-    public void getUserByEmail_GetAuthorisationInfoWithError_UserDoesNotExistInDb() {
-        //Arrange
-        LoginInfo loginInfo = new LoginInfo("email6", "password1");
-        Mockito.when(mockUserRepository.getUserByEmail(loginInfo))
-                .thenReturn(null);
-
-        //Act
-        AuthorisationInfo result = mockUserService.getUserByEmail(loginInfo);
-
-        //Assert
-        Assert.assertEquals(result.getError(), new AuthorisationInfo(-1, false, "No such username or password").getError());
-    }
-
-    @Test
-    public void getUserByEmail_GetAuthorisationInfoWithError_PasswordDoesNotMatch() {
-        //Arrange
-        LoginInfo loginInfo = new LoginInfo("email1", "password6");
-        Mockito.when(mockUserRepository.getUserByEmail(loginInfo))
-                .thenReturn(mockUserList.get(0));
-
-        //Act
-        AuthorisationInfo result = mockUserService.getUserByEmail(loginInfo);
-
-        //Assert
-        Assert.assertEquals(result.getError(), new AuthorisationInfo(-1, false, "No such username or password").getError());
-    }
-
-
-    @Test
-    public void getAllUsers_GetFullListOfUsers_RepositoryResponding() {
+    public void getAllUsers_GetFullListOfUsers_RepositoryResponding() throws IOException {
         //Arrange
         Mockito.when(mockUserRepository.getAllUsers()).thenReturn(mockUserList);
 
@@ -144,7 +110,7 @@ public class UserServiceImplTests {
     }
 
     @Test
-    public void getAllUsers_GetFullListOfUsers_RepositoryNotResponding() {
+    public void getAllUsers_GetFullListOfUsers_RepositoryNotResponding() throws IOException {
         //Arrange
         Mockito.when(mockUserRepository.getAllUsers()).thenReturn(null);
 
@@ -156,26 +122,8 @@ public class UserServiceImplTests {
 
     }
 
-
     @Test
-    public void getAllTenants_GetTenantsListWithoutLandlordUsers_RepositoryResponding() {
-        //Arrange
-        Mockito.when(mockUserRepository.getAllTenants())
-                .thenReturn(mockUserList.stream()
-                        .filter(User::getIsTenant)
-                        .collect(Collectors.toList()));
-
-        //Act
-        List<User> result = mockUserService.getAllTenants();
-
-        //Assert
-        Assert.assertEquals(4, result.size());
-        //Because there's only 1 landlord and 4 tenants out of 5 mock users
-
-    }
-
-    @Test
-    public void getAllTenants_GetLandlordsListWithoutTenantUsers_RepositoryResponding() {
+    public void getAllTenants_GetLandlordsListWithoutTenantUsers_RepositoryResponding() throws IOException {
         //Arrange
         Mockito.when(mockUserRepository.getAllLandlords())
                 .thenReturn(mockUserList.stream()
@@ -192,7 +140,7 @@ public class UserServiceImplTests {
     }
 
     @Test
-    public void getUsersByResidence_getAllUsersAssociatedWithGivenResidenceId_IdExists(){
+    public void getUsersByResidence_getAllUsersAssociatedWithGivenResidenceId_IdExists() throws IOException {
         //Arrange
         List<User> usersFromResidenceIdOne = new ArrayList<>();
         usersFromResidenceIdOne.add(mockUserList.get(0));
@@ -208,7 +156,7 @@ public class UserServiceImplTests {
     }
 
     @Test
-    public void getUsersByResidence_getAllUsersAssociatedWithGivenResidenceId_IdDoesNotExist(){
+    public void getUsersByResidence_getAllUsersAssociatedWithGivenResidenceId_IdDoesNotExist() throws IOException {
         //Arrange
         Mockito.when(mockUserRepository.getUsersByResidence(10))
                 .thenReturn(null);
@@ -221,30 +169,44 @@ public class UserServiceImplTests {
     }
 
     @Test
-    public void getRentNotificationInfo_getNotificationInfoListForAllUsersPerTheirResidences(){
+    public void getUserByEmail_GetAuthorisationInfoForUser_UserExistsInDb() {
         //Arrange
-        List<RentNotificationInfo> rentNotificationInfoList = new ArrayList<>();
-        for (User user : mockUserList) {
-            if(user.getIsTenant()) {
-                rentNotificationInfoList.add(new RentNotificationInfo(
-                        user.getEmail(),
-                        user.getResidences()));
-            }
-        }
-
-        Mockito.when(mockUserRepository.getAllTenants()).thenReturn(mockUserList.stream()
-                .filter(User::getIsTenant)
-                .collect(Collectors.toList()));
-
-
+        LoginInfo loginInfo = new LoginInfo("email1", "password1");
+        Mockito.when(mockUserRepository.getUserByEmail(loginInfo))
+                .thenReturn(new AuthorisationInfo(1, true, mockUserList.get(0).getEmail()));
         //Act
-        List<RentNotificationInfo> result = mockUserService.getRentNotificationInfo();
+        AuthorisationInfo result = mockUserService.getUserByEmail(loginInfo);
 
+                //Assert
+                Assert.assertEquals(result.getError(), new AuthorisationInfo(1, true, "email1").getError());
 
-        //Assert
-        Assert.assertEquals(rentNotificationInfoList.size(), result.size());
     }
 
+    @Test
+    public void getUserByEmail_GetAuthorisationInfoWithError_UserDoesNotExistInDb() {
+        //Arrange
+        LoginInfo loginInfo = new LoginInfo("email6", "password1");
+        Mockito.when(mockUserRepository.getUserByEmail(loginInfo))
+                .thenReturn(new AuthorisationInfo(-1, false, "No such username or password"));
 
+        //Act
+        AuthorisationInfo result = mockUserService.getUserByEmail(loginInfo);
 
+        //Assert
+        Assert.assertEquals(result.getError(),  "No such username or password");
+    }
+
+    @Test
+    public void getUserByEmail_GetAuthorisationInfoWithError_PasswordDoesNotMatch() {
+        //Arrange
+        LoginInfo loginInfo = new LoginInfo("email1", "password6");
+        Mockito.when(mockUserRepository.getUserByEmail(loginInfo))
+                .thenReturn(new AuthorisationInfo(-1, false, "No such username or password" ));
+
+        //Act
+        AuthorisationInfo result = mockUserService.getUserByEmail(loginInfo);
+
+        //Assert
+        Assert.assertEquals(result.getError(), "No such username or password");
+    }
 }
