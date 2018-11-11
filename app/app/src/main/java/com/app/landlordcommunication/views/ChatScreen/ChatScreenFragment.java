@@ -26,6 +26,8 @@ import com.github.clans.fab.FloatingActionMenu;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -160,7 +162,11 @@ public class ChatScreenFragment extends Fragment implements ChatScreenContracts.
         message.setSenderId(Constants.CURRENT_USER_ID);
         message.setResidenceId(Constants.TEST_RESIDENCE_ID);
         message.setText(messageText);
-        Date sentDate = Calendar.getInstance().getTime();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.getTimeZone();
+        cal.add(Calendar.HOUR_OF_DAY, 2);
+        Date sentDate = cal.getTime();
         message.setSentDate(sentDate);
 
         //mMessagesAdapter.notifyDataSetChanged();

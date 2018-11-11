@@ -105,7 +105,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             }
             mMessageTextView.setText(message.getText());
             Date date = message.getSentDate();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd-hh:ss");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH:mm");
             String dateSent = format.format(Date.parse(date.toString()));
             mTimeSentTextView.setText(dateSent);
             mMessage = message;
