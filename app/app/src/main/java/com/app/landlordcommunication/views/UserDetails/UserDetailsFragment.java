@@ -2,8 +2,10 @@ package com.app.landlordcommunication.views.UserDetails;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Base64;
@@ -53,7 +55,11 @@ public class UserDetailsFragment extends DaggerFragment implements UserDetailsCo
     @BindView(R.id.rating_button)
     Button mRatingButton;
 
+    @BindView(R.id.ud_rating_bar)
+    RatingBar mRatingBar;
+
     private UserDetailsContracts.Presenter mPresenter;
+    private int mGivenRating;
 
     @Inject
     public UserDetailsFragment() {
@@ -86,18 +92,31 @@ public class UserDetailsFragment extends DaggerFragment implements UserDetailsCo
 
 
     private void openRatingDialog() {
-        final int[] givenRating = new int[1];
-        final AlertDialog.Builder popDialog = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_rating, null);
+        final AlertDialog.Builder popDialog = new AlertDialog.Builder(getContext());
+
+        RatingBar ratingBar = new RatingBar(getContext());
+
+        LinearLayout layout = new LinearLayout(getContext());
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        layout.setLayoutParams(layoutParams);
+
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        ratingBar.setLayoutParams(lp);
+        ratingBar.setNumStars(5);
+        ratingBar.setStepSize(1);
+
+        layout.addView(ratingBar);
 
         popDialog.setTitle("Vote!");
-        popDialog.setView(view);
+        popDialog.setView(layout);
 
-        RatingBar ratingBar = getActivity().findViewById(R.id.dialog_rating_bar);
 
         popDialog.setPositiveButton(android.R.string.ok, (dialog, which) -> {
-            givenRating[0] = ratingBar.getProgress();
+            int rating = (int) ratingBar.getRating();
+            mPresenter.updateUserRating(rating);
             dialog.dismiss();
         })
                 .setNegativeButton("Cancel", (dialog, which) -> {
@@ -106,8 +125,6 @@ public class UserDetailsFragment extends DaggerFragment implements UserDetailsCo
 
         popDialog.create();
         popDialog.show();
-//TODO never used? the below might need to be inside a lambda
-        int ratingValue = givenRating[0];
     }
 
     @Override

@@ -79,7 +79,7 @@ public class MainMenuFragment extends Fragment implements MainMenuContracts.View
         userEmail = userEmail.replace(".", "");
         mUserEmail = userEmail;
 
-        String text = "Greetings, " + user.getFirstName();
+        String text = "Greetings, " + user.getFirstName() + "!";
         mUserNameTextView.setText(text);
     }
 
