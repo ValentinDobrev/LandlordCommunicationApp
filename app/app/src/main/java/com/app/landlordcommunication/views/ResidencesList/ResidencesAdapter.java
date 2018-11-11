@@ -1,4 +1,4 @@
-package com.app.landlordcommunication.views.HomePage;
+package com.app.landlordcommunication.views.ResidencesList;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

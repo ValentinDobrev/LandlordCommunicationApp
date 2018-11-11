@@ -1,4 +1,4 @@
-package com.app.landlordcommunication.views.HomePage;
+package com.app.landlordcommunication.views.ResidencesList;
 
 import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.async.base.SchedulerProvider;
@@ -15,15 +15,15 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.disposables.Disposable;
 
-public class HomePagePresenter implements HomePageContracts.Presenter {
+public class ResidencesListPresenter implements ResidencesListContracts.Presenter {
 
     private final ResidenceService mResidenceService;
     private final SchedulerProvider mSchedulerProvider;
-    private HomePageContracts.View mView;
+    private ResidencesListContracts.View mView;
     private final  UserService mUserService;
 
     @Inject
-    HomePagePresenter(ResidenceService mResidenceService, SchedulerProvider schedulerProvider, UserService mUserService) {
+    ResidencesListPresenter(ResidenceService mResidenceService, SchedulerProvider schedulerProvider, UserService mUserService) {
         this.mResidenceService = mResidenceService;
         this.mSchedulerProvider = schedulerProvider;
         this.mUserService = mUserService;
@@ -31,7 +31,7 @@ public class HomePagePresenter implements HomePageContracts.Presenter {
 
 
     @Override
-    public void subscribe(HomePageContracts.View view) {
+    public void subscribe(ResidencesListContracts.View view) {
         mView = view;
     }
 

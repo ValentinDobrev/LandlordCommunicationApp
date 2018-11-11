@@ -1,7 +1,7 @@
 package com.app.landlordcommunication.diconfig;
 
 import com.app.landlordcommunication.views.ChatScreen.ChatScreenActivity;
-import com.app.landlordcommunication.views.HomePage.HomePageActivity;
+import com.app.landlordcommunication.views.ResidencesList.ResidencesListActivity;
 import com.app.landlordcommunication.views.LoginScreen.LoginScreenActivity;
 import com.app.landlordcommunication.views.LoginScreen.RealLoginScreenActivity;
 import com.app.landlordcommunication.views.MainMenu.MainMenuActivity;
@@ -28,8 +28,8 @@ import dagger.android.ContributesAndroidInjector;
 
         //base
         @ActivityScoped
-        @ContributesAndroidInjector(modules = HomePageModule.class)
-        abstract HomePageActivity homePageActivity();
+        @ContributesAndroidInjector(modules = ResidencesListModule.class)
+        abstract ResidencesListActivity residencesListActivity();
 
         @ActivityScoped
         @ContributesAndroidInjector(modules = ResidenceOverviewModule.class)

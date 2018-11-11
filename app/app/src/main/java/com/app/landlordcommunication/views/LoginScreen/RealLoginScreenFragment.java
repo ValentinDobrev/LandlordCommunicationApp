@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.LoginInfo;
-import com.app.landlordcommunication.views.HomePage.HomePageActivity;
 import com.app.landlordcommunication.views.MainMenu.MainMenuActivity;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;

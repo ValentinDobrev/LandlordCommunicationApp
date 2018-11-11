@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.app.landlordcommunication.R;
-import com.app.landlordcommunication.views.HomePage.HomePageActivity;
+import com.app.landlordcommunication.views.ResidencesList.ResidencesListActivity;
 import com.app.landlordcommunication.views.UsersList.UsersListActivity;
 
 import javax.inject.Inject;
@@ -45,7 +45,7 @@ public class LoginScreenFragment extends Fragment {
 
     @OnClick({R.id.login_button})
     public void loginButtonClick(){
-        Intent intent = new Intent(getContext(), HomePageActivity.class);
+        Intent intent = new Intent(getContext(), ResidencesListActivity.class);
         startActivity(intent);
     }
 

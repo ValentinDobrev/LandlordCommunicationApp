@@ -1,15 +1,12 @@
 package com.app.landlordcommunication.views.ResidenceOverview;
 
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.R;
-import com.app.landlordcommunication.views.DrawerFragment;
 import com.app.landlordcommunication.views.base.BaseActivity;
 
 import javax.inject.Inject;
-
-import dagger.android.support.DaggerAppCompatActivity;
 
 public class ResidenceOverviewActivity extends BaseActivity {
 
@@ -30,6 +27,6 @@ public class ResidenceOverviewActivity extends BaseActivity {
 
     @Override
     public long getIdentifier() {
-        return 0;
+        return Constants.RESIDENCE_OVERVIEW_IDENTIFIER;
     }
 }

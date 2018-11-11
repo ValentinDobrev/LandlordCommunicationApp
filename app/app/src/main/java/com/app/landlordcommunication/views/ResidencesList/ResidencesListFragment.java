@@ -1,4 +1,4 @@
-package com.app.landlordcommunication.views.HomePage;
+package com.app.landlordcommunication.views.ResidencesList;
 
 
 import android.content.Intent;
@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
 import dagger.android.support.DaggerFragment;
 
 
-public class HomePageFragment extends DaggerFragment implements HomePageContracts.View, ResidencesAdapter.OnResidenceClickListener {
+public class ResidencesListFragment extends DaggerFragment implements ResidencesListContracts.View, ResidencesAdapter.OnResidenceClickListener {
 
     @BindView(R.id.rv_residences)
     RecyclerView mResidencesView;
@@ -41,11 +41,11 @@ public class HomePageFragment extends DaggerFragment implements HomePageContract
     ResidencesAdapter mResidencesAdapter;
 
     private LinearLayoutManager mLayoutManager;
-    private HomePageContracts.Presenter mPresenter;
+    private ResidencesListContracts.Presenter mPresenter;
 
 
     @Inject
-    public HomePageFragment() {
+    public ResidencesListFragment() {
         // Required empty public constructor
     }
 
@@ -85,7 +85,7 @@ public class HomePageFragment extends DaggerFragment implements HomePageContract
     }
 
     @Override
-    public void setPresenter(HomePageContracts.Presenter presenter) {
+    public void setPresenter(ResidencesListContracts.Presenter presenter) {
         mPresenter = presenter;
     }
 

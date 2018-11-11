@@ -1,4 +1,4 @@
-package com.app.landlordcommunication.views.HomePage;
+package com.app.landlordcommunication.views.ResidencesList;
 
 import com.app.landlordcommunication.models.Residence;
 import com.app.landlordcommunication.models.User;
@@ -6,7 +6,7 @@ import com.app.landlordcommunication.models.User;
 import java.util.List;
 
 
-public interface HomePageContracts {
+public interface ResidencesListContracts {
 
     interface View{
 

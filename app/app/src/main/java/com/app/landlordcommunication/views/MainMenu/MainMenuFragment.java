@@ -14,7 +14,7 @@ import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.Residence;
 import com.app.landlordcommunication.models.User;
-import com.app.landlordcommunication.views.HomePage.HomePageActivity;
+import com.app.landlordcommunication.views.ResidencesList.ResidencesListActivity;
 import com.app.landlordcommunication.views.LoginScreen.RealLoginScreenActivity;
 import com.app.landlordcommunication.views.UsersList.UsersListActivity;
 
@@ -85,7 +85,7 @@ public class MainMenuFragment extends Fragment implements MainMenuContracts.View
 
     @Override
     public void showHome(List<Residence> residences) {
-        Intent intent = new Intent(getContext(), HomePageActivity.class);
+        Intent intent = new Intent(getContext(), ResidencesListActivity.class);
         startActivity(intent);
     }
 

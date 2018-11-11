@@ -2,6 +2,7 @@ package com.app.landlordcommunication.views.MainMenu;
 
 import android.os.Bundle;
 
+import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.R;
 
 import javax.inject.Inject;
@@ -30,5 +31,9 @@ public class MainMenuActivity extends DaggerAppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.main_menu_fragment, mMainMenuFragment)
                 .commit();
+    }
+
+    public long getIdentifier() {
+        return Constants.MAIN_MENU_IDENTIFIER;
     }
 }
