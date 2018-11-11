@@ -1,5 +1,6 @@
 package com.app.landlordcommunication.views.ChatScreen;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +29,7 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
@@ -41,6 +45,9 @@ import butterknife.ButterKnife;
 
 public class ChatScreenFragment extends Fragment implements ChatScreenContracts.View,
         MessagesAdapter.OnMessageClickListener {
+
+    public static final int REQUEST_IMAGE_CAPTURE = 1337;
+    private static final int CAMERA_REQUEST = 1888;
 
     @BindView(R.id.list)
     RecyclerView mMessagesView;
@@ -69,6 +76,10 @@ public class ChatScreenFragment extends Fragment implements ChatScreenContracts.
 
     @BindView(R.id.typeMessage_EditText)
     TextView mEditText;
+
+    @BindView(R.id.imageButton)
+    ImageButton cameraButton;
+
 
     @Inject
     public ChatScreenFragment() {
@@ -133,7 +144,27 @@ public class ChatScreenFragment extends Fragment implements ChatScreenContracts.
         };
         refreshHandler.postDelayed(runnable, 1000);
 
+        cameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+//                startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
+                takePicture();
+            }
+        });
+
         return view;
+    }
+
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
+            Bitmap picture = (Bitmap) data.getExtras().get("data");//this is your bitmap image and now you can do whatever you want with this
+//            imageView.setImageBitmap(picture); //for example I put bmp in an ImageView
+            createMessageForPicture(picture);
+        }
+
     }
 
     public int getMessagesCounter() {
@@ -155,6 +186,30 @@ public class ChatScreenFragment extends Fragment implements ChatScreenContracts.
     @Override
     public void showCount(MessagesCounter messagesCounter) {
         setMessagesCounter(messagesCounter.getCounter());
+    }
+
+    @Override
+    public void createMessageForPicture(Bitmap bitmap) {
+        Message message = new Message();
+        message.setReceiverId(Constants.TEST_CHATTEE_USER_ID);
+        message.setSenderId(Constants.CURRENT_USER_ID);
+        message.setResidenceId(Constants.TEST_RESIDENCE_ID);
+        message.setText("THIS IS A PICTURE. CLICK TO OPEN IT!");
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 25, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream.toByteArray();
+        String pictureString = Base64.encodeToString(byteArray, Base64.DEFAULT);
+        message.setPicture(pictureString);
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.getTimeZone();
+        cal.add(Calendar.HOUR_OF_DAY, 2);
+        Date sentDate = cal.getTime();
+        message.setSentDate(sentDate);
+
+        mPresenter.sendMessage(message);
     }
 
     @Override
@@ -241,5 +296,9 @@ public class ChatScreenFragment extends Fragment implements ChatScreenContracts.
         if(message.getPicture()!=null) {
             mPresenter.selectMessage(message);
         }
+    }
+    private void takePicture(){
+        Intent cameraIntent = new  Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
 }

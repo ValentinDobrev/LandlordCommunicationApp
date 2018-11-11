@@ -48,7 +48,15 @@
             <!--app:miniFabBackgroundTint="@android:color/white"-->
             <!--app:miniFabDrawableTint="?attr/colorPrimaryDark"-->
             <!--app:miniFabTitleTextColor="?attr/colorPrimaryDark" />-->
-
+        <ImageButton
+            android:layout_margin="15dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/camera_icon"
+            android:background="@drawable/circle"
+            android:id="@+id/imageButton"
+            android:layout_alignParentRight="true"
+            android:layout_above="@id/typeMessage_EditText"/>
         <com.github.clans.fab.FloatingActionMenu
             android:id="@+id/material_design_android_floating_action_menu"
             android:layout_width="wrap_content"

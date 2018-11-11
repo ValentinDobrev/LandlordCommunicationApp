@@ -1,5 +1,7 @@
 package com.app.landlordcommunication.views.ChatScreen;
 
+import android.graphics.Bitmap;
+
 import com.app.landlordcommunication.models.Message;
 import com.app.landlordcommunication.models.MessagesCounter;
 
@@ -22,6 +24,8 @@ public interface ChatScreenContracts {
         void hideLoading();
 
         void createMessage(String messageText);
+
+        void createMessageForPicture(Bitmap bitmap);
 
         void showMessage(Message message);
 
