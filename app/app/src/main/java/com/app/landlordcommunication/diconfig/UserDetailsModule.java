@@ -1,6 +1,5 @@
 package com.app.landlordcommunication.diconfig;
 
-import com.app.landlordcommunication.views.UserDetails.RatingDialog;
 import com.app.landlordcommunication.views.UserDetails.UserDetailsContracts;
 import com.app.landlordcommunication.views.UserDetails.UserDetailsFragment;
 import com.app.landlordcommunication.views.UserDetails.UserDetailsPresenter;

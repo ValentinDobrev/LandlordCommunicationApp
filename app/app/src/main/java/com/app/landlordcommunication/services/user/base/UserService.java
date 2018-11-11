@@ -1,7 +1,5 @@
 package com.app.landlordcommunication.services.user.base;
 
-import android.util.Log;
-
 import com.app.landlordcommunication.models.AuthorisationInfo;
 import com.app.landlordcommunication.models.LoginInfo;
 import com.app.landlordcommunication.models.Rating;

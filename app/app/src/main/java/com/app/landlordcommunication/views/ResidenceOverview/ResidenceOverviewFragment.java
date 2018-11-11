@@ -36,9 +36,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ResidenceOverviewFragment extends Fragment implements ResidenceOverviewContracts.View,
         UsersAdapter.OnUserClickListener {
 

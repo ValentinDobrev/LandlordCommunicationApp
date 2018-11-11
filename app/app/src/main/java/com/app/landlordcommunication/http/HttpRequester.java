@@ -1,7 +1,5 @@
 package com.app.landlordcommunication.http;
 
-import com.app.landlordcommunication.models.User;
-
 import java.io.IOException;
 
 public interface HttpRequester {
