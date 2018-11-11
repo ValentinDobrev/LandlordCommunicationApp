@@ -27,4 +27,9 @@ public class ResidenceRestController {
     public Residence changeResidenceDates(@PathVariable int id){
         return residenceService.changeResidenceDates(id);
     }
+
+    @GetMapping("/byID/{id}")
+    public Residence getResidencesById(@PathVariable int id) {
+        return residenceService.getResidenceById(id);
+    }
 }

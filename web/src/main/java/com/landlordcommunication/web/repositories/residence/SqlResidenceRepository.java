@@ -71,6 +71,25 @@ public class SqlResidenceRepository implements ResidenceRepository {
         return  residence;
     }
 
+    @Override
+    public Residence getResidenceById(int residenceId) {
+        Residence result;
+
+        try (
+                Session session = sessionFactory.openSession();
+        ) {
+            session.beginTransaction();
+            result = session.createQuery("from Residence where residenceId = :residenceId", Residence.class)
+                    .setParameter("residenceId", residenceId)
+                    .uniqueResult();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
+
+        return result;
+    }
+
     public static Date addOneMonth(Date date)
     {
         Calendar cal = Calendar.getInstance();

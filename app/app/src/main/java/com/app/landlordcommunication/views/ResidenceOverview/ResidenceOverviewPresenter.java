@@ -52,6 +52,20 @@ public class ResidenceOverviewPresenter implements ResidenceOverviewContracts.Pr
     }
 
     @Override
+    public void loadResidence(int residenceId) {
+        mView.showLoading();
+        Disposable observable = Observable.create((ObservableOnSubscribe<Residence>) emitter -> {
+            Residence residence = mResidenceService.getResidenceById(residenceId);
+            emitter.onNext(residence);
+            emitter.onComplete();
+        }).subscribeOn(mSchedulerProvider.background())
+                .observeOn(mSchedulerProvider.ui())
+                .doOnError(error -> mView.showError(error))
+                .doFinally(mView::hideLoading)
+                .subscribe(mView::showLoadedResidence);
+    }
+
+    @Override
     public void loadCorrectDates() {
         Disposable observable = Observable.create((ObservableOnSubscribe<Residence>) emitter ->{
             Residence residence = mResidenceService.changeResidenceDates(Constants.TEST_RESIDENCE_ID);

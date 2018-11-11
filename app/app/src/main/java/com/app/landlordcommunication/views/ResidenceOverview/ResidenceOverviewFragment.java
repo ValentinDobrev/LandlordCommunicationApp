@@ -39,7 +39,7 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ResidenceOverviewFragment extends Fragment     implements ResidenceOverviewContracts.View,
+public class ResidenceOverviewFragment extends Fragment implements ResidenceOverviewContracts.View,
         UsersAdapter.OnUserClickListener {
 
     @BindView(R.id.imageView_residenceOverview)
@@ -79,6 +79,7 @@ public class ResidenceOverviewFragment extends Fragment     implements Residence
     }
 
     Residence testResidence;
+    private int mResidenceId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,6 +94,8 @@ public class ResidenceOverviewFragment extends Fragment     implements Residence
 
 
         Intent intent = getActivity().getIntent();
+
+        mResidenceId = intent.getIntExtra("residenceId", 0);
         String residencePicture = intent.getStringExtra("residencePicture");
         InputStream stream = new ByteArrayInputStream(Base64.decode(residencePicture.getBytes(), Base64.DEFAULT));
         Bitmap bitmap = BitmapFactory.decodeStream(stream);
@@ -141,6 +144,14 @@ public class ResidenceOverviewFragment extends Fragment     implements Residence
     @Override
     public void showResidence(Residence residence) {
         setTestResidence(residence);
+    }
+
+    @Override
+    public void showLoadedResidence(Residence residence) {
+        Date date = residence.getDueDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+        String newDate = sdf.format(Date.parse(date.toString()));
+        mDueDateText.setText(newDate);
     }
 
     public Residence getTestResidence() {
@@ -207,9 +218,11 @@ public class ResidenceOverviewFragment extends Fragment     implements Residence
     public void OnBtnClick(){
 //        mPresenter.selectPayBtn();
         mPresenter.loadCorrectDates();
+        mPresenter.loadResidence(mResidenceId);
+
 //        mDueDateText.setText("");
-        Residence r = getTestResidence();
-        Date d = r.getDueDate();
-        mDueDateText.setText(d.toString());
+//        Residence r = getTestResidence();
+//        Date d = r.getDueDate();
+//        mDueDateText.setText(d.toString());
     }
 }

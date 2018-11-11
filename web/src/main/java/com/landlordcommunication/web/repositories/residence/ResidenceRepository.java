@@ -9,4 +9,5 @@ public interface ResidenceRepository {
     List<Residence> getResidencesByUser(int userId);
 
     Residence changeResidenceDates(int residenceId);
+    Residence getResidenceById(int residenceId);
 }

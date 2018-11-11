@@ -26,6 +26,8 @@ public interface ResidenceOverviewContracts {
 
         void showResidence(Residence residence);
 
+        void showLoadedResidence(Residence residence);
+
         //void addUsers(List<User> users);
 
     }
@@ -35,6 +37,8 @@ public interface ResidenceOverviewContracts {
         void subscribe(ResidenceOverviewContracts.View view);
 
         void loadUsers();
+
+        void loadResidence(int residenceId);
 
         void selectUser(User user);
 

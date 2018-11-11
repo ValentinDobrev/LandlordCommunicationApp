@@ -9,4 +9,5 @@ public interface ResidenceService {
     List<Residence> getResidencesByUser(int userId) throws IOException;
 
     Residence changeResidenceDates(int residenceId) throws IOException;
+    Residence getResidenceById(int residenceId) throws IOException;
 }

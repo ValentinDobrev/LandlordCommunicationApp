@@ -127,6 +127,7 @@ public class ResidencesListFragment extends DaggerFragment implements Residences
     public void showResidenceOverview(Residence residence) {
         Constants.TEST_RESIDENCE_ID = residence.getResidenceId();
         Intent intent = new Intent(getContext(), ResidenceOverviewActivity.class);
+        intent.putExtra("residenceId", residence.getResidenceId());
         intent.putExtra("residenceAddress", residence.getAddress());
         intent.putExtra("residenceRent", residence.getRent());
         intent.putExtra("residenceDueDate", residence.getDueDate());

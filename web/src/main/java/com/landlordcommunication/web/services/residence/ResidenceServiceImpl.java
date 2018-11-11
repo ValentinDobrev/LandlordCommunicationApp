@@ -26,5 +26,10 @@ public class ResidenceServiceImpl implements ResidenceService {
     public Residence changeResidenceDates(int residenceId) {
         return repository.changeResidenceDates(residenceId);
     }
+
+    @Override
+    public Residence getResidenceById(int residenceId) {
+        return repository.getResidenceById(residenceId);
+    }
     //TODO move getAllResidences() to this service
 }
