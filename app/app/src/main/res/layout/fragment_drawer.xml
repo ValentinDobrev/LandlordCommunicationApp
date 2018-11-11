@@ -22,13 +22,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/drawer_toolbar"
         android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@id/drawer_toolbar"
         android:padding="10dp"
         android:textAlignment="center"
-        android:textSize="25sp"
         android:textAllCaps="true"
         android:textColor="#000000"
+        android:textSize="25sp"
         android:textStyle="bold" />
 
 

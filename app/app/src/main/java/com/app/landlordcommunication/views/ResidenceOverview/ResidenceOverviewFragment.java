@@ -215,14 +215,9 @@ public class ResidenceOverviewFragment extends Fragment implements ResidenceOver
     }
 
     @OnClick(R.id.button_payRent)
-    public void OnBtnClick(){
-//        mPresenter.selectPayBtn();
+    public void OnBtnClick() {
         mPresenter.loadCorrectDates();
         mPresenter.loadResidence(mResidenceId);
-
-//        mDueDateText.setText("");
-//        Residence r = getTestResidence();
-//        Date d = r.getDueDate();
-//        mDueDateText.setText(d.toString());
+        Toast.makeText(getContext(), "You have paid your rent.", Toast.LENGTH_LONG).show();
     }
 }

@@ -8,14 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.User;
-import com.app.landlordcommunication.models.UserRating;
 import com.app.landlordcommunication.views.UserDetails.UserDetailsActivity;
 
 import java.util.List;
@@ -24,7 +22,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnTextChanged;
 import dagger.android.support.DaggerFragment;
 
 public class UsersListFragment extends DaggerFragment implements UsersListContracts.View, UsersAdapter.OnUserClickListener {
@@ -34,9 +31,6 @@ public class UsersListFragment extends DaggerFragment implements UsersListContra
 
     @BindView(R.id.ul_loading)
     ProgressBar mLoadingView;
-
-    @BindView(R.id.et_filter)
-    EditText mFilterEditText;
 
     @Inject
     UsersAdapter mUsersAdapter;
@@ -121,11 +115,5 @@ public class UsersListFragment extends DaggerFragment implements UsersListContra
     @Override
     public void onClick(User user) {
         mPresenter.selectUser(user);
-    }
-
-    @OnTextChanged(R.id.et_filter)
-    public void onTextChanged() {
-        String pattern = mFilterEditText.getText().toString();
-        mPresenter.filterUsers(pattern);
     }
 }

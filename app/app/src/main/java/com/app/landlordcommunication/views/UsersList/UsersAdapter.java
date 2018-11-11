@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.Rating;
 import com.app.landlordcommunication.models.User;
-import com.app.landlordcommunication.models.UserRating;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
