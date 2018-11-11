@@ -7,11 +7,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.R;
+import com.app.landlordcommunication.views.ChatScreen.ChatScreenActivity;
 import com.app.landlordcommunication.views.MainMenu.MainMenuActivity;
+import com.app.landlordcommunication.views.ResidenceOverview.ResidenceOverviewActivity;
 import com.app.landlordcommunication.views.ResidencesList.ResidencesListActivity;
+import com.app.landlordcommunication.views.UserDetails.UserDetailsActivity;
 import com.app.landlordcommunication.views.UsersList.UsersListActivity;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -26,6 +30,9 @@ public class DrawerFragment extends android.support.v4.app.Fragment {
 
     @BindView(R.id.drawer_toolbar)
     Toolbar mDrawer;
+
+    @BindView(R.id.drawer_title)
+    TextView mDrawerTitle;
 
     public DrawerFragment() {
         // Required empty public constructor
@@ -42,10 +49,9 @@ public class DrawerFragment extends android.support.v4.app.Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_drawer, container, false);
 
-
         ButterKnife.bind(this, view);
         setupDrawer();
-
+        setTitle();
 
         return view;
 
@@ -86,21 +92,6 @@ public class DrawerFragment extends android.support.v4.app.Fragment {
 
                     int identifierToInt = (int) identifier;
 
-//                    if (identifier == Constants.RESIDENCES_LIST_IDENTIFIER) {
-//                        //the below checks if the drawer fragment is in the activity that is being clicked on
-//                        //in a very clunky way, but the only one I could think of, might need optimisation or at least
-//                        //moving the if-else logic in a method.
-//                        if (getActivity().getClass().equals(ResidencesListActivity.class))
-//                            return false;
-//
-//                        else {
-//                            Intent intent = new Intent(getContext(), ResidencesListActivity.class);
-//
-//                            startActivity(intent);
-//                            return true;
-//                        }
-//                    }
-
                     switch (identifierToInt) {
 
                         case Constants.MAIN_MENU_IDENTIFIER:
@@ -138,6 +129,25 @@ public class DrawerFragment extends android.support.v4.app.Fragment {
 
                 })
                 .build();
+    }
+
+    private void setTitle() {
+
+        if (getActivity().getClass().equals(ResidenceOverviewActivity.class)) {
+            mDrawerTitle.setText("My Residence");
+        }
+        else if (getActivity().getClass().equals(ChatScreenActivity.class)) {
+            mDrawerTitle.setText("Chat");
+        }
+        else if (getActivity().getClass().equals(ResidencesListActivity.class)) {
+            mDrawerTitle.setText("My Residences");
+        }
+        else if (getActivity().getClass().equals(UsersListActivity.class)) {
+            mDrawerTitle.setText("All Users");
+        }
+        else if (getActivity().getClass().equals(UserDetailsActivity.class)) {
+            mDrawerTitle.setText("User Details");
+        }
     }
 
 }

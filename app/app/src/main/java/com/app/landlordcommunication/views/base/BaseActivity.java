@@ -29,6 +29,5 @@ public abstract class BaseActivity extends DaggerAppCompatActivity  {
     }
 
     public abstract long getIdentifier();
-
 }
 

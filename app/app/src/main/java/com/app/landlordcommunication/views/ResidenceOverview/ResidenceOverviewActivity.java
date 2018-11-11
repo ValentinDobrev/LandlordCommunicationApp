@@ -21,8 +21,9 @@ public class ResidenceOverviewActivity extends BaseActivity {
 
         setupDrawer();
 
-        setupMainFragment(mResidenceOverviewFragment);
+        setTitle("My Residence");
 
+        setupMainFragment(mResidenceOverviewFragment);
     }
 
     @Override
