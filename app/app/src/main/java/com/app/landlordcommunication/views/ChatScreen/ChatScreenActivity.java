@@ -11,6 +11,8 @@ import javax.inject.Inject;
 
 public class ChatScreenActivity extends BaseActivity {
 
+    public static boolean isActive = false;
+
     @Inject
     ChatScreenFragment mChatScreenFragment;
 
@@ -21,6 +23,18 @@ public class ChatScreenActivity extends BaseActivity {
 
         setupDrawer();
         setupMainFragment(mChatScreenFragment);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        isActive = true;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        isActive = false;
     }
 
     @Override
