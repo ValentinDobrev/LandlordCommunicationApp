@@ -98,5 +98,10 @@ public class ChatScreenPresenter implements ChatScreenContracts.Presenter{
         }
     }
 
+    @Override
+    public void selectMessage(Message message) {
+        mView.showPicture(message);
+    }
+
 
 }

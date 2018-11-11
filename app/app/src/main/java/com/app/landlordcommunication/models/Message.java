@@ -9,7 +9,7 @@ public class Message implements Serializable {
 
     private String text;
 
-    private byte[] picture;
+    private String picture;
 
     private Date sentDate;
 
@@ -23,7 +23,7 @@ public class Message implements Serializable {
 
     }
 
-    public Message(int messageId, String text, byte[] picture, Date sentDate, int senderId, int receiverId, int residenceId) {
+    public Message(int messageId, String text, String picture, Date sentDate, int senderId, int receiverId, int residenceId) {
         setMessageId(messageId);
         setText(text);
         setPicture(picture);
@@ -49,11 +49,11 @@ public class Message implements Serializable {
         this.text = text;
     }
 
-    public byte[] getPicture() {
+    public String getPicture() {
         return picture;
     }
 
-    public void setPicture(byte[] picture) {
+    public void setPicture(String picture) {
         this.picture = picture;
     }
 

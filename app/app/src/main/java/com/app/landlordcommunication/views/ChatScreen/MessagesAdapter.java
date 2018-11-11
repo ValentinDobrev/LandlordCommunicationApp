@@ -32,6 +32,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.disposables.Disposable;
@@ -42,6 +43,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
     private List<Message> mMessages;
     public static Bitmap chatteePictureBitmap;
     public static Bitmap chatterPictureBitmap;
+    private OnMessageClickListener mOnMessageClickListener;
 
     @Inject
     public MessagesAdapter() {
@@ -57,7 +59,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
     }
 
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position){
-        //holder.setOnClickListener(mOnUserClickListener);
+        holder.setOnClickListener(mOnMessageClickListener);
         holder.bind(mMessages.get(position));
     }
 
@@ -78,6 +80,14 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         mMessages.addAll(messages);
     }
 
+    public void setOnMessageClickListener(OnMessageClickListener onMessageClickListener){
+        this.mOnMessageClickListener = onMessageClickListener;
+    }
+
+    interface OnMessageClickListener {
+        void onClick(Message message);
+    }
+
     public static class MessageViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.message_textView)
         TextView mMessageTextView;
@@ -89,6 +99,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         ImageView mUserImg;
 
         private Message mMessage;
+        private OnMessageClickListener mOnClickListener;
 
         MessageViewHolder(View view) {
             super(view);
@@ -110,6 +121,16 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             mTimeSentTextView.setText(dateSent);
             mMessage = message;
         }
+
+        @OnClick
+        public void OnClick(){
+            mOnClickListener.onClick(mMessage);
+        }
+
+        public void setOnClickListener(OnMessageClickListener onClickListener){
+            mOnClickListener = onClickListener;
+        }
+
     }
 
     void setChatteePictureBitmap(Bitmap bitmap){

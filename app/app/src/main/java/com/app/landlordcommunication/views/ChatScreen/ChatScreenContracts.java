@@ -27,6 +27,8 @@ public interface ChatScreenContracts {
 
         void showCount(MessagesCounter messagesCounter);
 
+        void showPicture(Message message);
+
         //void addMessage(List<Message> messages);
 
     }
@@ -40,6 +42,8 @@ public interface ChatScreenContracts {
         void sendMessage(Message message);
 
         void loadMessagesCount();
+
+        void selectMessage(Message message);
     }
 
 }

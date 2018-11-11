@@ -21,6 +21,7 @@ import com.app.landlordcommunication.Constants;
 import com.app.landlordcommunication.R;
 import com.app.landlordcommunication.models.Message;
 import com.app.landlordcommunication.models.MessagesCounter;
+import com.app.landlordcommunication.views.LoginScreen.LoginScreenActivity;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
@@ -38,7 +39,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class ChatScreenFragment extends Fragment implements ChatScreenContracts.View {
+public class ChatScreenFragment extends Fragment implements ChatScreenContracts.View,
+        MessagesAdapter.OnMessageClickListener {
 
     @BindView(R.id.list)
     RecyclerView mMessagesView;
@@ -84,6 +86,7 @@ public class ChatScreenFragment extends Fragment implements ChatScreenContracts.
         View view = inflater.inflate(R.layout.fragment_chat_screen, container, false);
 
         ButterKnife.bind(this, view);
+        mMessagesAdapter.setOnMessageClickListener(this);
 
         Intent intent = getActivity().getIntent();
         String chatteePicture = intent.getStringExtra("chatteePicture");
@@ -226,4 +229,17 @@ public class ChatScreenFragment extends Fragment implements ChatScreenContracts.
         mLoadingView.setVisibility(View.GONE);
     }
 
+    @Override
+    public void showPicture(Message message) {
+        Intent intent = new Intent(getContext(), PictureActivity.class);
+        intent.putExtra("messagePicture", message.getPicture());
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(Message message) {
+        if(message.getPicture()!=null) {
+            mPresenter.selectMessage(message);
+        }
+    }
 }
