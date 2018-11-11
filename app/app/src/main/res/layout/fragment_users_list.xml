@@ -16,17 +16,12 @@
             android:layout_centerInParent="true"
             android:visibility="gone" />
 
-        <EditText
-            android:id="@+id/et_filter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter to search" />
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_users"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/et_filter"
+            android:animateLayoutChanges="false"
+            android:background="#055179"
             android:padding="4dp" />
     </RelativeLayout>
 

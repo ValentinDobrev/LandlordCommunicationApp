@@ -24,8 +24,6 @@ public interface UserService {
 
     List<User> getUsersByResidence(int residenceId) throws IOException;
 
-    List<User> getFilteredUsers(String pattern) throws IOException;
-
     List<Rating> getUserRatings(int userId) throws IOException;
 
     void payRentFromTenantToLandlord(int tenantId, int landlordId, int residenceId) throws IOException;

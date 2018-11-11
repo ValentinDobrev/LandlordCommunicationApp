@@ -52,21 +52,6 @@ public class UsersListPresenter implements UsersListContracts.Presenter {
                 .subscribe(this::presentUsersToView);
     }
 
-    @Override
-    public void filterUsers(String pattern) {
-        mView.showLoading();
-        Disposable observable = Observable.create((ObservableOnSubscribe<List<User>>) emitter -> {
-            List<User> users = mUserService.getFilteredUsers(pattern);
-            emitter.onNext(users);
-            emitter.onComplete();
-        })
-                .subscribeOn(mSchedulerProvider.background())
-                .observeOn(mSchedulerProvider.ui())
-                .doOnError(error -> mView.showError(error))
-                .doFinally(mView::hideLoading)
-                .subscribe(this::presentUsersToView);
-    }
-
     private void presentUsersToView(List<User> users) {
         if (users.isEmpty()) {
             mView.showEmptyList();

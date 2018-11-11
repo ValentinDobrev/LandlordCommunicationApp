@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".views.LoginScreen.LoginScreenActivity">
+        <activity android:name=".views.LoginScreen.RealLoginScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +23,6 @@
         <activity android:name=".views.ResidenceOverview.ResidenceOverviewActivity" />
         <activity android:name=".views.UsersList.UsersListActivity" />
         <activity android:name=".views.UserDetails.UserDetailsActivity" />
-        <activity android:name=".views.LoginScreen.RealLoginScreenActivity" />
         <activity android:name=".views.ChatScreen.ChatScreenActivity" />
 
         <!-- Firebase Service -->

@@ -32,7 +32,5 @@ public interface UsersListContracts {
 
         void selectUser(User user);
 
-        void filterUsers(String pattern);
-
     }
 }

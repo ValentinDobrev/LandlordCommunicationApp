@@ -3,6 +3,7 @@ package com.app.landlordcommunication.views.UserDetails;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.Visibility;
@@ -55,11 +56,7 @@ public class UserDetailsFragment extends DaggerFragment implements UserDetailsCo
     @BindView(R.id.rating_button)
     Button mRatingButton;
 
-    @BindView(R.id.ud_rating_bar)
-    RatingBar mRatingBar;
-
     private UserDetailsContracts.Presenter mPresenter;
-    private int mGivenRating;
 
     @Inject
     public UserDetailsFragment() {
@@ -96,13 +93,14 @@ public class UserDetailsFragment extends DaggerFragment implements UserDetailsCo
 
         RatingBar ratingBar = new RatingBar(getContext());
 
-        LinearLayout layout = new LinearLayout(getContext());
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        RelativeLayout layout = new RelativeLayout(getContext());
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         layout.setLayoutParams(layoutParams);
 
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+        lp.addRule(RelativeLayout.CENTER_IN_PARENT);
 
         ratingBar.setLayoutParams(lp);
         ratingBar.setNumStars(5);

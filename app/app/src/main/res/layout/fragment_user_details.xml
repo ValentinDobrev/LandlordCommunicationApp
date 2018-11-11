@@ -7,7 +7,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#055179">
 
         <ImageView
             android:id="@+id/ud_user_image"
@@ -30,25 +31,20 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:hint="Name"
-            android:textColor="@color/md_black_1000"
+            android:textColor="@color/md_white_1000"
             android:textSize="30sp" />
 
         <RatingBar
             android:id="@+id/user_rating"
-            android:focusable="false"
-            android:clickable="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="162dp" />
-
-        <RatingBar
-            android:id="@+id/ud_rating_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="gone"/>
+            android:layout_marginBottom="162dp"
+            android:clickable="false"
+            android:focusable="false"
+            android:progressBackgroundTint="@color/md_grey_500"
+            android:progressTint="@color/md_yellow_600" />
 
         <Button
             android:id="@+id/rating_button"
@@ -57,10 +53,10 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="53dp"
-            android:background="#4CAF50"
-            android:drawableRight="@drawable/smileyr"
+            android:background="@color/md_yellow_600"
+            android:drawableRight="@drawable/smiley_icon"
             android:text="Rate me"
-            android:textColor="@color/md_black_1000"
+            android:textColor="#615d5d"
             android:textSize="20sp"
             android:textStyle="bold|italic" />
 
