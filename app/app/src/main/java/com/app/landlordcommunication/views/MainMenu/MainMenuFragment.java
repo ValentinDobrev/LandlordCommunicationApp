@@ -17,6 +17,7 @@ import com.app.landlordcommunication.models.User;
 import com.app.landlordcommunication.views.ResidencesList.ResidencesListActivity;
 import com.app.landlordcommunication.views.LoginScreen.RealLoginScreenActivity;
 import com.app.landlordcommunication.views.UsersList.UsersListActivity;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.List;
 
@@ -41,6 +42,7 @@ public class MainMenuFragment extends Fragment implements MainMenuContracts.View
     Button mLogoutButton;
 
     private MainMenuContracts.Presenter mPresenter;
+    private String mUserEmail;
 
     @Inject
     public MainMenuFragment() {
@@ -72,8 +74,12 @@ public class MainMenuFragment extends Fragment implements MainMenuContracts.View
 
     @Override
     public void showUser(User user) {
-        String text = "Greetings, " + user.getFirstName() + " " + user.getSurname();
-        int a = 2;
+        String userEmail = user.getEmail();
+        userEmail = userEmail.replace("@", "");
+        userEmail = userEmail.replace(".", "");
+        mUserEmail = userEmail;
+
+        String text = "Greetings, " + user.getFirstName();
         mUserNameTextView.setText(text);
     }
 
@@ -109,6 +115,8 @@ public class MainMenuFragment extends Fragment implements MainMenuContracts.View
     public void logoutButtonClick() {
         Constants.CURRENT_USER_ID = -1;
         //TODO unsubscribe from user's notifications topic
+        FirebaseMessaging.getInstance()
+                .unsubscribeFromTopic(mUserEmail);
         showLoginMenu();
     }
 }
