@@ -22,15 +22,16 @@ This is a full stack development exercise. The project includes a web back end, 
 
 ### Login as a landlord or tenant
 
-.. insert login screens here
+<img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/LoginDefault.png" width="350">    <img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/LoginValidation.png" width="350">
+
 
 ### Review the residences you rent to tenants or rent from landlords respectively
 
-.. insert residence list screenshots here
+<img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/MainMenu.png" width="350">  <img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/ResidencesList.png" width="350">
 
 ### Review your residence info, pay your rent as a tenant, communicate with both landlords and tenants
 
-.. insert residence overview screenshots here
+  .. insert residence overview screenshots here
 
 ### Exchange valuable information with the residence landlord and ALL tenants
 
@@ -42,7 +43,9 @@ This is a full stack development exercise. The project includes a web back end, 
 
 ### Lookup and rate other users, both landlords and tenants
 
-.. insert user info and user list screenshots here
+<img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/AllUsers.png" width="350">  <img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/UserDetails.png" width="350">
+
+<img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/UserRatingBar.png" width="350">
 
 ## Deployment overview
 
