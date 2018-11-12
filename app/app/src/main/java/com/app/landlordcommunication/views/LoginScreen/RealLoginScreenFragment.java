@@ -83,8 +83,14 @@ public class RealLoginScreenFragment extends Fragment implements LoginScreenCont
 
     @Override
     public void showError(Throwable e) {
-        Toast.makeText(getContext(), "Network delays encountered, please try again later.", Toast.LENGTH_LONG)
-                .show();
+        if(e.getMessage().equals("No such username or password")){
+            Toast.makeText(getContext(), "No such username or password", Toast.LENGTH_LONG)
+                    .show();
+        }
+
+            else{
+        Toast.makeText(getContext(), "Network delays, please try again later", Toast.LENGTH_LONG)
+                .show();}
     }
 
     @Override

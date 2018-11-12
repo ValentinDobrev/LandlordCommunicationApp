@@ -13,7 +13,7 @@ public class Constants {
 
     // Slavi
     public static final String USERS_EXTRA_STRING = "user";
-    public static final String BASE_SERVER_URL = "http://192.168.0.100:8080/api";
+    public static final String BASE_SERVER_URL = "http://10.54.227.80:8080/api";
 
     // Valio
     public static  int TEST_CHATTEE_USER_ID = -1;
