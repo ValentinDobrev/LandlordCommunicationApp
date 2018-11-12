@@ -49,7 +49,7 @@ This is a full stack development exercise. The project includes a web back end, 
 
 ## Deployment overview
 
-The project is in an initial state, it can be deployed utilising the IDEs used for its development a standard MariaDB installation.
+The project is in an initial state, it can be deployed utilising the IDEs used for its development and a standard MariaDB installation.
 
 ### Required software
  * Android Studio: https://developer.android.com/studio/
@@ -58,7 +58,7 @@ The project is in an initial state, it can be deployed utilising the IDEs used f
 
 ### Required hardware
  * A half decent computer with enough RAM (8 to 12 GB should be sufficient)
- * An android phone (optional)
+ * An android phone or tablet (optional)
  * Massive amounts of patience and nerves of steel if you intend to fork, expand or modify :)
  
  ### Deployment instructions
@@ -67,7 +67,7 @@ The project is in an initial state, it can be deployed utilising the IDEs used f
    * https://github.com/ValentinDobrev/LandlordCommunicationApp/tree/master/db/databaseScript
    * https://github.com/ValentinDobrev/LandlordCommunicationApp/tree/master/db/dataRecordsScript
   
-  2. Create a user account with rights to the landlordcommunications schema:
+  2. Create a user account with rights to the landlordcommunication schema:
    - user name: thing
    - password: neshto
   
@@ -80,7 +80,7 @@ The project is in an initial state, it can be deployed utilising the IDEs used f
   https://github.com/ValentinDobrev/LandlordCommunicationApp/tree/master/app
   
   6. Sync Gradle dependencies and create a new virtual device from Tools -> AVD Manager
-  (Android 8.0 API 26 recommended as most stable as of November 2018. Thanks, Google!)
+  (Android 8.0 API 26 recommended for being most stable as of November 2018. Thanks, Google!)
   
   7. Add your machine's local IP address to the Constants.BASE_SERVER_URL variable
   
@@ -100,7 +100,24 @@ The project is in an initial state, it can be deployed utilising the IDEs used f
 * Database: MariaDB https://mariadb.org/
 
 #### Utility libraries
-* list libraries here
+
+##### Android
+* ReactiveX: http://reactivex.io/
+* OkHttp: http://square.github.io/okhttp/
+* Gson: https://github.com/google/gson
+* Material Drawer: https://github.com/mikepenz/MaterialDrawer
+* Butter Knife: https://jakewharton.github.io/butterknife/
+* Dagger: https://google.github.io/dagger/
+* Android Saripaar: https://github.com/ragunathjawahar/android-saripaar
+* Android Support Card View: https://developer.android.com/topic/libraries/support-library/
+* FAB Clans button: https://github.com/Clans/FloatingActionButton
+* Firebase Cloud Messaging: https://firebase.google.com/docs/cloud-messaging/
+* Mockito: https://site.mockito.org/
+
+##### Spring
+* Hibernate: http://hibernate.org/
+* Mockito: https://site.mockito.org/
+* Spring Boot Built in libs <3
 
 ## Design Principles
 
