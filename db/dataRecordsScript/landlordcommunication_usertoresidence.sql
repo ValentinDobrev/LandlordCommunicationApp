@@ -31,7 +31,7 @@ CREATE TABLE `usertoresidence` (
   KEY `user_id_idx` (`user_id`),
   CONSTRAINT `residence_id` FOREIGN KEY (`residence_id`) REFERENCES `residences` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `usertoresidence` (
 
 LOCK TABLES `usertoresidence` WRITE;
 /*!40000 ALTER TABLE `usertoresidence` DISABLE KEYS */;
-INSERT INTO `usertoresidence` VALUES (29,25,13),(30,24,14),(31,23,16),(32,23,17),(33,22,20),(34,21,21),(35,20,22),(36,25,23),(37,24,19),(38,23,19),(39,22,15),(40,21,18),(41,20,18);
+INSERT INTO `usertoresidence` VALUES (29,25,13),(30,24,14),(31,23,16),(32,23,17),(33,22,20),(34,21,21),(35,20,22),(36,25,23),(37,24,19),(38,23,19),(39,22,15),(40,21,18),(41,20,18),(42,29,39),(43,30,39),(44,31,39),(45,29,24),(46,30,24),(47,29,25),(48,29,26),(49,29,27),(50,31,28),(51,31,29),(52,31,30),(53,31,31),(54,29,32),(55,29,33),(56,29,34),(57,29,35),(58,29,36),(59,29,37),(60,29,38),(61,30,27),(62,30,26),(63,30,38);
 /*!40000 ALTER TABLE `usertoresidence` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-05 11:52:49
+-- Dump completed on 2018-11-12  2:05:33
