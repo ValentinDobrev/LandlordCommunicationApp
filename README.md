@@ -31,21 +31,26 @@ This is a full stack development exercise. The project includes a web back end, 
 
 ### Review your residence info, pay your rent as a tenant, communicate with both landlords and tenants
 
-  .. insert residence overview screenshots here
+<img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/ResidenceOverviewTenantTop.png" width="350">   <img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/ResidenceOverviewLandlordTop.png" width="350">
 
+<img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/ResidenceOverviewTenantBottom.png" width="350">   <img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/ResidenceOverviewLandlordBottom.png" width="350">
+  
 ### Exchange valuable information with the residence landlord and ALL tenants
 
-.. insert general chat screenshots here
+<img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/ChatEmpty.png" width="350">   <img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/ChatDemo.png" width="350">
 
 ### Utilise useful template messages and attach pictures you take with your phone's camera
 
-.. insert camera and FAB button example screenshots here
+<img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/ChatTemplates.png" width="350">   <img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/ChatPictureSend.png" width="350">
+
+<img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/ChatPictureReview.png" width="350">   <img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/ChatKeyboard.png" width="350">
+
 
 ### Lookup and rate other users, both landlords and tenants
 
 <img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/AllUsers.png" width="350">  <img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/UserDetails.png" width="350">
 
-<img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/UserRatingBar.png" width="350">
+<img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/UserRatingBar.png" width="350">   <img src="https://github.com/ValentinDobrev/LandlordCommunicationApp/blob/master/screenshots/UserRatingUpdated.png" width="350">
 
 ## Deployment overview
 
