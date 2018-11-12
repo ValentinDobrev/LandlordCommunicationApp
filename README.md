@@ -60,6 +60,36 @@ The project is in an initial state, it can be deployed utilising the IDEs used f
  * A half decent computer with enough RAM (8 to 12 GB should be sufficient)
  * An android phone (optional)
  * Massive amounts of patience and nerves of steel if you intend to fork, expand or modify :)
+ 
+ ### Deployment instructions
+  
+  1. Install MariaDB and deploy the initialisation scripts int the following order:
+   * https://github.com/ValentinDobrev/LandlordCommunicationApp/tree/master/db/databaseScript
+   * https://github.com/ValentinDobrev/LandlordCommunicationApp/tree/master/db/dataRecordsScript
+  
+  2. Create a user account with rights to the landlordcommunications schema:
+   - user name: thing
+   - password: neshto
+  
+  3. Install IntelliJ IDEA  and import project from the following directory:
+  https://github.com/ValentinDobrev/LandlordCommunicationApp/tree/master/web
+  
+  4. Sync Gradle dependencies and run the web application
+  
+  5. Install Android Studio and import project from the following directory:
+  https://github.com/ValentinDobrev/LandlordCommunicationApp/tree/master/app
+  
+  6. Sync Gradle dependencies and create a new virtual device from Tools -> AVD Manager
+  (Android 8.0 API 26 recommended as most stable as of November 2018. Thanks, Google!)
+  
+  7. Add your machine's local IP address to the Constants.BASE_SERVER_URL variable
+  
+  8. Run the application on the newly created Android virtual device
+  
+  9. (Optional) Enable developer options on a real Android device, connect it via USB, run the project on it by selecting it in the "Select Deployment Target" menu (it must be recognised by your OS before it's recognised by Android Studio)
+  
+  10. Enjoy :)
+  
 
 ## Technology stack
 
