@@ -122,14 +122,84 @@ The project is in an initial state, it can be deployed utilising the IDEs used f
 ##### Spring
 * Hibernate: http://hibernate.org/
 * Mockito: https://site.mockito.org/
-* Spring Boot Built in libs <3
+* Spring Boot built in libs <3
 
 ## Design Principles
 
-.. list design principles here
+We followed our objective to apply the MVP pattern to the front end code. We applied dependency injection in both front end and back end and generally tried to follow the SOLID principles and RESTful philosophies.
+
+## RESTful API
+
+Title : Show All Users.
+URL : /users 
+Method : GET
+URL Params : Not required
+Response Codes: Success (200 OK), Bad Request (400), Unauthorized (401)
+
+Title : Show User with ID.
+URL : /users/{id}
+Method : GET
+URL Params : Required: id=[integer]
+Response Codes: Success (200 OK), Bad Request (400), Unauthorized (401)
+
+Title : Update User.
+URL : /users/{id}
+Method : PUT
+URL Params : Required: id=[integer]
+Response Codes: Success (200 OK), Bad Request (400), Unauthorized (401)
+
+Title : Delete User.
+URL : /users/{id}
+Method : DELETE
+URL Params : Required: id=[integer]
+Response Codes: Success (200 OK), Bad Request (400), Unauthorized (401)
+
+Title : Show All Residences.
+URL : /residences
+Method : GET
+URL Params : Not required
+Response Codes: Success (200 OK), Bad Request (400), Unauthorized (401)
+
+Title : Show Residence with ID.
+URL : /residences/{id}
+Method : GET
+URL Params : Required: id=[integer]
+Response Codes: Success (200 OK), Bad Request (400), Unauthorized (401)
+
+Title : Show Rating with ID.
+URL : /rating/{id}
+Method : GET
+URL Params : Required: id=[integer]
+Response Codes: Success (200 OK), Bad Request (400), Unauthorized (401)
+
+Title : Add new Rating.
+URL : /rating/
+Method : POST
+URL Params : Required: id=[integer]
+Response Codes: Success (200 OK), Bad Request (400), Unauthorized (401)
+
+Title : Add new Message.
+URL : /messages/
+Method : POST
+URL Params : Required: id=[integer]
+Response Codes: Success (200 OK), Bad Request (400), Unauthorized (401)
+
+Title : Delete Message.
+URL : /messages/{id}
+Method : DELETE
+URL Params : Required: id=[integer]
+Response Codes: Success (200 OK), Bad Request (400), Unauthorized (401)
 
 ## Honourable mentions
- .. android saripaar, mike penz drawer, etc :)
+
+@mikepenz for the awesome, easy to use, yet beutifully customisable drawer!
+https://mikepenz.com/
+https://github.com/mikepenz
+
+@ragunathjawahar for transforming validation from a cumbersome chore into a creative endeavor!
+https://github.com/ragunathjawahar
+
+
 
 #### Repository URL
 https://github.com/ValentinDobrev/LandlordCommunicationApp
