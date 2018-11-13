@@ -57,6 +57,11 @@ This is a full stack development exercise. The project includes a web back end, 
 The project is in an initial state, it can be deployed utilising the IDEs used for its development and a standard MariaDB installation.
 
 ### Required software
+ * Java 8 JDK:
+ OpenJDK:
+ https://openjdk.java.net/install/index.html
+ Oracle:
+ https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
  * Android Studio: https://developer.android.com/studio/
  * IntelliJ IDEA: https://www.jetbrains.com/idea/
  * MariaDB: https://mariadb.org/download/
@@ -67,34 +72,34 @@ The project is in an initial state, it can be deployed utilising the IDEs used f
  * Massive amounts of patience and nerves of steel if you intend to fork, expand or modify :)
  
  ### Deployment instructions
+   
+  1. Install the Java 8 JDK version for your OS.
   
-  1. Install MariaDB and deploy the initialisation scripts int the following order:
+  2. Install MariaDB and deploy the initialisation scripts int the following order:
    * https://github.com/ValentinDobrev/LandlordCommunicationApp/tree/master/db/databaseScript
    * https://github.com/ValentinDobrev/LandlordCommunicationApp/tree/master/db/dataRecordsScript
   
-  2. Create a user account with rights to the landlordcommunication schema:
+  3. Create a user account with rights to the landlordcommunication schema:
    - user name: thing
    - password: neshto
   
-  3. Install IntelliJ IDEA  and import project from the following directory:
+  4. Install IntelliJ IDEA  and import project from the following directory:
   https://github.com/ValentinDobrev/LandlordCommunicationApp/tree/master/web
   
-  4. Sync Gradle dependencies and run the web application
+  5. Sync Gradle dependencies and run the web application
   
-  5. Install Android Studio and import project from the following directory:
+  6. Install Android Studio and import project from the following directory:
   https://github.com/ValentinDobrev/LandlordCommunicationApp/tree/master/app
   
-  6. Sync Gradle dependencies and create a new virtual device from Tools -> AVD Manager
+  7. Sync Gradle dependencies and create a new virtual device from Tools -> AVD Manager
   (Android 8.0 API 26 recommended for being most stable as of November 2018. Thanks, Google!)
   
-  7. Add your machine's local IP address to the Constants.BASE_SERVER_URL variable
+  8. Add your machine's local IP address to the Constants.BASE_SERVER_URL variable
   
-  8. Run the application on the newly created Android virtual device
+  9. Run the application on the newly created Android virtual device
   
-  9. (Optional) Enable developer options on a real Android device, connect it via USB, run the project on it by selecting it in the "Select Deployment Target" menu (it must be recognised by your OS before it's recognised by Android Studio)
-  
-  10. Enjoy :)
-  
+  10. (Optional) Enable developer options on a real Android device, connect it via USB, run the project on it by selecting it in the "Select Deployment Target" menu (it must be recognised by your OS before it's recognised by Android Studio)
+   
 
 ## Technology stack
 
