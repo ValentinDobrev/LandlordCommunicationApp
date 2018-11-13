@@ -2,7 +2,10 @@ package com.landlordcommunication.web;
 
 import com.landlordcommunication.web.models.Message;
 import com.landlordcommunication.web.models.MessagesCounter;
+import com.landlordcommunication.web.models.User;
+import com.landlordcommunication.web.notification_tools.MessageNotifier;
 import com.landlordcommunication.web.repositories.message.MessageRepository;
+import com.landlordcommunication.web.repositories.user.UserRepository;
 import com.landlordcommunication.web.services.message.MessageServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
@@ -21,6 +24,12 @@ public class MessageServiceImplTests {
 
     @Mock
     MessageRepository mockMessageRepository;
+
+    @Mock
+    UserRepository mockUserRepository;
+
+    @Mock
+    MessageNotifier mockMessageNotifier;
 
     @InjectMocks
     MessageServiceImpl messageService;
@@ -54,6 +63,16 @@ public class MessageServiceImplTests {
     public void createMessage_UploadMessageToDbAndReturnIt(){
         //Arrange
         Message messageToCreate = new Message(6, "text6", null, new Date(), 2, 1, 11);
+        User receiver = new User();
+        receiver.setEmail("mockemail@mockdomain.com");
+        User sender = new User();
+        sender.setFirstName("mock");
+        sender.setSurname("user");
+        Mockito.when(mockUserRepository.getUserById(1)).thenReturn(receiver);
+        Mockito.when(mockUserRepository.getUserById(2)).thenReturn(sender);
+        Mockito.doNothing().when(mockMessageNotifier).notifyReceiverOnNewMessageSent(
+                "mockemailmockdomaincom",
+                "mock user");
         Mockito.when(mockMessageRepository.createMessage(messageToCreate))
                 .thenReturn(messageToCreate);
 

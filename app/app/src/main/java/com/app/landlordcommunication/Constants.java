@@ -23,7 +23,7 @@ public class Constants {
 
     //This is to keep track of which user is logged in:
 
-    public static int CURRENT_USER_ID = 14;
+    public static int CURRENT_USER_ID = -1;
 
     // ALL SERVER URL'S
 
