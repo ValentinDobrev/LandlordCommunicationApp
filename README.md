@@ -58,9 +58,10 @@ The project is in an initial state, it can be deployed utilising the IDEs used f
 
 ### Required software
  * Java 8 JDK:
- OpenJDK:
+ - OpenJDK:
  https://openjdk.java.net/install/index.html
- Oracle:
+ or
+ - Oracle:
  https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
  * Android Studio: https://developer.android.com/studio/
  * IntelliJ IDEA: https://www.jetbrains.com/idea/
